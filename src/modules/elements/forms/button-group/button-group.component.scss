@@ -1,0 +1,12 @@
+.btn-group::after {
+  content: '';
+  display: block;
+}
+.invalid-feedback {
+  display: block;
+}
+app-bootstrap-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,29 @@
+<div [ngClass]="getLabelClass('mb-2')" *ngIf="rangeSlider && rangeSlider.label">
+  <div [ngClass]="getLabelTextClass()">
+    <span [ngClass]="isRequiredClass()">{{ rangeSlider.label.text }}</span>
+    <app-bootstrap-icon
+      *ngIf="rangeSlider.label.icon"
+      [icon]="rangeSlider.label.icon"></app-bootstrap-icon>
+  </div>
+  <span *ngIf="rangeSlider.label.extra" [ngClass]="getLabelExtraClass()">{{
+    rangeSlider.label.extra
+  }}</span>
+</div>
+<div *ngIf="rangeSlider" [ngClass]="getContainerClass()">
+  <span [ngClass]="getPlaceholderClass()">{{ rangeSlider.placeholder }}</span>
+  <span [ngClass]="getValueClass()" style="float: right">{{
+    getPositionSelectedAsText()
+  }}</span>
+</div>
+<input
+  *ngIf="rangeSlider"
+  type="range"
+  min="0"
+  [ngClass]="getClass()"
+  [max]="rangeSlider.valuesList.length - 1"
+  [formControl]="control"
+  [value]="control.value"
+  id="range_{{ randomId }}" />
+<div *ngIf="rangeSlider?.message" [ngClass]="getMessageClass()">
+  {{ rangeSlider.message?.text }}
+</div>

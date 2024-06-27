@@ -1,0 +1,68 @@
+<div class="row mb-6">
+  <div class="col-sm-5 my-5 px-5 mb-12">
+    <div class="row">
+      <div class="col-12">
+        <app-bootstrap-navigation-tabs
+          [tabs]="tabs"></app-bootstrap-navigation-tabs>
+        <ng-template #customTabOne>
+          {{ tabsModel.getValue('tabOne') }}
+        </ng-template>
+        <ng-template #customTabTwo>
+          {{ tabsModel.getValue('tabTwo') }}
+        </ng-template>
+        <ng-template #customTabThree>
+          {{ tabsModel.getValue('tabThree') }}
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div
+    class="col-sm-7 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="tabsModel.getInputText('tabOne', 'Aba Um')"
+          [control]="
+            tabsModel.getControl('tabOne')
+          "></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="tabsModel.getInputText('tabTwo', 'Aba Dois')"
+          [control]="
+            tabsModel.getControl('tabTwo')
+          "></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="tabsModel.getInputText('tabThree', 'Aba Três')"
+          [control]="
+            tabsModel.getControl('tabThree')
+          "></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <h5>Direção</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="directionOptions"
+          [control]="tabsModel.getControl('direction')"
+          (radioChanged)="onChange()"></app-bootstrap-forms-radio>
+      </div>
+      <div class="col-md-8">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="tabsOptions"
+          [formArray]="tabsModel.getFormArray('tabsOptions')"
+          (checkListChanged)="onChange()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

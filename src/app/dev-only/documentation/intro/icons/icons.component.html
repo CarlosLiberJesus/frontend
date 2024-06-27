@@ -1,0 +1,65 @@
+<div class="row mb-5" *ngIf="tabs">
+  <div
+    class="col-xs-12 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 mb-3">
+        <app-bootstrap-forms-select
+          [select]="iconsModel.getArrayStyles(getActiveTab())"
+          [control]="iconsModel.getControl('styles')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-sm-6 col-md-4 mb-5">
+        <app-bootstrap-forms-select
+          [select]="iconsModel.getArrayColors(getActiveTab())"
+          [control]="iconsModel.getControl('color')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-md-4" *ngIf="getActiveTab() < 3">
+        <app-bootstrap-forms-range-slider
+          [control]="iconsModel.getControl('letterSize')"
+          [rangeSlider]="iconsModel.getLetterSizeOptions()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col-md-4 mb-3" *ngIf="getActiveTab() === 3">
+        <app-bootstrap-forms-range-slider
+          [control]="iconsModel.getControl('flagSize')"
+          [rangeSlider]="iconsModel.getFlagSizeOptions()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-bootstrap-navigation-tabs
+  [tabs]="tabs"
+  (tabChanged)="onTabChange($event)"></app-bootstrap-navigation-tabs>
+<ng-template #icons>
+  <div class="row" *ngFor="let cathegory of iconsList?.list">
+    <h5 class="my-5">{{ cathegory.cathegory }}</h5>
+    <div
+      class="col-6 col-sm-3 col-lg-2 text-center mb-6 cursor-pointer"
+      *ngFor="let element of cathegory.elements"
+      (click)="onIconClick(element)"
+      tabindex="3"
+      (keydown)="onIconClick(element)">
+      <div class="d-flex flex-center bg-light rounded p-4 h-80px mb-3">
+        <div class="overlay-wrapper text-gray-600">
+          <app-bootstrap-icon [icon]="getIcon(element)"></app-bootstrap-icon>
+        </div>
+      </div>
+      <span class="fs-7 fw-semibold" data-kt-icon-name="true">
+        {{ element }}
+      </span>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  class="row"
+  *ngIf="srcCode"
+  style="position: fixed; bottom: 40px; right: 40px">
+  <div class="col-auto">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

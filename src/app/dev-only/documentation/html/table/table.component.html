@@ -1,0 +1,58 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-8 d-flex align-items-center justify-content-center mb-12 pe-sm-10">
+    <app-bootstrap-html-table [table]="table"> </app-bootstrap-html-table>
+  </div>
+  <div
+    class="col-sm-4 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-12">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="options"
+          [control]="tableModel.getControl('options')"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" *ngIf="tableModel.getValue('options') === 'spacing'">
+        <h5>Espaçamento de Células</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="tableModel.getControl('spacingX')"
+          [rangeSlider]="tableModel.getSpacingX()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+        <app-bootstrap-forms-range-slider
+          [control]="tableModel.getControl('spacingY')"
+          [rangeSlider]="tableModel.getSpacingY()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+        <app-bootstrap-forms-range-slider
+          [control]="tableModel.getControl('spacingStart')"
+          [rangeSlider]="tableModel.getSpacingStart()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col" *ngIf="tableModel.getValue('options') === 'divider'">
+        <h5>Divisor de Linhas</h5>
+        <app-bootstrap-forms-toggle
+          [control]="tableModel.getControl('divider')"
+          [toggle]="tableModel.getDivider()"
+          (toggleChanged)="onChanged()"></app-bootstrap-forms-toggle>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>
+
+<ng-template #rowTemplate let-row>
+  <td>{{ row.name }}</td>
+  <td>{{ row.position }}</td>
+  <td>{{ row.office }}</td>
+  <td>{{ row.age }}</td>
+  <td>{{ row.start_date }}</td>
+  <td>{{ row.salary }}</td>
+</ng-template>

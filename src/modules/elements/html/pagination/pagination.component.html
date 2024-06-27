@@ -1,0 +1,69 @@
+<ul [ngClass]="getPaginationClass()" *ngIf="pagination">
+  <li
+    *ngIf="pagination.css?.includes('extremes')"
+    [ngClass]="getPageItemClass(0, 'first')">
+    <a
+      tabindex="2"
+      (click)="changePage($event, 0, 'first')"
+      (keydown)="changePage($event, 0, 'first')"
+      [ngClass]="getPageLinkClass('first')">
+      <app-bootstrap-icon
+        *ngIf="!validateIfText('first')"
+        [icon]="getIcons('first')"></app-bootstrap-icon>
+      {{ pagination.text?.first }}
+    </a>
+  </li>
+  <li
+    *ngIf="!pagination.css?.includes('hide')"
+    [ngClass]="getPageItemClass(0, 'previous')">
+    <a
+      tabindex="2"
+      (click)="changePage($event, 0, 'previous')"
+      (keydown)="changePage($event, 0, 'previous')"
+      [ngClass]="getPageLinkClass('previous')">
+      <app-bootstrap-icon
+        *ngIf="!validateIfText('previous')"
+        [icon]="getIcons('previous')"></app-bootstrap-icon>
+      {{ pagination.text?.previous }}
+    </a>
+  </li>
+  <li
+    *ngFor="let page of range(1, getNumberOfPages())"
+    [ngClass]="getPageItemClass(page)">
+    <a
+      tabindex="2"
+      (click)="changePage($event, page)"
+      (keydown)="changePage($event, page)"
+      [ngClass]="getPageLinkClass()">
+      {{ page }}</a
+    >
+  </li>
+  <li
+    *ngIf="!pagination.css?.includes('hide')"
+    [ngClass]="getPageItemClass(getNumberOfPages() + 1, 'next')">
+    <a
+      tabindex="2"
+      (click)="changePage($event, 0, 'next')"
+      (keydown)="changePage($event, 0, 'next')"
+      [ngClass]="getPageLinkClass('next')">
+      <app-bootstrap-icon
+        *ngIf="!validateIfText('next')"
+        [icon]="getIcons('next')"></app-bootstrap-icon>
+      {{ pagination.text?.next }}
+    </a>
+  </li>
+  <li
+    *ngIf="pagination.css?.includes('extremes')"
+    [ngClass]="getPageItemClass(getNumberOfPages() + 1, 'last')">
+    <a
+      tabindex="2"
+      (click)="changePage($event, 0, 'last')"
+      (keydown)="changePage($event, 0, 'last')"
+      [ngClass]="getPageLinkClass('last')">
+      <app-bootstrap-icon
+        *ngIf="!validateIfText('last')"
+        [icon]="getIcons('last')"></app-bootstrap-icon>
+      {{ pagination.text?.last }}
+    </a>
+  </li>
+</ul>

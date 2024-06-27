@@ -1,0 +1,110 @@
+<div [ngClass]="getCardClass()" *ngIf="table">
+  <div [ngClass]="getCardHeaderClass()">
+    <div class="card-title flex-column" *ngIf="table?.title">
+      <h3 [ngClass]="getTitleClass()">{{ table.title }}</h3>
+      <div *ngIf="table?.smallTitle" [ngClass]="getSmallTitleClass()">
+        {{ table.smallTitle }}
+      </div>
+    </div>
+    <div [ngClass]="getToolbarClass()">
+      <ul
+        class="nav nav-pills mb-2 mb-sm-0"
+        role="tablist"
+        *ngIf="table?.css?.includes('table-switch')">
+        <li
+          class="nav-item m-0"
+          role="presentation"
+          (click)="onTableStyleSwitch($event, 'table-card')">
+          <app-bootstrap-html-button
+            [button]="cardIcon"></app-bootstrap-html-button>
+        </li>
+
+        <li
+          class="nav-item m-0"
+          role="presentation"
+          (click)="onTableStyleSwitch($event, 'table-row')">
+          <app-bootstrap-html-button
+            [button]="rowIcon"></app-bootstrap-html-button>
+        </li>
+      </ul>
+      <ng-container
+        *ngIf="table?.toolbar"
+        [ngTemplateOutlet]="table.toolbar"></ng-container>
+    </div>
+  </div>
+  <div [ngClass]="getBodyClass()">
+    <div class="table-responsive">
+      <table
+        [ngClass]="getTableClass()"
+        *ngIf="table && table.css?.includes('table-row')">
+        <thead>
+          <tr [ngClass]="getHearderClass()">
+            <th
+              *ngFor="let column of table.tableHeaders?.columns; let i = index"
+              [ngClass]="getHearderColumnClass(i)">
+              <div style="display: inline-block">
+                {{ column.name }}
+              </div>
+              <app-bootstrap-html-button
+                *ngIf="column.sort"
+                [button]="getSortButton(i)"
+                (clicked)="onSortChange(i)"></app-bootstrap-html-button>
+            </th>
+          </tr>
+        </thead>
+        <tbody [ngClass]="getTbodyClass()">
+          <tr *ngIf="table?.tableData?.length === 0">
+            <td
+              [attr.colspan]="table.tableHeaders.columns.length"
+              class="d-flex align-items-center justify-content-center">
+              <span
+                class="d-flex align-items-center justify-content-center my-5 fs-4">
+                {{ table.notFound }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="!table?.tableData && table?.loading !== undefined">
+            <td [attr.colspan]="table.tableHeaders.columns.length">
+              <app-bootstrap-html-spinner
+                [spinner]="table.loading"></app-bootstrap-html-spinner>
+            </td>
+          </tr>
+          <tr *ngFor="let data of table.tableData">
+            <ng-container
+              *ngTemplateOutlet="
+                table.rowTemplate;
+                context: { $implicit: data }
+              "></ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div
+      class="tab-content mb-5"
+      *ngIf="table && table.css?.includes('table-card')">
+      <ng-container
+        *ngTemplateOutlet="
+          table.cardTemplate;
+          context: { $implicit: table.tableData }
+        "></ng-container>
+    </div>
+    <div class="row" *ngIf="table?.pagination">
+      <div
+        class="col-xs-12 col-sm-6 order-2 order-sm-1 d-flex align-items-center justify-content-center justify-content-sm-start mt-3 mt-sm-0">
+        <app-bootstrap-forms-select
+          [select]="pageSelect"
+          [control]="getControl('perPage')"
+          (selectChanged)="onPerPageChange()"></app-bootstrap-forms-select>
+      </div>
+      <div
+        class="col-xs-12 col-sm-6 order-1 order-sm-2 d-flex align-items-center justify-content-center justify-content-sm-end mt-3 mt-sm-0">
+        <app-bootstrap-html-pagination
+          [pagination]="table.pagination"
+          (paginationChanged)="
+            onPaginationChange($event)
+          "></app-bootstrap-html-pagination>
+      </div>
+    </div>
+  </div>
+</div>

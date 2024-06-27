@@ -1,0 +1,66 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-forms-multi-select
+      [multiSelect]="multiSelect"
+      [formArray]="this.multiSelectModel.getFormArray('fakeMultiSelect')">
+    </app-bootstrap-forms-multi-select>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col">
+        <app-bootstrap-forms-input
+          *ngIf="
+            multiSelectModel
+              .getFormArrayValue('selectOptions')
+              .includes('label')
+          "
+          [input]="
+            multiSelectModel.getInputText(
+              'label',
+              'Etiqueta de Selecção Múltipla'
+            )
+          "
+          [control]="multiSelectModel.getControl('labelText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+
+      <div class="col">
+        <app-bootstrap-forms-input
+          *ngIf="
+            multiSelectModel
+              .getFormArrayValue('selectOptions')
+              .includes('message')
+          "
+          [input]="
+            multiSelectModel.getInputText(
+              'msg',
+              'Mensagem de Selecção Múltipla'
+            )
+          "
+          [control]="multiSelectModel.getControl('msgText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="multiSelectModel.getFormArray('selectOptions')"
+          (checkListChanged)="
+            onOptionsChanged()
+          "></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

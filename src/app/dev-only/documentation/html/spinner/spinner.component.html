@@ -1,0 +1,46 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-2 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-html-spinner
+      [spinner]="spinner"></app-bootstrap-html-spinner>
+  </div>
+  <div
+    class="col-sm-10 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <h5>Opções</h5>
+    <div class="row">
+      <div class="col-md-12">
+        <app-bootstrap-forms-input
+          [input]="spinnerModel.getInputText()"
+          [control]="spinnerModel.getControl('text')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4 mb-3">
+        <app-bootstrap-forms-select
+          [select]="spinnerModel.getStyleOptions()"
+          [control]="spinnerModel.getControl('style')"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-3">
+        <app-bootstrap-forms-select
+          [select]="spinnerModel.getColorsOptions()"
+          [control]="spinnerModel.getControl('color')"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+
+      <div class="col-sm-6 col-md-4 pt-1">
+        <app-bootstrap-forms-range-slider
+          [rangeSlider]="spinnerModel.getSizeOptions()"
+          [control]="spinnerModel.getControl('size')"
+          (sliderChanged)="onChange()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

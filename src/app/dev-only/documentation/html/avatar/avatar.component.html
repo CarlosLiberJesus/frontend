@@ -1,0 +1,65 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-html-avatar [avatar]="avatar"></app-bootstrap-html-avatar>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-5">
+      <div class="col-sm-6 col-md-4 d-flex align-items-center mb-3">
+        <app-bootstrap-forms-radio
+          [radioList]="typeOptions"
+          [control]="avatarModel.getControl('type')"
+          (radioChanged)="onChange()"></app-bootstrap-forms-radio>
+      </div>
+      <div class="col-sm-6 col-md-4 mb-3">
+        <h5 class="mb-2">Estilo do Avatar</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="styleOptions"
+          [control]="avatarModel.getControl('styles')"
+          (radioChanged)="onChange()"></app-bootstrap-forms-radio>
+      </div>
+      <div
+        class="col-md-4 mb-3"
+        *ngIf="avatarModel.getValue('type') === 'text'">
+        <h5 class="mb-2">Exemplos de Etiquetas</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="labelOptions"
+          [control]="avatarModel.getControl('label')"
+          (radioChanged)="onChange()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 pe-md-6">
+        <app-bootstrap-forms-toggle
+          [control]="avatarModel.getControl('ratio')"
+          [toggle]="avatarModel.getRatioOption()"
+          (toggleChanged)="onChange()"></app-bootstrap-forms-toggle>
+
+        <app-bootstrap-forms-range-slider
+          [rangeSlider]="avatarModel.getSizeOptions()"
+          [control]="avatarModel.getControl('size')"
+          (sliderChanged)="onChange()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col-6">
+        <app-bootstrap-forms-toggle
+          [control]="avatarModel.getControl('badge')"
+          [toggle]="avatarModel.getBadgeOption()"
+          (toggleChanged)="onChange()"></app-bootstrap-forms-toggle>
+
+        <app-bootstrap-forms-select
+          *ngIf="avatarModel.getValue('badge')"
+          [select]="avatarModel.getBadgeOptions()"
+          [control]="avatarModel.getControl('position')"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

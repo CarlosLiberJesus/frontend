@@ -1,0 +1,71 @@
+app-bootstrap-html-table {
+  width: 100%;
+}
+
+app-bootstrap-navigation-menu {
+  display: block;
+  z-index: 10;
+}
+
+// ## scss/core/components/_scroll.scss
+// Comented everything related to media-breakpoint-down|up(lg) because it didn't work on mobile
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .form-switch .form-check-input {
+      border-color: var(--bs-gray-400);
+    }
+  }
+} @else {
+  .form-switch.form-check-solid-white .form-check-input:not(:checked) {
+    background-color: white;
+    --#{$prefix}form-switch-bg: #{escape-svg($form-switch-bg-image)};
+  }
+}
+
+// ## scss/core/components/helpers/_text.scss
+.text-justify {
+  text-align: justify !important;
+}
+
+// ## scss/core/components/buttons/_base.scss
+.btn {
+  // Font icon
+  > app-bootstrap-icon > i,
+  > app-bootstrap-html-spinner,
+  > i {
+    display: inline-flex;
+    font-size: $font-size-base;
+    vertical-align: middle;
+  }
+}
+
+// ## scss/core/components/_pagination.scss
+.pagination {
+  .page-item {
+    .page-link {
+      app-bootstrap-icon > i {
+        font-size: $pagination-icon-font-size;
+        height: $pagination-item-height;
+        margin-top: 12px;
+      }
+    }
+  }
+}
+
+// ## scss/core/components/_variables.scss #TODO own file -dark add to several functio
+// $gc: #ff8c00 !default;
+// $gc-active: #ff8c00 !default;
+// $gc-light: #ff8c00 !default;
+// $gc-clarity: rgba(255, 140, 0, 1) !default;
+// $gc-inverse: #ff8c00 !default;
+
+// ## scss/core/components/forms/_form-check.scss #EXAMPLE
+// &.form-check-gc {
+//  .form-check-input {
+//    &[type='checkbox']:indeterminate,
+//    &:checked {
+//      background-color: var(--#{$prefix}gc);
+//    }
+//  }
+//}

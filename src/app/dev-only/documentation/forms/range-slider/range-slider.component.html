@@ -1,0 +1,64 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12"
+    *ngIf="rangeSlidder">
+    <app-bootstrap-forms-range-slider
+      [control]="rangeSliderModel.getControl('slider')"
+      [rangeSlider]="rangeSlidder"></app-bootstrap-forms-range-slider>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-sm-4">
+        <app-bootstrap-forms-input
+          [input]="rangeSliderModel.getInputText('placeholder', 'Etiqueta')"
+          [control]="rangeSliderModel.getControl('placeholderText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-bootstrap-forms-input
+          *ngIf="
+            rangeSliderModel
+              .getFormArrayValue('optionsControl')
+              .includes('label')
+          "
+          [input]="
+            rangeSliderModel.getInputText('label', 'Etiqueta de intervalo')
+          "
+          [control]="rangeSliderModel.getControl('labelText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-bootstrap-forms-input
+          *ngIf="
+            rangeSliderModel
+              .getFormArrayValue('optionsControl')
+              .includes('message')
+          "
+          [input]="
+            rangeSliderModel.getInputText('msg', 'Mensagem de intervalo')
+          "
+          [control]="rangeSliderModel.getControl('msgText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="rangeSliderModel.getFormArray('optionsControl')"
+          (checkListChanged)="onChange()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

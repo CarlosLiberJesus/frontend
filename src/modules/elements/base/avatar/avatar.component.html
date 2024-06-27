@@ -1,0 +1,16 @@
+<div [ngClass]="getClass()" *ngIf="avatar">
+  <img
+    *ngIf="avatar.img"
+    src="{{ avatar.img }}"
+    [alt]="getImgAlt()"
+    [title]="getImgAlt()" />
+  <img
+    *ngIf="avatar.base64"
+    [src]="'data:image/png;base64,' + avatar.base64"
+    [alt]="getImgAlt()"
+    [title]="getImgAlt()" />
+  <div *ngIf="avatar.label" [ngClass]="getLabelClass()">{{ avatar.label }}</div>
+  <div *ngIf="avatar.badge" [ngClass]="getBadgeClass()">
+    {{ avatar.badge.text }}
+  </div>
+</div>

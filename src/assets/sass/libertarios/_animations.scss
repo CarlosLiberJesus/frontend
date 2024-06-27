@@ -1,0 +1,100 @@
+// ## scss/core/components/_animation.scss
+//TODO OVERWRITE default animation.css
+@media print, (prefers-reduced-motion: reduce) {
+  :root {
+    --animate-duration: 1s;
+    --animate-delay: 1s;
+    --animate-repeat: 1;
+  }
+  .animate__animated {
+    -webkit-animation-duration: var(--animate-duration) !important;
+    animation-duration: var(--animate-duration) !important;
+    -webkit-animation-duration: var(--animate-duration) !important;
+    animation-duration: var(--animate-duration) !important;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  .animate__animated.animate__infinite {
+    -webkit-animation-iteration-count: infinite !important;
+    animation-iteration-count: infinite !important;
+  }
+  .animate__animated.animate__repeat-1 {
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: var(--animate-repeat) !important;
+    animation-iteration-count: var(--animate-repeat) !important;
+  }
+  .animate__animated.animate__repeat-2 {
+    -webkit-animation-iteration-count: calc(1 * 2) !important;
+    animation-iteration-count: calc(1 * 2) !important;
+    -webkit-animation-iteration-count: calc(
+      var(--animate-repeat) * 2
+    ) !important;
+    animation-iteration-count: calc(var(--animate-repeat) * 2);
+  }
+  .animate__animated.animate__repeat-3 {
+    -webkit-animation-iteration-count: calc(1 * 3) !important;
+    animation-iteration-count: calc(1 * 3) !important;
+    -webkit-animation-iteration-count: calc(
+      var(--animate-repeat) * 3
+    ) !important;
+    animation-iteration-count: calc(var(--animate-repeat) * 3) !important;
+  }
+  .animate__animated.animate__delay-1s {
+    -webkit-animation-delay: var(--animate-duration) !important;
+    animation-delay: var(--animate-duration) !important;
+    -webkit-animation-delay: var(--animate-delay) !important;
+    animation-delay: var(--animate-delay) !important;
+  }
+  .animate__animated.animate__delay-2s {
+    -webkit-animation-delay: calc(var(--animate-duration) * 2) !important;
+    animation-delay: calc(var(--animate-duration) * 2) !important;
+    -webkit-animation-delay: calc(var(--animate-delay) * 2) !important;
+    animation-delay: calc(var(--animate-delay) * 2) !important;
+  }
+  .animate__animated.animate__delay-3s {
+    -webkit-animation-delay: calc(var(--animate-duration) * 3) !important;
+    animation-delay: calc(var(--animate-duration) * 3) !important;
+    -webkit-animation-delay: calc(var(--animate-delay) * 3) !important;
+    animation-delay: calc(var(--animate-delay) * 3) !important;
+  }
+  .animate__animated.animate__delay-4s {
+    -webkit-animation-delay: calc(var(--animate-duration) * 4) !important;
+    animation-delay: calc(var(--animate-duration) * 4) !important;
+    -webkit-animation-delay: calc(var(--animate-delay) * 4) !important;
+    animation-delay: calc(var(--animate-delay) * 4) !important;
+  }
+  .animate__animated.animate__delay-5s {
+    -webkit-animation-delay: calc(var(--animate-duration) * 5) !important;
+    animation-delay: calc(var(--animate-duration) * 5) !important;
+    -webkit-animation-delay: calc(var(--animate-delay) * 5) !important;
+    animation-delay: calc(var(--animate-delay) * 5) !important;
+  }
+  .animate__animated.animate__faster {
+    -webkit-animation-duration: calc(var(--animate-duration) / 2) !important;
+    animation-duration: calc(var(--animate-duration) / 2) !important;
+    -webkit-animation-duration: calc(var(--animate-duration) / 2) !important;
+    animation-duration: calc(var(--animate-duration) / 2) !important;
+  }
+  .animate__animated.animate__fast {
+    -webkit-animation-duration: calc(var(--animate-duration) * 0.8) !important;
+    animation-duration: calc(var(--animate-duration) * 0.8) !important;
+    -webkit-animation-duration: calc(var(--animate-duration) * 0.8) !important;
+    animation-duration: calc(var(--animate-duration) * 0.8) !important;
+  }
+  .animate__animated.animate__slow {
+    -webkit-animation-duration: calc(var(--animate-duration) * 2) !important;
+    animation-duration: calc(var(--animate-duration) * 2) !important;
+    -webkit-animation-duration: calc(var(--animate-duration) * 2) !important;
+    animation-duration: calc(var(--animate-duration) * 2) !important;
+  }
+  .animate__animated.animate__slower {
+    -webkit-animation-duration: calc(var(--animate-duration) * 3) !important;
+    animation-duration: calc(var(--animate-duration) * 3) !important;
+    -webkit-animation-duration: calc(var(--animate-duration) * 3) !important;
+    animation-duration: calc(var(--animate-duration) * 3) !important;
+  }
+}
+.animation-blink {
+  animation: animationBlink var(--animate-duration) steps(5, start) infinite;
+}

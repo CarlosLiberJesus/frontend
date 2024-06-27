@@ -1,0 +1,9 @@
+<ol [ngClass]="getBreadcrumbClass()" *ngIf="breadcrumbs">
+  <li
+    *ngFor="let breadcrumb of breadcrumbs.items; let i = index"
+    [ngClass]="getBreadcrumbItemCss(i)">
+    <a [ngClass]="getBreadcrumbLinkCss(i)" [routerLink]="breadcrumb.slug">{{
+      breadcrumb.title
+    }}</a>
+  </li>
+</ol>

@@ -1,0 +1,7 @@
+<div *ngIf="popOver" [ngClass]="getPopOverClass()" #popOverTarget>
+  <div [ngClass]="getArrowClass()" #arrowTarget></div>
+  <div [ngClass]="getHeaderClass()" *ngIf="popOver.title">
+    {{ popOver.title }}
+  </div>
+  <div [ngClass]="getContentClass()">{{ popOver.content }}</div>
+</div>

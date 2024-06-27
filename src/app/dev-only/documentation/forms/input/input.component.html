@@ -1,0 +1,82 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-forms-input
+      [input]="input"
+      [control]="
+        inputModel.getControl('fakeInput')
+      "></app-bootstrap-forms-input>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-3">
+      <h5>Opções</h5>
+      <div class="col-auto">
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="inputModel.getFormArray('inputOptions')"
+          (checkListChanged)="onChanged()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto min-w-150px me-3">
+        <app-bootstrap-forms-radio
+          [control]="inputModel.getControl('inputType')"
+          [radioList]="inputType"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+        <app-bootstrap-forms-select
+          [control]="inputModel.getControl('color')"
+          [select]="inputModel.getColorsOptions()"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+
+        <app-bootstrap-forms-select
+          *ngIf="inputModel.getFormArrayValue('inputOptions').includes('icon')"
+          [control]="inputModel.getControl('position')"
+          [select]="inputModel.getPositionOptions()"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <app-bootstrap-forms-input
+              [input]="
+                inputModel.getInputText('placeholder', 'Etiqueta para entrada')
+              "
+              [control]="inputModel.getControl('placeholderText')"
+              (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <app-bootstrap-forms-input
+              *ngIf="
+                inputModel.getFormArrayValue('inputOptions').includes('label')
+              "
+              [input]="inputModel.getInputText('label', 'Etiqueta de Entrada')"
+              [control]="inputModel.getControl('labelText')"
+              (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <app-bootstrap-forms-input
+              *ngIf="
+                inputModel.getFormArrayValue('inputOptions').includes('message')
+              "
+              [input]="inputModel.getInputText('msg', 'Mensagem de Entrada')"
+              [control]="inputModel.getControl('msgText')"
+              (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

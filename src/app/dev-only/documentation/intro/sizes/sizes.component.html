@@ -1,0 +1,155 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <span [ngClass]="getCss()">
+      {{ sizesModel.getValue('text') }}
+    </span>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-5">
+      <div class="col-12">
+        <app-bootstrap-forms-input
+          [input]="sizesModel.getInputText()"
+          [control]="sizesModel.getControl('text')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="options"
+          [control]="sizesModel.getControl('options')"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div
+        class="col-auto w-150px"
+        *ngIf="sizesModel.getValue('options') === 'percent'">
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('percent')"
+          [rangeSlider]="sizesModel.getPercentOptions()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div
+        class="col-auto w-150px"
+        *ngIf="sizesModel.getValue('options') === 'fixed'">
+        <h5>Horizontal</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('fixedHorizontal')"
+          [rangeSlider]="sizesModel.getSizeOptions('fixedHorizontal')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div
+        class="col-auto w-150px"
+        *ngIf="sizesModel.getValue('options') === 'fixed'">
+        <h5>Vertical</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('fixedVertical')"
+          [rangeSlider]="sizesModel.getSizeOptions('fixedVertical')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div
+        class="col-auto w-150px"
+        *ngIf="sizesModel.getValue('options') === 'min'">
+        <h5>Horizontal</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('minHorizontal')"
+          [rangeSlider]="sizesModel.getSizeOptions('minHorizontal')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div
+        class="col-auto w-150px"
+        *ngIf="sizesModel.getValue('options') === 'min'">
+        <h5>Vertical</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('minVertical')"
+          [rangeSlider]="sizesModel.getSizeOptions('minVertical')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+
+      <div
+        class="col-auto w-150px"
+        *ngIf="sizesModel.getValue('options') === 'max'">
+        <h5>Horizontal</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('maxHorizontal')"
+          [rangeSlider]="sizesModel.getSizeOptions('maxHorizontal')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div
+        class="col-auto w-150px"
+        *ngIf="sizesModel.getValue('options') === 'max'">
+        <h5>Vertical</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('maxVertical')"
+          [rangeSlider]="sizesModel.getSizeOptions('maxVertical')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h5>Margens</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('leftMargin')"
+          [rangeSlider]="
+            sizesModel.getSeparatorOptions('leftMargin', 'Esquerda')
+          "
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('topMargin')"
+          [rangeSlider]="
+            sizesModel.getSeparatorOptions('topMargin', 'Superior')
+          "
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('rightMargin')"
+          [rangeSlider]="
+            sizesModel.getSeparatorOptions('rightMargin', 'Direita')
+          "
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('bottomMargin')"
+          [rangeSlider]="
+            sizesModel.getSeparatorOptions('bottomMargin', 'Fundo')
+          "
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col">
+        <h5>Interior</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('leftPadding')"
+          [rangeSlider]="
+            sizesModel.getSeparatorOptions('leftPadding', 'Esquerda')
+          "
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('topPadding')"
+          [rangeSlider]="sizesModel.getSeparatorOptions('topPadding', 'Topo')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('rightPadding')"
+          [rangeSlider]="
+            sizesModel.getSeparatorOptions('rightPadding', 'Direita')
+          "
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+        <app-bootstrap-forms-range-slider
+          [control]="sizesModel.getControl('bottomPadding')"
+          [rangeSlider]="
+            sizesModel.getSeparatorOptions('bottomPadding', 'Fundo')
+          "
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

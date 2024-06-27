@@ -1,0 +1,72 @@
+<div class="row mb-6">
+  <div class="col-sm-4 my-5 mb-12">
+    Linha Um
+    <app-bootstrap-html-separator
+      [separator]="separator"></app-bootstrap-html-separator>
+    Linha Dois
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-5">
+      <div class="col-md-3">
+        <app-bootstrap-forms-select
+          [select]="separatorModel.getStylesOptions()"
+          [control]="separatorModel.getControl('style')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+
+      <div class="col-sm-6 col-md-3">
+        <app-bootstrap-forms-range-slider
+          [rangeSlider]="separatorModel.getSizeOptions()"
+          [control]="separatorModel.getControl('size')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <app-bootstrap-forms-range-slider
+          [rangeSlider]="separatorModel.getPaddingOptions()"
+          [control]="separatorModel.getControl('padding')"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col-md-3">
+        <app-bootstrap-forms-select
+          [select]="separatorModel.getColorOptions()"
+          [control]="separatorModel.getControl('color')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-6 col-md-4 d-flex align-items-center mb-3">
+        <app-bootstrap-forms-toggle
+          [control]="separatorModel.getControl('toggle')"
+          [toggle]="separatorModel.getToggleOptions()"
+          (toggleChanged)="onChanged()"></app-bootstrap-forms-toggle>
+      </div>
+      <div
+        class="col-6 col-md-4 d-flex align-items-center mb-3"
+        *ngIf="separatorModel.getValue('toggle')">
+        <app-bootstrap-forms-radio
+          [control]="separatorModel.getControl('type')"
+          [radioList]="typeOptions"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+      <div
+        class="col-12 col-md-4"
+        *ngIf="
+          separatorModel.getValue('toggle') &&
+          separatorModel.getValue('type') === 'text'
+        ">
+        <app-bootstrap-forms-input
+          [input]="separatorModel.getTextOptions()"
+          [control]="separatorModel.getControl('text')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

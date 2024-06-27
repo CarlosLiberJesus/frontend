@@ -1,0 +1,66 @@
+<div *ngIf="carousel" [ngClass]="getClass()">
+  <div
+    *ngIf="carousel.css?.includes('carousel-custom')"
+    class="d-flex align-items-center justify-content-between flex-wrap">
+    <span [ngClass]="getTitleClass()">{{ carousel.title }}</span>
+    <ol [ngClass]="getIconsClass()">
+      <li
+        *ngFor="let tab of carousel?.tab; let i = index"
+        tabindex="2"
+        (click)="changeTabPane($event, i)"
+        (keydown)="changeTabPane($event, i)"
+        class="ms-1"
+        [ngClass]="{ active: isActive(i) }"></li>
+    </ol>
+  </div>
+
+  <div *ngIf="carousel?.indicators" class="carousel-indicators">
+    <button
+      *ngFor="let tab of carousel?.tab; let i = index"
+      [ngClass]="{ active: isActive(i) }"
+      tabindex="2"
+      (click)="changeTabPane($event, i)"
+      (keydown)="changeTabPane($event, i)"
+      type="button"
+      data-bs-target="">
+      &nbsp;
+    </button>
+  </div>
+
+  <div [ngClass]="getPaneClass()">
+    <div
+      [ngClass]="getItemClass(i)"
+      *ngFor="let tab of carousel?.tab; let i = index">
+      <ng-container
+        *ngIf="tab.content"
+        [ngTemplateOutlet]="tab.content"></ng-container>
+      <div *ngIf="tab.caption" class="carousel-caption">
+        <div *ngIf="tab.caption.title" [ngClass]="getCaptionTitleClass(i)">
+          {{ tab.caption.title }}
+        </div>
+        <p *ngIf="tab.caption.message" [ngClass]="getCaptionMessageClass(i)">
+          {{ tab.caption.message }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <button
+    *ngIf="!carousel.css?.includes('carousel-custom')"
+    tabindex="2"
+    (click)="changeDefaultTabPane($event, -1)"
+    (keydown)="changeDefaultTabPane($event, -1)"
+    class="carousel-control-prev"
+    type="button">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button
+    *ngIf="!carousel.css?.includes('carousel-custom')"
+    tabindex="2"
+    (click)="changeDefaultTabPane($event, 1)"
+    (keydown)="changeDefaultTabPane($event, 1)"
+    class="carousel-control-next"
+    type="button">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>

@@ -1,0 +1,76 @@
+<div class="row mb-6">
+  <div class="col-sm-4 my-5 mb-12">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-10">
+        <app-bootstrap-forms-textarea
+          [textarea]="textarea"
+          [control]="
+            textareaModel.getControl('fakeTextarea')
+          "></app-bootstrap-forms-textarea>
+      </div>
+    </div>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="row">
+          <div class="col">
+            <app-bootstrap-forms-input
+              [input]="
+                textareaModel.getInputText(
+                  'placeholder',
+                  'Etiqueta para textarea'
+                )
+              "
+              [control]="textareaModel.getControl('placeholderText')"
+              (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <app-bootstrap-forms-input
+              *ngIf="
+                textareaModel
+                  .getFormArrayValue('textareaOptions')
+                  .includes('label')
+              "
+              [input]="
+                textareaModel.getInputText('label', 'Etiqueta de textarea')
+              "
+              [control]="textareaModel.getControl('labelText')"
+              (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <app-bootstrap-forms-input
+              *ngIf="
+                textareaModel
+                  .getFormArrayValue('textareaOptions')
+                  .includes('message')
+              "
+              [input]="
+                textareaModel.getInputText('msg', 'Mensagem de textarea')
+              "
+              [control]="textareaModel.getControl('msgText')"
+              (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="textareaModel.getFormArray('textareaOptions')"
+          (checkListChanged)="onChanged()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

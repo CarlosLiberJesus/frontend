@@ -1,0 +1,114 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <span [ngClass]="getCss()">
+      {{ fontsModel.getValue('text') }}
+      <span
+        *ngIf="this.fontsModel.getValue('underline')"
+        class="{{ underline }}"></span>
+    </span>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-5">
+      <div class="col-sm-8 mb-3 mb-sm-0">
+        <app-bootstrap-forms-input
+          [input]="fontsModel.getInputText()"
+          [control]="fontsModel.getControl('text')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+      <div class="col-sm-4">
+        <app-bootstrap-forms-range-slider
+          [control]="fontsModel.getControl('fontSize')"
+          [rangeSlider]="fontsModel.getFontSizeOptions()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-md-4">
+        <app-bootstrap-forms-select
+          [select]="fontsModel.getLineHeightOptions()"
+          [control]="fontsModel.getControl('lineHeight')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-select
+          [select]="fontsModel.getSpacingOptions()"
+          [control]="fontsModel.getControl('spacing')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-select
+          [select]="fontsModel.getItalicOptions()"
+          [control]="fontsModel.getControl('italic')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <app-bootstrap-forms-select
+          [select]="fontsModel.getAlignOptions()"
+          [control]="fontsModel.getControl('align')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div
+        class="col-md-4 col-sm-6 mb-3"
+        *ngIf="fontsModel.getValue('align') !== 'default'">
+        <h5>Apenas no Tamanho de Ecrã?</h5>
+        <app-bootstrap-forms-toggle
+          [control]="fontsModel.getControl('screen')"
+          [toggle]="fontsModel.getToggle()"
+          (toggleChanged)="onChanged()"></app-bootstrap-forms-toggle>
+      </div>
+      <div
+        class="col-md-4 col-sm-6"
+        *ngIf="fontsModel.getControl('screen').value === true">
+        <app-bootstrap-forms-select
+          [select]="fontsModel.getResolutionOptions()"
+          [control]="fontsModel.getControl('resolution')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 mb-3">
+        <h5>Sublinhado</h5>
+        <app-bootstrap-forms-toggle
+          [control]="fontsModel.getControl('underline')"
+          [toggle]="fontsModel.getUnderline()"></app-bootstrap-forms-toggle>
+      </div>
+
+      <div
+        class="col-sm-6 col-md-5"
+        *ngIf="this.fontsModel.getValue('underline')">
+        <app-bootstrap-forms-range-slider
+          [control]="fontsModel.getControl('underlineHeight')"
+          [rangeSlider]="fontsModel.getUnderlineHeight()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div
+        class="col-sm-6 col-md-5"
+        *ngIf="this.fontsModel.getValue('underline')">
+        <app-bootstrap-forms-range-slider
+          [control]="fontsModel.getControl('underlineDistance')"
+          [rangeSlider]="fontsModel.getUnderlineDistance()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+
+      <div class="col-md-6" *ngIf="this.fontsModel.getValue('underline')">
+        <app-bootstrap-forms-select
+          [select]="fontsModel.getArrayColors()"
+          [control]="fontsModel.getControl('colors')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

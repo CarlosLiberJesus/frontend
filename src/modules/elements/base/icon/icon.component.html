@@ -1,0 +1,46 @@
+<div
+  [ngClass]="getIconContainerClass()"
+  (mouseenter)="hoverEnter()"
+  (mouseleave)="hoverLeave()"
+  (click)="clicked()"
+  (keydown)="clicked()"
+  tabindex="3">
+  <ng-container *ngIf="icon?.library?.startsWith('fa-')">
+    <i [ngClass]="getIcon()" #target> </i>
+  </ng-container>
+
+  <ng-container *ngIf="icon?.library === 'socicon'">
+    <i [ngClass]="getIcon()" #target> </i>
+  </ng-container>
+
+  <ng-container *ngIf="icon?.library === 'bi'">
+    <i [ngClass]="getIcon()" #target> </i>
+  </ng-container>
+
+  <ng-container *ngIf="icon?.library === 'flag'">
+    <img
+      [ngClass]="getFlagCss()"
+      [src]="getFlag()"
+      alt="{{ icon.value }}"
+      title="{{ icon.value }}" />
+  </ng-container>
+
+  <ng-container *ngIf="icon?.library === 'base64'">
+    <img
+      [ngClass]="getBase64Css()"
+      [src]="'data:image/png;base64,' + icon.value"
+      [alt]="icon.imgAlt ?? ''"
+      [title]="icon.imgAlt ?? ''" />
+  </ng-container>
+  <ng-container *ngIf="icon?.library === 'img'">
+    <img
+      [ngClass]="getBase64Css()"
+      [src]="icon.value"
+      [alt]="icon.imgAlt ?? ''"
+      [title]="icon.imgAlt ?? ''" />
+  </ng-container>
+</div>
+<app-bootstrap-pop-over
+  *ngIf="popOver"
+  [popOver]="popOver"
+  [target]="targetElement"></app-bootstrap-pop-over>

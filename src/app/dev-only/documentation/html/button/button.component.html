@@ -1,0 +1,93 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-2 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-html-button [button]="button"></app-bootstrap-html-button>
+  </div>
+  <div
+    class="col-sm-10 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <app-bootstrap-forms-input
+          [input]="buttonModel.getTextOptions()"
+          [control]="buttonModel.getControl('text')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+      <div class="col-6 col-sm-6 col-md-3">
+        <app-bootstrap-forms-select
+          [select]="buttonModel.getColorsOptions('Fundo')"
+          [control]="buttonModel.getControl('colorBackground')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-6 col-sm-6 col-md-3">
+        <app-bootstrap-forms-select
+          [select]="buttonModel.getColorsOptions('Texto')"
+          [control]="buttonModel.getControl('colorText')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-md-3 mb-3">
+        <h5>Margens</h5>
+        <app-bootstrap-forms-select
+          [select]="buttonModel.getBorderOptions()"
+          [control]="buttonModel.getControl('border')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-sm-8 col-md-6 flex-column justify-content-center mb-3">
+        <h5 class="mb-5">Efeitos</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="effectOptions"
+          [control]="buttonModel.getControl('effects')"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+      <div class="col-sm-4 col-md-3">
+        <app-bootstrap-forms-toggle
+          [control]="buttonModel.getControl('colorLight')"
+          [toggle]="buttonModel.getColorLightOptions()"
+          (toggleChanged)="onChanged()"></app-bootstrap-forms-toggle>
+        <app-bootstrap-forms-toggle
+          [control]="buttonModel.getControl('activateHover')"
+          [toggle]="buttonModel.getHoverOptions()"
+          (toggleChanged)="onChanged()"></app-bootstrap-forms-toggle>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col"
+        *ngIf="
+          buttonModel.getValue('activateHover') &&
+          buttonModel.getValue('extras').includes('active')
+        ">
+        <h5>Efeitos ao passar o rato</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="hoverEffectOptions"
+          [control]="buttonModel.getControl('hoverEffects')"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col">
+        <h5>Extras</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="extraOptions"
+          [formArray]="buttonModel.getFormArray('extras')"
+          (checkListChanged)="onChanged()"></app-bootstrap-forms-check-box>
+      </div>
+      <div class="col" *ngIf="buttonModel.getValue('extras').includes('badge')">
+        <app-bootstrap-forms-select
+          [select]="buttonModel.getBadgeOptions()"
+          [control]="buttonModel.getControl('badge')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

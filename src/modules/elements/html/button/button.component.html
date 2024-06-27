@@ -1,0 +1,21 @@
+<a
+  *ngIf="button"
+  [ngClass]="getClass()"
+  (click)="click()"
+  tabindex="1"
+  (keydown)="click()">
+  <app-bootstrap-icon
+    *ngIf="button.iconFirst"
+    [icon]="button.iconFirst"></app-bootstrap-icon>
+  <span *ngIf="button.text">{{ button.text }}</span>
+  <span *ngIf="button.color" [ngClass]="getColorClass()"></span>
+  <span *ngIf="button.badge" [ngClass]="getBadgeClass()">{{
+    button.badge.text
+  }}</span>
+  <app-bootstrap-icon
+    *ngIf="button.iconLast"
+    [icon]="button.iconLast"></app-bootstrap-icon>
+  <app-bootstrap-html-spinner
+    *ngIf="button.spinner"
+    [spinner]="button.spinner"></app-bootstrap-html-spinner>
+</a>

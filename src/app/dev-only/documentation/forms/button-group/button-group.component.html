@@ -1,0 +1,81 @@
+<div class="row mb-6">
+  <div
+    class="col-md-6 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-forms-button-group
+      [buttonGroup]="buttonGroup"
+      [formArray]="buttonGroupModel.getFormArray('fakeButtonGroup')"
+      (buttonGroupChanged)="
+        onButtonGroupChange()
+      "></app-bootstrap-forms-button-group>
+  </div>
+  <div
+    class="col-md-6 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-12">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="buttonGroupModel.getFormArray('optionsControl')"
+          (checkListChanged)="onChange()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <app-bootstrap-forms-input
+          *ngIf="
+            buttonGroupModel
+              .getFormArrayValue('optionsControl')
+              .includes('label')
+          "
+          [input]="
+            buttonGroupModel.getInputText(
+              'label',
+              'Etiqueta do grupo de botões'
+            )
+          "
+          [control]="buttonGroupModel.getControl('labelText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+      <div class="col-sm-6">
+        <app-bootstrap-forms-input
+          *ngIf="
+            buttonGroupModel
+              .getFormArrayValue('optionsControl')
+              .includes('label')
+          "
+          [input]="
+            buttonGroupModel.getInputText(
+              'label',
+              'Mensagem extra do grupo de botões'
+            )
+          "
+          [control]="buttonGroupModel.getControl('extraText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <app-bootstrap-forms-input
+          *ngIf="
+            buttonGroupModel
+              .getFormArrayValue('optionsControl')
+              .includes('message')
+          "
+          [input]="
+            buttonGroupModel.getInputText('msg', 'Mensagem do grupo de botões')
+          "
+          [control]="buttonGroupModel.getControl('msgText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

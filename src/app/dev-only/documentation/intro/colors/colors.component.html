@@ -1,0 +1,92 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <span [ngClass]="getCss()">
+      {{ colorsModel.getValue('text') }}
+    </span>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <app-bootstrap-forms-input
+          [input]="colorsModel.getInputText()"
+          [control]="colorsModel.getControl('text')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-md-4 mb-4">
+        <h5>Cor do Texto</h5>
+        <app-bootstrap-forms-select
+          [select]="colorsModel.getArrayColors()"
+          [control]="colorsModel.getControl('colors')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col">
+            <h5>Cor de Fundo</h5>
+            <app-bootstrap-forms-select
+              [select]="colorsModel.getArrayColors()"
+              [control]="colorsModel.getControl('background')"
+              (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+          </div>
+          <div
+            class="col-auto d-flex flex-column"
+            *ngIf="colorsModel.getControl('background').value !== 'white'">
+            <h5 class="d-flex mb-6">Cor mais Clara?</h5>
+            <app-bootstrap-forms-toggle
+              class=""
+              [control]="colorsModel.getControl('light')"
+              [toggle]="colorsModel.getLight()"
+              (toggleChanged)="onChanged()"></app-bootstrap-forms-toggle>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" *ngIf="colorsModel.getControl('light').value === false">
+        <app-bootstrap-forms-range-slider
+          [control]="colorsModel.getControl('opacity')"
+          [rangeSlider]="colorsModel.getOpacity()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 mb-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>
+
+<div class="row justify-content-start mb-5">
+  <h5>Cores Principais</h5>
+  <div
+    class="col-auto mb-0"
+    *ngFor="let color of colorsModel.getArrayColors().option">
+    <span class="btn btn-icon-text">
+      <i class="w-25px h-25px bg-{{ color.value }} rounded"
+        ><span class="path1"></span><span class="path2"></span
+      ></i>
+      {{ color.text | lowercase }}
+    </span>
+  </div>
+</div>
+
+<div class="row justify-content-start mb-5">
+  <h5>Escala de Cinza</h5>
+  <div
+    class="col-auto mb-0"
+    *ngFor="let color of colorsModel.getArrayGrayColors().option">
+    <span class="btn btn-icon-text">
+      <i class="w-25px h-25px bg-{{ color.value }} rounded"
+        ><span class="path1"></span><span class="path2"></span
+      ></i>
+      {{ color.text }}
+    </span>
+  </div>
+</div>

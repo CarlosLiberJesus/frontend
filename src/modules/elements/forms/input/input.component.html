@@ -1,0 +1,61 @@
+<div
+  *ngIf="
+    input && input.label && input.cssInputContainer?.includes('form-floating')
+  "
+  [ngClass]="getInputLabelClass('mb-2')">
+  <div [ngClass]="getLabelTextClass()">
+    <span [ngClass]="isRequiredClass()">{{ input.label.text }}</span>
+    <app-bootstrap-icon
+      *ngIf="input.label.icon"
+      [icon]="input.label.icon"></app-bootstrap-icon>
+  </div>
+  <span *ngIf="input.label.extra" [ngClass]="getLabelExtraClass()">{{
+    input.label.extra
+  }}</span>
+</div>
+<div [ngClass]="getInputContainerClass()" *ngIf="input">
+  <label
+    *ngIf="input.label && !input.cssInputContainer?.includes('form-floating')"
+    for="input_{{ randomId }}"
+    [ngClass]="getInputLabelClass()">
+    <div [ngClass]="getLabelTextClass()">
+      <span [ngClass]="isRequiredClass()">{{ input.label.text }}</span>
+      <app-bootstrap-icon
+        *ngIf="input.label.icon"
+        [icon]="input.label.icon"></app-bootstrap-icon>
+    </div>
+    <span *ngIf="input.label.extra" [ngClass]="getLabelExtraClass()">{{
+      input.label.extra
+    }}</span>
+  </label>
+
+  <input
+    [type]="input.type"
+    [formControl]="control"
+    [name]="input.name"
+    [ngClass]="getInputClass()"
+    [placeholder]="input.placeholder"
+    id="input_{{ randomId }}"
+    [attr.disabled]="isDisabled()"
+    (keyup)="onPasswordKeyup($event)" />
+  <div
+    *ngIf="showInputIcon() && input.icon"
+    (click)="togglePassword()"
+    (keydown)="togglePassword()"
+    tabindex="1"
+    [ngClass]="getIconClass()">
+    <!-- app-bootstrap-icon [icon]="input.icon.icon"></app-bootstrap-icon-->
+  </div>
+  <label
+    *ngIf="input?.cssInputContainer?.includes('form-floating')"
+    [ngClass]="getPaddingPlaceholder()"
+    for="input_{{ randomId }}"
+    >{{ input.placeholder }}</label
+  >
+</div>
+<div class="invalid-feedback" *ngIf="shouldShowErrors()">
+  {{ getErrorMessage() }}
+</div>
+<div *ngIf="input?.message" [ngClass]="getInputMsgClass()">
+  {{ input.message?.text }}
+</div>

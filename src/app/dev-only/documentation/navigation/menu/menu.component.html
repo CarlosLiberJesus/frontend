@@ -1,0 +1,105 @@
+<div class="row mb-6">
+  <div class="col-md-6 col-lg-5 p-0 mb-12">
+    <app-bootstrap-navigation-menu
+      class="{{ menu.name }}"
+      [menu]="menu"></app-bootstrap-navigation-menu>
+  </div>
+  <div
+    class="col-md-6 col-lg-7 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <h5>Direcção</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="directionOptions"
+          [control]="menuModel.getControl('directionControl')"
+          (radioChanged)="onChange()"></app-bootstrap-forms-radio>
+      </div>
+      <div class="col-md-6">
+        <h5>Modo Abertura</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="openOptions"
+          [control]="menuModel.getControl('openControl')"
+          (radioChanged)="onChange()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6 col-md-5 mb-3 mb-md-0">
+        <h5>Cores</h5>
+        <app-bootstrap-forms-select
+          [control]="menuModel.getControl('colorControl')"
+          [select]="menuModel.getColorOptions()"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-sm-6 col-md-7">
+        <h5>CSS</h5>
+        <app-bootstrap-forms-input
+          [input]="menuModel.getInputText('mainCss', 'Menu CSS')"
+          [control]="menuModel.getControl('mainCss')"
+          (inputChanged)="
+            onChangedText($event, 'mainCss')
+          "></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <h5>Nível Um</h5>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [control]="menuModel.getControl('leveloneitem')"
+          [input]="menuModel.getInputText('leveloneitem', 'Item CSS')"
+          (inputChanged)="
+            onChangedText($event, 'leveloneitem')
+          "></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [control]="menuModel.getControl('levelonelink')"
+          [input]="menuModel.getInputText('levelonelink', 'Link CSS')"
+          (inputChanged)="
+            onChangedText($event, 'levelonelink')
+          "></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [control]="menuModel.getControl('levelonetitle')"
+          [input]="menuModel.getInputText('levelonetitle', 'Nível Um')"
+          (inputChanged)="
+            onChangedText($event, 'levelonetitle')
+          "></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <h5>Nível Dois</h5>
+      <div class="col">
+        <app-bootstrap-forms-input
+          [control]="menuModel.getControl('leveltwo')"
+          [input]="menuModel.getInputText('leveltwo', 'Container')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+      <!-- <div class="col">
+        <app-bootstrap-forms-input
+          [control]="menuModel.getControl('leveltwoitem')"
+          [input]="menuModel.getInputText('leveltwoitem', 'Item CSS')"
+          (inputChanged)="onChange($event)"></app-bootstrap-forms-input>
+      </div>
+      <div class="col">
+        <app-bootstrap-forms-input
+          [control]="menuModel.getControl('leveltwolink')"
+          [input]="menuModel.getInputText('leveltwolink', 'Link CSS')"
+          (inputChanged)="onChange($event)"></app-bootstrap-forms-input>
+      </div>
+      <div class="col">
+        <app-bootstrap-forms-input
+          [control]="menuModel.getControl('leveltwotitle')"
+          [input]="menuModel.getInputText('leveltwotitle', bootstrapService.getTranslation('DOCUMENTATION.NAVIGATION.COMPONENTMENU.MODEL.CSS.LEVELTWO.TITLE'))"
+          (inputChanged)="onChange($event)"></app-bootstrap-forms-input>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

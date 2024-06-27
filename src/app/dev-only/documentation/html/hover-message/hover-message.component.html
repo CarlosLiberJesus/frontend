@@ -1,0 +1,47 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <div
+      (mouseenter)="hoverEnter()"
+      (mouseleave)="hoverLeave()"
+      (click)="clicked()"
+      (keydown)="clicked()"
+      tabindex="4"
+      class="btn bg-secondary btn-demo rounded position-relative"
+      #target>
+      AQUI !
+    </div>
+    <app-bootstrap-pop-over
+      *ngIf="popOver"
+      [popOver]="popOver"
+      [target]="targetElement"
+      (popOverClosed)="popOver = null"></app-bootstrap-pop-over>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-auto mb-5">
+        <h5 class="mb-2">Evento</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="eventOptions"
+          [control]="
+            hoverMessageModel.getControl('event')
+          "></app-bootstrap-forms-radio>
+      </div>
+      <div class="col-sm-6">
+        <h5 class="mb-2">Posição</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="positionOptions"
+          [control]="hoverMessageModel.getControl('position')"
+          (radioChanged)="onChange()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

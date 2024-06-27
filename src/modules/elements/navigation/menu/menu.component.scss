@@ -1,0 +1,16 @@
+.show {
+  display: block;
+}
+.menu-sub.menu-row.show,
+.menu-sub.menu-row.here div.keep-open,
+.menu-sub.keep-open {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+.menu-row {
+  .show {
+    z-index: 5;
+    position: relative;
+  }
+}

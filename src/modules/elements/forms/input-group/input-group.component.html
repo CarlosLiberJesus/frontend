@@ -1,0 +1,30 @@
+<div [ngClass]="getInputGroupContainerClass()" *ngIf="inputGroup">
+  <div [ngClass]="getLabelClass()" *ngIf="inputGroup.label">
+    <div [ngClass]="getLabelTextClass()">
+      <span [ngClass]="isRequiredClass()">{{ inputGroup.label.text }}</span>
+      <app-bootstrap-icon
+        *ngIf="inputGroup.label.icon"
+        [icon]="inputGroup.label.icon"></app-bootstrap-icon>
+    </div>
+    <span *ngIf="inputGroup.label.extra" [ngClass]="getLabelExtraClass()">{{
+      inputGroup.label.extra
+    }}</span>
+  </div>
+  <div *ngIf="inputGroup" class="input-group mb-3">
+    <ng-container *ngFor="let anyInput of inputGroup.anyInput">
+      <span class="input-group-text" *ngIf="anyInput.text">{{
+        anyInput.text
+      }}</span>
+      <app-bootstrap-forms-input
+        *ngIf="anyInput.input"
+        [input]="anyInput.input"
+        [control]="getFormControl(anyInput.input.name)"
+        (inputChanged)="
+          onChange(anyInput.input.name)
+        "></app-bootstrap-forms-input>
+    </ng-container>
+  </div>
+  <div *ngIf="inputGroup?.message" [ngClass]="getMessageClass()">
+    {{ inputGroup.message?.text }}
+  </div>
+</div>

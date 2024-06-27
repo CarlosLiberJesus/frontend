@@ -1,0 +1,20 @@
+<div *ngIf="alert && showAlert" [ngClass]="getClass()">
+  <app-bootstrap-icon
+    [icon]="alert.icon"
+    *ngIf="alert.icon"></app-bootstrap-icon>
+  <div [ngClass]="getTitleContainerClass()">
+    <div [ngClass]="getTitleClass()">{{ alert.title }}</div>
+    <span>
+      {{ alert.text }}
+    </span>
+  </div>
+  <button
+    type="button"
+    [ngClass]="getButtonClass()"
+    *ngIf="isDismissible()"
+    (click)="close()"
+    (keyup)="close()"
+    tabindex="1">
+    <app-bootstrap-icon [icon]="closeIcon"></app-bootstrap-icon>
+  </button>
+</div>

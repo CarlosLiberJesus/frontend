@@ -1,0 +1,56 @@
+<div class="row mb-6">
+  <div class="col-sm-4 mt-sm-4 mt-0 px-5 mb-12">
+    <app-bootstrap-navigation-accordion
+      [accordion]="accordion"></app-bootstrap-navigation-accordion>
+    <ng-template #customTabOne>
+      {{ accordionModel.getValue('tabOne') }}
+    </ng-template>
+    <ng-template #customTabTwo>
+      {{ accordionModel.getValue('tabTwo') }}
+    </ng-template>
+    <ng-template #customTabThree>
+      {{ accordionModel.getValue('tabThree') }}
+    </ng-template>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="accordionModel.getInputText('tabOne', 'Aba Um')"
+          [control]="
+            accordionModel.getControl('tabOne')
+          "></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="accordionModel.getInputText('tabTwo', 'Aba Dois')"
+          [control]="
+            accordionModel.getControl('tabTwo')
+          "></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="accordionModel.getInputText('tabThree', 'Aba Três')"
+          [control]="
+            accordionModel.getControl('tabThree')
+          "></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-bootstrap-forms-select
+          [select]="accordionModel.getStyleOptions()"
+          [control]="accordionModel.getControl('style')"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

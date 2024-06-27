@@ -1,0 +1,97 @@
+<div [ngClass]="getClass()">
+  <div [ngClass]="getLabelClass('mb-2')" *ngIf="select && select.label">
+    <div [ngClass]="getLabelTextClass()">
+      <span [ngClass]="isRequiredClass()">{{ select.label.text }}</span>
+      <app-bootstrap-icon
+        *ngIf="select.label.icon"
+        [icon]="select.label.icon"></app-bootstrap-icon>
+    </div>
+    <span *ngIf="select.label.extra" [ngClass]="getLabelExtraClass()">{{
+      select.label.extra
+    }}</span>
+  </div>
+  <div
+    [ngClass]="getSelectClass()"
+    (click)="toggle()"
+    (keyup)="toggle()"
+    tabindex="1">
+    <div
+      *ngIf="select"
+      class="d-flex justify-content-start"
+      [ngClass]="{ 'text-muted': select.css?.includes('disabled') }">
+      <span
+        *ngIf="select.css?.includes('floating')"
+        [ngClass]="{
+          reverseAnimation: !control.value,
+          floatingAction: control.value,
+        }">
+        {{ select.placeholder }}
+      </span>
+      <span
+        style="display: inline-flex; align-items: baseline"
+        [ngClass]="{
+          floatingContent: control.value && select.css?.includes('floating'),
+        }">
+        <div
+          class="w-15px h-15px rounded me-2 mt-1"
+          [ngClass]="getColor()"
+          *ngIf="getColor() !== ''"></div>
+        <div class="w-15px h-15px rounded me-2 mt-1" *ngIf="hasOptionIcon()">
+          <app-bootstrap-icon
+            [icon]="getOptionSelectedIcon()"></app-bootstrap-icon>
+        </div>
+        <div class="w-25px h-25px rounded me-2 mt-1" *ngIf="hasAvatarIcon()">
+          <app-bootstrap-html-avatar
+            [avatar]="getAvatarSelectedIcon()"></app-bootstrap-html-avatar>
+        </div>
+        {{ getContent() }}
+      </span>
+    </div>
+    <div
+      class="rotate p-0 m-0 d-flex align-items-center justify-content-end"
+      [ngClass]="{ active: opened === true }">
+      <app-bootstrap-icon [icon]="getToggleIcon()"></app-bootstrap-icon>
+    </div>
+  </div>
+  <div
+    class="options-list list-group"
+    *ngIf="select && select.option !== undefined"
+    [ngClass]="{ 'd-block': opened === true }">
+    <a *ngIf="select.search" [ngClass]="getSearchClass()">
+      <app-bootstrap-forms-input
+        [input]="select.search.input"
+        [control]="select.search.control"
+        (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+    </a>
+    <a
+      [ngClass]="getOptionClass(option.value)"
+      *ngFor="let option of getFilteredOptions(); let i = index"
+      tabindex="2"
+      (keydown)="setSelected(i)"
+      (click)="setSelected(i)">
+      <div style="display: inline-flex" [ngClass]="getSelectOptionClass(i)">
+        <div
+          class="w-15px h-15px rounded me-2"
+          [ngClass]="option.color"
+          *ngIf="option.color"></div>
+        <div class="w-15px h-15px rounded me-2" *ngIf="option.icon">
+          <app-bootstrap-icon [icon]="option.icon"></app-bootstrap-icon>
+        </div>
+        <div class="me-2" *ngIf="option.avatar">
+          <app-bootstrap-html-avatar
+            [avatar]="option.avatar"></app-bootstrap-html-avatar>
+        </div>
+        {{ option.text }}
+      </div>
+      <app-bootstrap-icon
+        *ngIf="option.value === control.value && select.iconChecked"
+        [icon]="select.iconChecked"></app-bootstrap-icon>
+    </a>
+  </div>
+</div>
+<div class="invalid-feedback" *ngIf="shouldShowErrors()">
+  {{ getErrorMessage() }}
+</div>
+<div *ngIf="select?.message" [ngClass]="getMessageClass()">
+  {{ select.message?.text }}
+</div>

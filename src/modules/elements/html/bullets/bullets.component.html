@@ -1,0 +1,7 @@
+<div [ngClass]="getBulletsContainerClass()" *ngIf="bullets">
+  <li
+    [ngClass]="getLiClass()"
+    *ngFor="let bullet of bullets.bullets; let i = index">
+    <span [ngClass]="getClass(i)"></span> {{ bullet.text }}
+  </li>
+</div>

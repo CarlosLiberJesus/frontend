@@ -1,0 +1,52 @@
+<div
+  *ngIf="accordion && !accordion.css?.includes('accordion-flush')"
+  [ngClass]="getAccordionClass()">
+  <div
+    [ngClass]="getAccordionItemClass(i)"
+    *ngFor="let item of accordion.tab; let i = index">
+    <div
+      [ngClass]="getHeaderClass(i)"
+      tabindex="2"
+      (click)="changeTabPane($event, i)"
+      (keydown)="changeTabPane($event, i)">
+      <button [ngClass]="getAccordionLinkClass(i, 'accordion-button')">
+        {{ item.title }}
+      </button>
+    </div>
+    <div [ngClass]="getPaneClass(i)">
+      <div class="accordion-body">
+        <ng-container
+          *ngIf="item.content"
+          [ngTemplateOutlet]="item.content"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="accordion && accordion.css?.includes('accordion-flush')"
+  [ngClass]="getAccordionClass()">
+  <div
+    [ngClass]="getAccordionItemClass(i)"
+    *ngFor="let item of accordion.tab; let i = index">
+    <div
+      tabindex="2"
+      (click)="changeTabPane($event, i)"
+      (keydown)="changeTabPane($event, i)"
+      [ngClass]="getHeaderClass(i, isActive(i))">
+      <span class="accordion-icon" *ngIf="accordion.icon">
+        <app-bootstrap-icon [icon]="accordion.icon"></app-bootstrap-icon>
+        <app-bootstrap-icon
+          *ngIf="accordion.iconAux"
+          [icon]="accordion.iconAux"></app-bootstrap-icon>
+      </span>
+      <div [ngClass]="getAccordionLinkClass(i)">{{ item.title }}</div>
+    </div>
+
+    <div [ngClass]="getPaneClass(i)">
+      <ng-container
+        *ngIf="item.content"
+        [ngTemplateOutlet]="item.content"></ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-forms-toggle
+      [control]="toggleModel.getControl('fakeToggle')"
+      [toggle]="toggle"></app-bootstrap-forms-toggle>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-3">
+      <div class="col-sm-6 col-md-4">
+        <app-bootstrap-forms-select
+          [control]="toggleModel.getControl('color')"
+          [select]="toggleModel.getColorsOptions()"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-sm-6 col-md-4" *ngIf="isDynamic === true">
+        <h5>Tamanho</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="toggleModel.getControl('size')"
+          [rangeSlider]="toggleModel.getSizeOptions()"
+          (sliderChanged)="onChange()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+    <div
+      class="row mb-3"
+      *ngIf="
+        toggleModel.getFormArrayValue('options').includes('label') ||
+        toggleModel.getFormArrayValue('options').includes('message')
+      ">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <app-bootstrap-forms-input
+          *ngIf="toggleModel.getFormArrayValue('options').includes('label')"
+          [input]="toggleModel.getInputText('label', 'Etiqueta de interuptor')"
+          [control]="toggleModel.getControl('labelText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+
+      <div class="col-md-8">
+        <app-bootstrap-forms-input
+          *ngIf="toggleModel.getFormArrayValue('options').includes('message')"
+          [input]="toggleModel.getInputText('msg', 'Mensagem de interuptor')"
+          [control]="toggleModel.getControl('msgText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="toggleModel.getFormArray('options')"
+          (checkListChanged)="onChange()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

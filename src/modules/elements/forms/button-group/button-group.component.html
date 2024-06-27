@@ -1,0 +1,48 @@
+<div [ngClass]="getLabelClass()" *ngIf="buttonGroup && buttonGroup.label">
+  <div [ngClass]="getLabelTextClass()">
+    <span [ngClass]="isRequiredClass()">{{ buttonGroup.label.text }}</span>
+    <app-bootstrap-icon
+      *ngIf="buttonGroup.label.icon"
+      [icon]="buttonGroup.label.icon"></app-bootstrap-icon>
+  </div>
+  <span *ngIf="buttonGroup.label.extra" [ngClass]="getLabelExtraClass()">{{
+    buttonGroup.label.extra
+  }}</span>
+</div>
+<div *ngFor="let _ of getNumberRows(); let j = index">
+  <ng-container>
+    <div [ngClass]="getContainerClass()">
+      <label
+        *ngFor="let button of getElements(j); let i = index"
+        [ngClass]="getButtonClass(i, j)">
+        <input
+          class="btn-check"
+          [type]="buttonGroup.type"
+          [name]="buttonGroup.name"
+          [value]="button.value"
+          (click)="onChange($event, button.value)"
+          (keydown)="onChange($event, button.value)"
+          tabindex="2"
+          [checked]="isChecked(button.value)" />
+        <span *ngIf="button.button.iconFirst">
+          <app-bootstrap-icon
+            [icon]="button.button.iconFirst"></app-bootstrap-icon>
+        </span>
+        <span *ngIf="button.button.text">{{ button.button.text }}</span>
+        <span
+          *ngIf="button.button.color"
+          [ngClass]="getColorClass(j * (buttonGroup.perRow ?? 0) + i)"></span>
+        <span *ngIf="button.button.iconLast">
+          <app-bootstrap-icon
+            [icon]="button.button.iconLast"></app-bootstrap-icon>
+        </span>
+      </label>
+    </div>
+  </ng-container>
+</div>
+<div class="invalid-feedback" *ngIf="shouldShowErrors()">
+  {{ getErrorMessage() }}
+</div>
+<div *ngIf="buttonGroup?.message" [ngClass]="getMessageClass()">
+  {{ buttonGroup.message?.text }}
+</div>

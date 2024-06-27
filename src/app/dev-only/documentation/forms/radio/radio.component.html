@@ -1,0 +1,102 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-forms-radio
+      [radioList]="radioList"
+      [control]="
+        radioModel.getControl('fakeRadio')
+      "></app-bootstrap-forms-radio>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col">
+        <app-bootstrap-forms-input
+          *ngIf="
+            radioModel.getFormArrayValue('optionsControl').includes('label')
+          "
+          [input]="radioModel.getInputText('label', 'Etiqueta do Rádio')"
+          [control]="radioModel.getControl('labelText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+
+      <div class="col">
+        <app-bootstrap-forms-input
+          *ngIf="
+            radioModel.getFormArrayValue('optionsControl').includes('message')
+          "
+          [input]="
+            radioModel.getInputText(
+              'msg',
+              'Mensagem importante que você deseja exibir'
+            )
+          "
+          [control]="radioModel.getControl('msgText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
+        <h5>Orientação</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="directions"
+          [control]="radioModel.getControl('directionControl')"
+          (radioChanged)="onChange()"></app-bootstrap-forms-radio>
+      </div>
+      <div class="col-md-5 col-sm-6 mb-3 mb-md-0">
+        <h5>Cores</h5>
+        <app-bootstrap-forms-select
+          [control]="radioModel.getControl('colorControl')"
+          [select]="radioModel.getColorOptions()"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-md-4 mb-3 mb-md-0" *ngIf="isDynamicSize === false">
+        <h5>Tamanho</h5>
+        <app-bootstrap-forms-select
+          [control]="radioModel.getControl('hardSizeControl')"
+          [select]="radioModel.getHardSizeOptions()"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-md-4 mb-3 mb-md-0" *ngIf="isDynamicSize === true">
+        <h5>Tamanho</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="radioModel.getControl('sizeControl')"
+          [rangeSlider]="radioModel.getDynamicSizeOptions()"
+          (sliderChanged)="onChange()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="radioModel.getFormArray('optionsControl')"
+          (checkListChanged)="onChange()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto w-150px">
+        <h5>Margens</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="radioModel.getControl('marginControl')"
+          [rangeSlider]="radioModel.getMarginOptions()"
+          (sliderChanged)="onChange()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col-auto w-150px">
+        <h5>Dispersão</h5>
+        <app-bootstrap-forms-range-slider
+          [control]="radioModel.getControl('paddingControl')"
+          [rangeSlider]="radioModel.getPaddingOptions()"
+          (sliderChanged)="onChange()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

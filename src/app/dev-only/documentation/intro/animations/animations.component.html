@@ -1,0 +1,73 @@
+<div class="row">
+  <div
+    class="col-sm-4 d-flex align-items-top pt-10 justify-content-center mb-12">
+    <span [ngClass]="getCss()">
+      {{ animationsModel.getValue('text') }}
+    </span>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-bootstrap-forms-input
+          [input]="animationsModel.getInputText()"
+          [control]="animationsModel.getControl('text')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-4">
+        <app-bootstrap-forms-range-slider
+          [control]="animationsModel.getControl('speed')"
+          [rangeSlider]="animationsModel.getSpeedOptions()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col-sm-4">
+        <app-bootstrap-forms-range-slider
+          [control]="animationsModel.getControl('delay')"
+          [rangeSlider]="animationsModel.getDelayOptions()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+      <div class="col-sm-4">
+        <app-bootstrap-forms-range-slider
+          [control]="animationsModel.getControl('repetitions')"
+          [rangeSlider]="animationsModel.getRepetitionsOptions()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+    </div>
+
+    <div class="card card-bordered">
+      <div class="card-body card-scroll h-300px h-md-600px">
+        <div class="row mb-5 justify-content-start">
+          <div
+            class="col-sm-6 mb-5"
+            *ngFor="
+              let animationGroup of animationsModel.getAnimationOptions();
+              let i = index
+            ">
+            <h5 class="mb-5 mt-2">{{ animationGroup.name }}</h5>
+            <app-bootstrap-forms-radio
+              [radioList]="animationGroup.options"
+              [control]="animationGroup.control"
+              (radioChanged)="onChanged()">
+            </app-bootstrap-forms-radio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="row"
+  *ngIf="srcCode"
+  style="position: fixed; bottom: 40px; left: 40px; margin-right: 25px">
+  <div class="col-auto min-w-200px p-0 position-relative">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+
+    <app-bootstrap-html-button
+      [button]="getCloseIcon()"
+      (clicked)="close()"></app-bootstrap-html-button>
+  </div>
+</div>

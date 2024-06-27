@@ -1,0 +1,47 @@
+<div class="row mb-6">
+  <div
+    class="col-md-5 d-flex align-items-center justify-content-center my-5 mb-12 pe-md-10">
+    <app-bootstrap-html-alert [alert]="alert"></app-bootstrap-html-alert>
+  </div>
+  <div
+    class="col-md-7 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-12">
+        <app-bootstrap-forms-input
+          [input]="alertsModel.getInputText('title', 'Título')"
+          [control]="alertsModel.getControl('title')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <app-bootstrap-forms-input
+          [input]="alertsModel.getInputText('message', 'Mensagem')"
+          [control]="alertsModel.getControl('text')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 col-sm-3 col-md-4">
+        <app-bootstrap-forms-select
+          [control]="alertsModel.getControl('color')"
+          [select]="alertsModel.getColorOptions()"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-6 col-sm-9 col-md-8 mt-3">
+        <app-bootstrap-forms-radio
+          [radioList]="options"
+          [control]="alertsModel.getControl('alert')"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

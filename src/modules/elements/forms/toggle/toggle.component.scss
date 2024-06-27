@@ -1,0 +1,21 @@
+input[type='checkbox' i] {
+  cursor: pointer;
+}
+.form-switch.no-border input.form-check-input:checked {
+  border-color: transparent;
+}
+.invalid-feedback {
+  display: block;
+}
+.form-switch.disabled {
+  cursor: default;
+  input[type='checkbox' i] {
+    cursor: default;
+  }
+  opacity: 0.5;
+}
+app-bootstrap-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

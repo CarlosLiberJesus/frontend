@@ -1,0 +1,8 @@
+<div [ngClass]="getClass()" *ngIf="separator">
+  <span *ngIf="separator.label" [ngClass]="getLabelClass()">{{
+    separator.label
+  }}</span>
+  <app-bootstrap-icon
+    *ngIf="separator.icon"
+    [icon]="separator.icon"></app-bootstrap-icon>
+</div>

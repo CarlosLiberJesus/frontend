@@ -1,0 +1,18 @@
+<div class="highlight" *ngIf="srcCode">
+  <button
+    class="highlight-copy btn"
+    ngxClipboard
+    [cbContent]="srcCode"
+    tabindex="1"
+    (click)="copy()"
+    (keydown)="copy()">
+    {{ copyText }}
+  </button>
+
+  <div class="highlight-code">
+    <pre [ngClass]="getLanguage()">
+      <code [ngClass]="getLanguage()" [language]="getLanguage()" appHighlightCode [srcCode]="srcCode">
+      </code>
+    </pre>
+  </div>
+</div>

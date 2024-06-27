@@ -1,0 +1,60 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-forms-select
+      [select]="select"
+      [control]="this.selectModel.getControl('fakeSelect')">
+    </app-bootstrap-forms-select>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col">
+        <app-bootstrap-forms-input
+          *ngIf="
+            selectModel.getFormArrayValue('selectOptions').includes('label')
+          "
+          [input]="selectModel.getInputText('label', 'Etiqueta de Selecção')"
+          [control]="selectModel.getControl('labelText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+      <div class="col">
+        <app-bootstrap-forms-input
+          *ngIf="
+            selectModel.getFormArrayValue('selectOptions').includes('message')
+          "
+          [input]="selectModel.getInputText('msg', 'Mensagem de Seleçcão')"
+          [control]="selectModel.getControl('msgText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="selectModel.getFormArray('selectOptions')"
+          (checkListChanged)="
+            onOptionsChanged()
+          "></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h5>Estilos</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="styles"
+          [control]="selectModel.getControl('styleOptions')"
+          (radioChanged)="onStyleChanged()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

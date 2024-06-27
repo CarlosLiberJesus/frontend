@@ -1,0 +1,76 @@
+<div [ngClass]="getClass()">
+  <div
+    [ngClass]="getLabelClass('mb-2')"
+    *ngIf="multiSelect && multiSelect.label">
+    <div [ngClass]="getLabelTextClass()">
+      <span [ngClass]="isRequiredClass()">{{ multiSelect.label.text }}</span>
+      <app-bootstrap-icon
+        *ngIf="multiSelect.label.icon"
+        [icon]="multiSelect.label.icon"></app-bootstrap-icon>
+    </div>
+    <span *ngIf="multiSelect.label.extra" [ngClass]="getLabelExtraClass()">{{
+      multiSelect.label.extra
+    }}</span>
+  </div>
+  <div
+    [ngClass]="getSelectClass()"
+    (click)="toogle()"
+    (keyup)="toogle()"
+    tabindex="1">
+    <div
+      *ngIf="multiSelect"
+      class="d-flex justify-content-start"
+      [ngClass]="{ 'text-muted': multiSelect.css?.includes('disabled') }">
+      <span
+        *ngIf="multiSelect.css?.includes('floating')"
+        [ngClass]="{
+          reverseAnimation: getContent() === '',
+          floatingAction: getContent(),
+        }">
+        {{ multiSelect.placeholder }}
+      </span>
+      <span
+        [ngClass]="{
+          floatingContent:
+            getContent() !== '' && multiSelect.css?.includes('floating'),
+        }">
+        {{ getContent() }}
+      </span>
+    </div>
+    <div
+      class="rotate p-0 m-0 d-flex align-items-center justify-content-end"
+      [ngClass]="{ active: opened === true }">
+      <app-bootstrap-icon [icon]="getToggleIcon()"></app-bootstrap-icon>
+    </div>
+  </div>
+  <div
+    class="options-list list-group form-check"
+    *ngIf="multiSelect && multiSelect.option !== undefined"
+    [ngClass]="{ 'd-block': opened === true }">
+    <a *ngIf="multiSelect.search" [ngClass]="getSearchClass()">
+      <app-bootstrap-forms-input
+        [input]="multiSelect.search.input"
+        [control]="multiSelect.search.control"
+        (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+    </a>
+    <a
+      [ngClass]="getOptionClass()"
+      *ngFor="let option of getFilteredOptions(); let i = index">
+      <div class="inline-row">
+        <span [ngClass]="getInputLabelClass(i)">{{ option.text }}</span>
+        <input
+          type="checkbox"
+          [ngClass]="getInputIconClass(i)"
+          tabindex="2"
+          (keydown)="setSelected(i)"
+          (click)="setSelected(i)" />
+      </div>
+    </a>
+  </div>
+</div>
+<div class="invalid-feedback" *ngIf="shouldShowErrors()">
+  {{ getErrorMessage() }}
+</div>
+<div *ngIf="multiSelect?.message" [ngClass]="getMessageClass()">
+  {{ multiSelect.message?.text }}
+</div>

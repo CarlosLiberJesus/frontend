@@ -1,0 +1,153 @@
+<div class="row mb-12">
+  <div class="col-md-5 mb-10 pe-md-10">
+    <div [ngClass]="getClassesCard()" style="width: 100%" *ngIf="visible">
+      <div
+        [ngClass]="getClassesHeader()"
+        *ngIf="cardModel.getFormArrayValue('options').includes('header')">
+        <div
+          *ngIf="cardModel.getFormArrayValue('options').includes('ribbon')"
+          [ngClass]="getClassesRibbon()">
+          <span *ngIf="!cardModel.getValue('ribbonToggle')">Fita</span>
+          <i
+            *ngIf="cardModel.getValue('ribbonToggle')"
+            class="ki-solid ki-abstract-25 text-white fs-1"></i>
+          <span
+            *ngIf="
+              cardModel.getFormArrayValue('ribbonOptions').includes('clip')
+            "
+            [ngClass]="getClassesRibbonInner()"></span>
+        </div>
+        <h3 class="card-title">{{ cardModel.getValue('header') }}</h3>
+        <div
+          [ngClass]="getClassesToolbar()"
+          *ngIf="cardModel.getFormArrayValue('options').includes('action')">
+          <i
+            *ngIf="cardModel.getFormArrayValue('options').includes('collapse')"
+            class="ki-duotone ki-down fs-1"
+            (click)="toggle = !toggle"
+            (keyup)="toggle = !toggle"
+            tabindex="2"></i>
+          <a
+            *ngIf="cardModel.getFormArrayValue('options').includes('removable')"
+            class="btn btn-icon btn-sm"
+            (click)="destroy()"
+            (keyup)="destroy()"
+            tabindex="2">
+            <i class="ki-duotone ki-cross fs-1"
+              ><span class="path1"></span><span class="path2"></span
+            ></i>
+          </a>
+          <button
+            type="button"
+            class="btn btn-sm btn-light"
+            *ngIf="
+              !cardModel.getFormArrayValue('options').includes('collapse') &&
+              !cardModel.getFormArrayValue('options').includes('removable')
+            ">
+            Acções
+          </button>
+        </div>
+      </div>
+      <div class="collapse" [ngClass]="{ show: toggle }">
+        <div [ngClass]="getClassesBody()">
+          {{ cardModel.getValue('body') }}
+        </div>
+        <div
+          class="card-footer"
+          *ngIf="cardModel.getFormArrayValue('options').includes('footer')">
+          {{ cardModel.getValue('footer') }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="col-md-7 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-5">
+      <div class="col-12">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="cardOptions"
+          [formArray]="cardModel.getFormArray('options')"
+          (checkListChanged)="onChanged()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div
+        class="col-md-6"
+        *ngIf="cardModel.getFormArrayValue('options').includes('header')">
+        <app-bootstrap-forms-input
+          [input]="cardModel.getInputText('header', 'Texto para o cabeçalho')"
+          [control]="cardModel.getControl('header')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+
+      <div
+        class="col-md-6"
+        *ngIf="cardModel.getFormArrayValue('options').includes('footer')">
+        <app-bootstrap-forms-input
+          [input]="cardModel.getInputText('footer', 'Texto para o rodapé')"
+          [control]="cardModel.getControl('footer')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-12">
+        <app-bootstrap-forms-input
+          [input]="cardModel.getInputText('body', 'Texto a ser usado')"
+          [control]="cardModel.getControl('body')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col">
+        <h5>Estilo da Margem</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="borderOptions"
+          [control]="cardModel.getControl('border')"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+      <div
+        class="col"
+        *ngIf="cardModel.getFormArrayValue('options').includes('shadow')">
+        <h5>Tamanho da Sombra</h5>
+        <app-bootstrap-forms-radio
+          [radioList]="shadowOptions"
+          [control]="cardModel.getControl('shadow')"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+    </div>
+    <div
+      class="row mb-5"
+      *ngIf="cardModel.getFormArrayValue('options').includes('ribbon')">
+      <h5>Opções de Fita</h5>
+      <div class="col">
+        <app-bootstrap-forms-radio
+          [radioList]="ribbonPositionOptions"
+          [control]="cardModel.getControl('ribbonPosition')"
+          (radioChanged)="onChanged()"></app-bootstrap-forms-radio>
+      </div>
+      <div class="col">
+        <app-bootstrap-forms-select
+          [select]="cardModel.getColorsOptions()"
+          [control]="cardModel.getControl('color')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col">
+        <app-bootstrap-forms-toggle
+          [control]="cardModel.getControl('ribbonToggle')"
+          [toggle]="cardModel.getRibbonToggleOptions()"
+          (toggleChanged)="onChanged()"></app-bootstrap-forms-toggle>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="ribbonOptions"
+          [formArray]="cardModel.getFormArray('ribbonOptions')"
+          (checkListChanged)="onChanged()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"
+      [language]="'html'"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

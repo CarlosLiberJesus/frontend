@@ -1,0 +1,41 @@
+<div
+  [ngClass]="getLabelClass('mb-2')"
+  *ngIf="checkboxList && checkboxList.label">
+  <div [ngClass]="getLabelTextClass()">
+    <span [ngClass]="isRequiredClass()">{{ checkboxList.label.text }}</span>
+    <app-bootstrap-icon
+      *ngIf="checkboxList.label.icon"
+      [icon]="checkboxList.label.icon"></app-bootstrap-icon>
+  </div>
+  <span *ngIf="checkboxList.label.extra" [ngClass]="getLabelExtraClass()">{{
+    checkboxList.label.extra
+  }}</span>
+</div>
+<div [ngClass]="getContainerClass()">
+  <div
+    *ngFor="let checkbox of checkboxList?.checkbox; let i = index"
+    [ngClass]="getCheckboxClass()">
+    <input
+      type="checkbox"
+      id="checkbox_{{ randomId }}_{{ i }}"
+      [ngClass]="getInputCheckClass(i)"
+      (click)="onChangeCheckbox($event, checkbox.value)"
+      tabindex="2"
+      (keydown)="onChangeCheckbox($event, checkbox.value)"
+      [indeterminate]="checkbox.css?.includes('inderterminate')"
+      [disabled]="checkbox.css?.includes('disabled')"
+      [checked]="isChecked(checkbox.value)"
+      [value]="checkbox.value" />
+    <label
+      [ngClass]="getTextLabelClass(i)"
+      for="checkbox_{{ randomId }}_{{ i }}">
+      {{ checkbox.text }}
+    </label>
+  </div>
+</div>
+<div class="invalid-feedback" *ngIf="shouldShowErrors()">
+  {{ getErrorMessage() }}
+</div>
+<div *ngIf="checkboxList?.message" [ngClass]="getMessageClass()">
+  {{ checkboxList.message?.text }}
+</div>

@@ -1,0 +1,71 @@
+<div class="row mb-6">
+  <div
+    class="col-md-5 d-flex align-items-center justify-content-center my-5 mb-12">
+    <app-bootstrap-forms-input-group
+      [inputGroup]="inputGroup"
+      [formGroup]="InputGroupFormControl"
+      (inputGroupChanged)="
+        onInputGroupChanged()
+      "></app-bootstrap-forms-input-group>
+  </div>
+  <div
+    class="col-md-7 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-3">
+      <div class="col-sm-4">
+        <app-bootstrap-forms-input
+          [input]="
+            inputGroupModel.getInputText(
+              'inputGroupText',
+              'Texto para InputGroup'
+            )
+          "
+          [control]="inputGroupModel.getControl('inputGroupText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+      <div
+        class="col-sm-4"
+        *ngIf="
+          inputGroupModel.getFormArrayValue('optionsControl').includes('label')
+        ">
+        <app-bootstrap-forms-input
+          [input]="
+            inputGroupModel.getInputText('label', 'Etiqueta de InputGroup')
+          "
+          [control]="inputGroupModel.getControl('labelText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+
+      <div
+        class="col-sm-4"
+        *ngIf="
+          inputGroupModel
+            .getFormArrayValue('optionsControl')
+            .includes('message')
+        ">
+        <app-bootstrap-forms-input
+          [input]="
+            inputGroupModel.getInputText('msg', 'Mensagem de InputGroup')
+          "
+          [control]="inputGroupModel.getControl('msgText')"
+          (inputChanged)="onChange()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="inputGroupModel.getFormArray('optionsControl')"
+          (checkListChanged)="onChange()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div
+  *ngIf="
+    textarea &&
+    textarea.label &&
+    textarea.cssTextareaContainer?.includes('form-floating')
+  "
+  [ngClass]="getTextareaLabelClass('mb-2')">
+  <div [ngClass]="getLabelTextClass()">
+    <span [ngClass]="isRequiredClass()">{{ textarea.label.text }}</span>
+    <app-bootstrap-icon
+      *ngIf="textarea.label.icon"
+      [icon]="textarea.label.icon"></app-bootstrap-icon>
+  </div>
+  <span *ngIf="textarea.label.extra" [ngClass]="getLabelExtraClass()">{{
+    textarea.label.extra
+  }}</span>
+</div>
+<div [ngClass]="getTextareaContainerClass()" *ngIf="textarea">
+  <label
+    *ngIf="
+      textarea.label &&
+      !textarea?.cssTextareaContainer?.includes('form-floating')
+    "
+    for="input_{{ randomId }}"
+    [ngClass]="getTextareaLabelClass()">
+    <div [ngClass]="getLabelTextClass()">
+      <span [ngClass]="isRequiredClass()">{{ textarea.label.text }}</span>
+      <app-bootstrap-icon
+        *ngIf="textarea.label.icon"
+        [icon]="textarea.label.icon"></app-bootstrap-icon>
+    </div>
+    <span *ngIf="textarea.label.extra" [ngClass]="getLabelExtraClass()">{{
+      textarea.label.extra
+    }}</span>
+  </label>
+  <textarea
+    [formControl]="control"
+    [name]="textarea.name"
+    [ngClass]="getTextareaClass()"
+    [placeholder]="textarea.placeholder"
+    id="input_{{ randomId }}"
+    [attr.disabled]="isDisabled()"
+    style="height: 100%"></textarea>
+  <label
+    *ngIf="textarea?.cssTextareaContainer?.includes('form-floating')"
+    for="input_{{ randomId }}"
+    >{{ textarea.placeholder }}</label
+  >
+  <div class="invalid-feedback" *ngIf="shouldShowErrors()">
+    {{ getErrorMessage() }}
+  </div>
+  <div *ngIf="textarea?.message" [ngClass]="getTextareaMsgClass()">
+    {{ textarea.message?.text }}
+  </div>
+</div>

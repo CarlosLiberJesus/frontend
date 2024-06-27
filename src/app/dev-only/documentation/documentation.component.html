@@ -1,0 +1,75 @@
+<div class="card mb-5">
+  <div class="card-header">
+    <div [ngClass]="getMainMenuListClass()">
+      <app-bootstrap-html-button
+        *ngFor="let button of getMainMenuList()"
+        [button]="button.button"
+        (clicked)="
+          changeSection($event, button.slug)
+        "></app-bootstrap-html-button>
+    </div>
+    <div [ngClass]="getSubMenuListClass()">
+      <div [ngClass]="showIfMainMenu('intro')">
+        <div class="d-flex flex-wrap align-items-center justify-content-start">
+          <app-bootstrap-html-button
+            *ngFor="let button of getIntroSubMenuList()"
+            [button]="button.button"
+            (clicked)="
+              forwardSection($event, button.slug)
+            "></app-bootstrap-html-button>
+        </div>
+      </div>
+      <div [ngClass]="showIfMainMenu('html')">
+        <div class="d-flex flex-wrap align-items-center justify-content-start">
+          <app-bootstrap-html-button
+            *ngFor="let button of getHtmlSubMenuList()"
+            [button]="button.button"
+            (clicked)="
+              forwardSection($event, button.slug)
+            "></app-bootstrap-html-button>
+        </div>
+      </div>
+      <div [ngClass]="showIfMainMenu('navegacao')">
+        <div class="d-flex flex-wrap align-items-center justify-content-start">
+          <app-bootstrap-html-button
+            *ngFor="let button of getNavegacaoSubMenuList()"
+            [button]="button.button"
+            (clicked)="
+              forwardSection($event, button.slug)
+            "></app-bootstrap-html-button>
+        </div>
+      </div>
+      <div [ngClass]="showIfMainMenu('formularios')">
+        <div class="d-flex flex-wrap align-items-center justify-content-start">
+          <app-bootstrap-html-button
+            *ngFor="let button of getFormulariosSubMenuList()"
+            [button]="button.button"
+            (clicked)="
+              forwardSection($event, button.slug)
+            "></app-bootstrap-html-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body" *ngIf="urlChoices?.main">
+    <div *ngIf="urlChoices.main === 'intro'">
+      <app-bootstrap-documentation-intro
+        [fragment]="urlChoices.element"></app-bootstrap-documentation-intro>
+    </div>
+    <div *ngIf="urlChoices.main === 'html'">
+      <app-bootstrap-documentation-html
+        [fragment]="urlChoices.element"></app-bootstrap-documentation-html>
+    </div>
+    <div *ngIf="urlChoices.main === 'formularios'">
+      <app-bootstrap-documentation-forms
+        [fragment]="urlChoices.element"></app-bootstrap-documentation-forms>
+    </div>
+    <div *ngIf="urlChoices.main === 'navegacao'">
+      <app-bootstrap-documentation-navigation
+        [fragment]="
+          urlChoices.element
+        "></app-bootstrap-documentation-navigation>
+    </div>
+    <!-- TODO 404 -->
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12 mb-sm-0">
+    <app-bootstrap-html-pagination
+      [pagination]="pagination"></app-bootstrap-html-pagination>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-md-8 mb-3">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="paginationModel.getFormArray('options')"
+          (checkListChanged)="onChange()"></app-bootstrap-forms-check-box>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-select
+          [control]="paginationModel.getControl('style')"
+          [select]="paginationModel.getStylesOptions()"
+          (selectChanged)="onChange()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

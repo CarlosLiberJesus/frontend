@@ -1,0 +1,81 @@
+<div class="row mb-6">
+  <div class="col-md-4 col-sm-6">
+    <app-bootstrap-navigation-carousel
+      [carousel]="carousel"></app-bootstrap-navigation-carousel>
+    <ng-template #customTabOne>
+      {{ carouselModel.getValue('tabOne') }}
+    </ng-template>
+    <ng-template #customTabTwo>
+      {{ carouselModel.getValue('tabTwo') }}
+    </ng-template>
+    <ng-template #customTabThree>
+      {{ carouselModel.getValue('tabThree') }}
+    </ng-template>
+  </div>
+  <div
+    class="col-md-8 col-sm-6 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row">
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="carouselModel.getInputText('tabOne', 'Aba Um')"
+          [control]="
+            carouselModel.getControl('tabOne')
+          "></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="carouselModel.getInputText('tabTwo', 'Aba Dois')"
+          [control]="
+            carouselModel.getControl('tabTwo')
+          "></app-bootstrap-forms-input>
+      </div>
+      <div class="col-md-4">
+        <app-bootstrap-forms-input
+          [input]="carouselModel.getInputText('tabThree', 'Aba Três')"
+          [control]="
+            carouselModel.getControl('tabThree')
+          "></app-bootstrap-forms-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <app-bootstrap-forms-input
+          [input]="carouselModel.getInputText('title', 'Adicionar Título')"
+          [control]="carouselModel.getControl('title')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-3 mb-md-0">
+        <app-bootstrap-forms-select
+          [select]="carouselModel.getStylesOptions()"
+          [control]="carouselModel.getControl('style')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <h5>Opções</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="options"
+          [formArray]="carouselModel.getFormArray('options')"
+          (checkListChanged)="onChanged()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+    <div
+      class="row"
+      *ngIf="
+        this.carouselModel.getFormArrayValue('options').includes('colors')
+      ">
+      <div class="col-auto w-150px">
+        <app-bootstrap-forms-select
+          [control]="carouselModel.getControl('colorControl')"
+          [select]="carouselModel.getColorOptions()"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div [ngClass]="getSpinnerContainerClass()" *ngIf="spinner">
+  <span [ngClass]="getPlaceholderClass()">
+    {{ getText() }}
+  </span>
+  <div [ngClass]="getStyle()" *ngIf="spinner.style"></div>
+  <div *ngIf="spinner.animation" [ngClass]="getAnimationClass()">
+    <span *ngIf="spinner.animation.text">{{ spinner.animation.text }}</span>
+    <app-bootstrap-icon
+      *ngIf="spinner.animation.icon"
+      [icon]="spinner.animation.icon"></app-bootstrap-icon>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="row mb-6">
+  <div
+    class="col-sm-4 d-flex align-items-center justify-content-center my-5 mb-12">
+    <span [ngClass]="getCss()">
+      {{ bordersModel.getValue('text') }}
+    </span>
+  </div>
+  <div
+    class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-bootstrap-forms-input
+          [input]="bordersModel.getInputText()"
+          [control]="bordersModel.getControl('text')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <app-bootstrap-forms-select
+          [select]="bordersModel.getBorderOptions()"
+          [control]="bordersModel.getControl('border')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+      <div class="col-sm-6" *ngIf="bordersModel.getValue('border') !== 'none'">
+        <app-bootstrap-forms-select
+          [select]="bordersModel.getArrayColors()"
+          [control]="bordersModel.getControl('color')"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6" *ngIf="bordersModel.getValue('border') !== 'none'">
+        <app-bootstrap-forms-range-slider
+          [control]="bordersModel.getControl('width')"
+          [rangeSlider]="bordersModel.getWidthOptions()"
+          (sliderChanged)="onChanged()"></app-bootstrap-forms-range-slider>
+      </div>
+
+      <div class="col-sm-6" *ngIf="bordersModel.getValue('border') !== 'none'">
+        <h5>Margens</h5>
+        <app-bootstrap-forms-check-box
+          [checkboxList]="marginOptions"
+          [formArray]="bordersModel.getFormArray('sides')"
+          (checkListChanged)="onChanged()"></app-bootstrap-forms-check-box>
+      </div>
+    </div>
+    <div class="row" *ngIf="bordersModel.getValue('border') !== 'none'">
+      <div class="col-auto">
+        <h5>Arredondado</h5>
+        <app-bootstrap-forms-toggle
+          [control]="bordersModel.getControl('rounded')"
+          [toggle]="bordersModel.getRoundedToggle()"
+          (toggleChanged)="onChanged()"></app-bootstrap-forms-toggle>
+      </div>
+      <div
+        class="col mw-200px"
+        *ngIf="
+          bordersModel.getValue('rounded') &&
+          bordersModel.getFormArrayValue('sides').includes('all')
+        ">
+        <app-bootstrap-forms-select
+          [control]="bordersModel.getControl('style')"
+          [select]="bordersModel.getRoundedStyles()"
+          (selectChanged)="onChanged()"></app-bootstrap-forms-select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-bootstrap-documentation-code-highlight
+      [srcCode]="srcCode"></app-bootstrap-documentation-code-highlight>
+  </div>
+</div>

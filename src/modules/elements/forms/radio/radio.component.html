@@ -1,0 +1,36 @@
+<div [ngClass]="getLabelClass('mb-2')" *ngIf="radioList && radioList.label">
+  <div [ngClass]="getLabelTextClass()">
+    <span [ngClass]="isRequiredClass()">{{ radioList.label.text }}</span>
+    <app-bootstrap-icon
+      *ngIf="radioList.label.icon"
+      [icon]="radioList.label.icon"></app-bootstrap-icon>
+  </div>
+  <span *ngIf="radioList.label.extra" [ngClass]="getLabelExtraClass()">{{
+    radioList.label.extra
+  }}</span>
+</div>
+<div [ngClass]="getContainerClass()">
+  <div
+    [ngClass]="getFormCheckClass()"
+    *ngFor="let radio of radioList?.radio; let i = index">
+    <input
+      type="radio"
+      id="radio_{{ randomId }}_{{ i }}"
+      [ngClass]="getInputCheckClass(i)"
+      [name]="radioList.name"
+      [checked]="isSelected(i)"
+      [disabled]="radio.css?.includes('disabled')"
+      (click)="radioClicked($event, i)"
+      tabindex="2"
+      (keydown)="radioClicked($event, i)" />
+    <label [ngClass]="getTextLabelClass(i)" for="radio_{{ randomId }}_{{ i }}">
+      {{ radio.text }}
+    </label>
+  </div>
+</div>
+<div class="invalid-feedback" *ngIf="shouldShowErrors()">
+  {{ getErrorMessage() }}
+</div>
+<div *ngIf="radioList?.message" [ngClass]="getMessageClass()">
+  {{ radioList.message?.text }}
+</div>

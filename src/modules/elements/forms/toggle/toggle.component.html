@@ -1,0 +1,37 @@
+<div *ngIf="toggle && toggle.label" [ngClass]="getLabelClass('mb-2')">
+  <div [ngClass]="getLabelTextClass()">
+    <span [ngClass]="isRequiredClass()">{{ toggle.label.text }}</span>
+    <app-bootstrap-icon
+      *ngIf="toggle.label.icon"
+      [icon]="toggle.label.icon"></app-bootstrap-icon>
+  </div>
+  <span *ngIf="toggle.label.extra" [ngClass]="getLabelExtraClass()">{{
+    toggle.label.extra
+  }}</span>
+</div>
+<div
+  *ngIf="toggle"
+  [ngClass]="getCssClass()"
+  tabindex="1"
+  (keydown)="switch()"
+  (click)="switch()">
+  <input
+    id="input_{{ randomId }}"
+    class="form-check-input"
+    [formControl]="control"
+    [ngClass]="getToggleClass()"
+    type="checkbox"
+    value="{{ control.value }}"
+    [name]="toggle.name"
+    [checked]="control.value"
+    *ngIf="control" />
+  <label class="form-check-label" for="input_{{ randomId }}">
+    {{ getLabel() }}
+  </label>
+</div>
+<div class="invalid-feedback" *ngIf="shouldShowErrors()">
+  {{ getErrorMessage() }}
+</div>
+<div *ngIf="toggle?.message" [ngClass]="getMessageClass()">
+  {{ toggle.message?.text }}
+</div>

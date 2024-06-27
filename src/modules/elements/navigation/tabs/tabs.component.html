@@ -1,0 +1,42 @@
+<div [ngClass]="getExtraHorizontal()">
+  <ul [ngClass]="getTabClass()" *ngIf="tabs">
+    <li
+      [ngClass]="getTabItemClass(i)"
+      *ngFor="let tab of tabs.tab; let i = index"
+      tabindex="2"
+      (click)="changeTabPane($event, i)"
+      (keydown)="changeTabPane($event, i)">
+      <a [ngClass]="getTabItemLinkClass(i)">
+        <div class="nav-icon mb-3" *ngIf="tab.iconFirst">
+          <app-bootstrap-icon [icon]="tab.iconFirst"></app-bootstrap-icon>
+        </div>
+        <span [ngClass]="getTabItemTitleClass(i)">
+          {{ tab.title }}
+        </span>
+        <div class="nav-icon mb-3" *ngIf="tab.iconLast">
+          <app-bootstrap-icon [icon]="tab.iconLast"></app-bootstrap-icon>
+        </div>
+        <span [ngClass]="getTabItemBulletClass(i)" *ngIf="tab.bullet"></span>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div
+      class="tab-pane fade"
+      role="tabpanel"
+      *ngFor="let tab of tabs?.tab; let i = index"
+      [ngClass]="getActivePaneClass(i)">
+      <div
+        class="row"
+        *ngIf="tab.content === undefined && tab?.loading !== undefined">
+        <div class="d-flex justify-content-center align-items-center my-5">
+          <app-bootstrap-html-spinner
+            [spinner]="tab.loading"></app-bootstrap-html-spinner>
+        </div>
+      </div>
+      <ng-container
+        *ngIf="tab.content"
+        [ngTemplateOutlet]="tab.content"></ng-container>
+    </div>
+  </div>
+</div>
