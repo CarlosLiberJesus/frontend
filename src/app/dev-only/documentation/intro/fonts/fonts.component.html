@@ -11,11 +11,17 @@
   <div
     class="col-sm-8 bg-secondary rounded py-5 px-5 border-gray-400 border-1 border border-dashed">
     <div class="row mb-5">
-      <div class="col-sm-8 mb-3 mb-sm-0">
+      <div class="col-sm-4 mb-3 mb-sm-0">
         <app-bootstrap-forms-input
           [input]="fontsModel.getInputText()"
           [control]="fontsModel.getControl('text')"
           (inputChanged)="onChanged()"></app-bootstrap-forms-input>
+      </div>
+      <div class="col-sm-4 mb-3 mb-sm-0">
+        <app-bootstrap-forms-select
+          [select]="fontsModel.getFontFamilytOptions()"
+          [control]="fontsModel.getControl('fontFamily')"
+          (inputChanged)="onChanged()"></app-bootstrap-forms-select>
       </div>
       <div class="col-sm-4">
         <app-bootstrap-forms-range-slider

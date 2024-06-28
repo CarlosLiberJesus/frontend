@@ -31,8 +31,8 @@ export class DocumentationAlertsComponent implements OnInit {
       css: [],
       titleCss: [],
       icon: {
-        library: 'ki-duotone',
-        value: 'ki-shield-tick',
+        library: 'bi',
+        value: 'bi-shield-x',
         css: ['fs-2hx', 'me-4'],
       },
     };

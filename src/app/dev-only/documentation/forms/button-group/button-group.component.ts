@@ -20,8 +20,8 @@ export class DocumentationButtonGroupComponent implements OnInit {
   options!: ICheckBoxList;
 
   icon: IIcon = {
-    library: 'ki-duotone',
-    value: 'ki-information',
+    library: 'fa-regular',
+    value: 'fa-gem',
     css: ['fs-6', 'ms-2'],
     popOver: {
       content: 'Mensagem importante',

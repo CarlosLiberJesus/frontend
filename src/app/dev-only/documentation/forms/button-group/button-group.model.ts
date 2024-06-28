@@ -123,8 +123,8 @@ export class ButtonGroupModel {
       {
         button: {
           iconFirst: {
-            library: 'ki-duotone',
-            value: 'ki-abstract-25',
+            library: 'fa-regular',
+            value: 'fa-building',
             css: ['fs-2qx', 'd-flex'],
           },
           css: [

@@ -23,6 +23,7 @@ import { CheckBoxModel } from './check-box/check-box.model';
 import { DocumentationButtonGroupComponent } from './button-group/button-group.component';
 import { ButtonGroupModel } from './button-group/button-group.model';
 import { CodeHighlightModule } from '../code-highlight/code-highlight.module';
+import { BaseModule } from 'src/modules/elements/base/base.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { CodeHighlightModule } from '../code-highlight/code-highlight.module';
     DocumentationCheckBoxComponent,
     DocumentationButtonGroupComponent,
   ],
-  imports: [CommonModule, FormModule, CodeHighlightModule],
+  imports: [CommonModule, BaseModule, FormModule, CodeHighlightModule],
   providers: [
     ToggleModel,
     InputModel,

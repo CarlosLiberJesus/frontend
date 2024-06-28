@@ -96,7 +96,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'grelha'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -108,7 +108,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'cores'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -120,7 +120,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'tamanhos'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -132,7 +132,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'fontes'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -144,7 +144,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'margens'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -167,7 +167,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'icons'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -179,7 +179,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'animacoes'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -196,7 +196,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'avatar'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -208,7 +208,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'marcadores'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -231,7 +231,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'separador'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -243,7 +243,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'cracha'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -255,7 +255,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'giratorio'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -267,7 +267,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'mensagens'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -290,7 +290,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'botao'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -302,7 +302,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'alerta'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -314,7 +314,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'cartao'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -337,7 +337,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'paginacao'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -360,7 +360,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'tabela'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -388,7 +388,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'abas'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /*
@@ -412,7 +412,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'acordiao'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /*
@@ -436,7 +436,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'trilhas'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /*iconLast: {
@@ -459,7 +459,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'menu'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -471,7 +471,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'carrossel'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -499,7 +499,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'interuptor'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -511,7 +511,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'texto'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -523,7 +523,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'grupo'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -535,7 +535,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'radio'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -556,7 +556,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'caixa-selecao'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -579,7 +579,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'selecao'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /* iconLast: {
@@ -602,7 +602,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'selecao-multipla'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -614,7 +614,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'area-texto'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /*iconLast: {
@@ -637,7 +637,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'intervalo'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
         },
@@ -649,7 +649,7 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'grupo-butoes'
-              ? 'bg-primary'
+              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
               : 'btn-active-light-primary',
           ],
           /*iconLast: {
@@ -670,7 +670,7 @@ export class DocumentationComponent implements OnInit {
 
   getMainMenuActiveClass(main: string): string {
     if (this.urlChoices?.main === main) {
-      return 'bg-primary';
+      return 'btn-bg-primary text-inverse-primary fw-bold';
     } else {
       return 'btn-active-light-primary';
     }

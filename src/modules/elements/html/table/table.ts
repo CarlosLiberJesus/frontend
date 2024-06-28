@@ -44,5 +44,5 @@ export interface ITableColumn {
   name: string;
   css?: string[];
   sort?: ESort;
-  icon?: IIcon; // TODO icon (activate tooltip)
+  icon?: IIcon;
 }

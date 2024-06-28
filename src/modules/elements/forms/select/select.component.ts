@@ -25,9 +25,10 @@ export class SelectComponent {
   @Output() selectChanged = new EventEmitter<boolean>();
 
   defaultIcon: IIcon = {
-    library: 'ki-duotone',
-    value: 'ki-down',
+    library: 'fa-solid',
+    value: 'fa-angle-down',
     css: ['fs-2', 'rotate-180', 'ms-2'],
+    cssContainer: ['rotate d-flex'],
   };
 
   opened = false;
@@ -39,6 +40,24 @@ export class SelectComponent {
   onClick(event: MouseEvent) {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.opened = false;
+      if (!this.select.iconToggle) {
+        this.defaultIcon = {
+          ...this.defaultIcon,
+          cssContainer: (this.defaultIcon?.cssContainer || []).filter(
+            item => item !== 'active'
+          ),
+        };
+      } else {
+        this.select = {
+          ...this.select,
+          iconToggle: {
+            ...this.select.iconToggle,
+            cssContainer: (this.select.iconToggle?.cssContainer || []).filter(
+              item => item !== 'active'
+            ),
+          },
+        };
+      }
     }
   }
 
@@ -54,6 +73,29 @@ export class SelectComponent {
       return;
     }
     this.opened = !this.opened;
+
+    if (!this.select.iconToggle) {
+      this.defaultIcon = {
+        ...this.defaultIcon,
+        cssContainer: this.opened
+          ? [...(this.defaultIcon.cssContainer || []), 'active']
+          : (this.defaultIcon?.cssContainer || []).filter(
+              item => item !== 'active'
+            ),
+      };
+    } else {
+      this.select = {
+        ...this.select,
+        iconToggle: {
+          ...this.select.iconToggle,
+          cssContainer: this.opened
+            ? [...(this.select.iconToggle?.cssContainer || []), 'active']
+            : (this.select.iconToggle?.cssContainer || []).filter(
+                item => item !== 'active'
+              ),
+        },
+      };
+    }
   }
 
   /**

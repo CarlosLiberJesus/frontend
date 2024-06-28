@@ -1,0 +1,53 @@
+// standard body font
+.font-roboto {
+  font-family: var(--bs-font-sans-serif);
+}
+// standard heading font
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-title,
+.font-montserrat {
+  font-family: 'Montserrat';
+}
+.font-droid {
+  font-family: 'Droid Serif', serif;
+}
+.font-kaushan {
+  font-family: 'Kaushan Script';
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+app-bootstrap-html-table {
+  width: 100%;
+}
+
+.btn {
+  // Font icon
+  > app-bootstrap-icon > i,
+  > app-bootstrap-html-spinner,
+  > i {
+    display: inline-flex;
+    font-size: $font-size-base;
+    vertical-align: middle;
+  }
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .form-switch .form-check-input {
+      border-color: var(--bs-gray-400);
+    }
+  }
+} @else {
+  .form-switch.form-check-solid-white .form-check-input:not(:checked) {
+    background-color: white;
+    --#{$prefix}form-switch-bg: #{escape-svg($form-switch-bg-image)};
+  }
+}

@@ -131,8 +131,8 @@ export class DocumentationButtonComponent implements OnInit {
 
   setIcon(): IIcon {
     return {
-      library: 'ki-solid',
-      value: 'ki-icon',
+      library: 'fa-regular',
+      value: 'fa-face-grin-tears',
       css: [
         this.buttonModel.getValue('colorText')
           ? 'text-' + this.buttonModel.getValue('colorText')

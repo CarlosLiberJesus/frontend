@@ -85,8 +85,8 @@ export class DocumentationAnimationsComponent {
         'bg-hover-gray-500',
       ],
       iconFirst: {
-        library: 'ki-duotone',
-        value: 'ki-cross',
+        library: 'bi',
+        value: 'bi-x',
         css: ['fs-2', 'text-white', 'text-hover-primary'],
       },
     };

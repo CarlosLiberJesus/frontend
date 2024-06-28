@@ -44,11 +44,6 @@ export class DocumentationMenuComponent implements OnInit {
       items: [
         {
           title: lang + ' 1',
-          iconLast: {
-            library: 'ki-duotone',
-            value: 'ki-angular',
-            css: ['fs-2qx', 'text-' + this.menuModel.getValue('colorControl')],
-          },
           badge: {
             text: '+9',
             css: [
@@ -102,8 +97,8 @@ export class DocumentationMenuComponent implements OnInit {
               button: {
                 css: ['p-0', 'ps-2'],
                 iconFirst: {
-                  library: 'ki-duotone',
-                  value: 'ki-right',
+                  library: 'bi',
+                  value: 'bi-chevron-right',
                   cssContainer: ['rotate'],
                   css: ['rotate-180'],
                 },
@@ -120,9 +115,13 @@ export class DocumentationMenuComponent implements OnInit {
         {
           title: lang + ' 2',
           iconLast: {
-            library: 'ki-duotone',
-            value: 'ki-bootstrap',
-            css: ['fs-2qx', 'text-' + this.menuModel.getValue('colorControl')],
+            library: 'socicon',
+            value: 'socicon-rss',
+            css: [
+              'fs-6',
+              'ms-2',
+              'text-' + this.menuModel.getValue('colorControl'),
+            ],
           },
           event:
             this.menuModel.getValue('openControl') === EEvent.CLICK
@@ -144,11 +143,6 @@ export class DocumentationMenuComponent implements OnInit {
         },
         {
           title: lang + ' 3',
-          iconLast: {
-            library: 'ki-duotone',
-            value: 'ki-laravel',
-            css: ['fs-2qx', 'text-' + this.menuModel.getValue('colorControl')],
-          },
         },
       ],
     };

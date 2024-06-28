@@ -40,8 +40,8 @@ export class DocumentationMultiSelectComponent implements OnInit {
 
     if (multiSelect.css?.includes('icon-check')) {
       multiSelect.iconChecked = {
-        library: 'ki-duotone',
-        value: 'ki-check',
+        library: 'fa-regular',
+        value: 'fa-circle-check',
         css: [
           'fs-2',
           ...(multiSelect.css?.includes('active') ? ['text-white'] : []),

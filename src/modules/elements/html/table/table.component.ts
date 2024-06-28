@@ -6,10 +6,10 @@ import {
   Output,
 } from '@angular/core';
 import { ESort, ITable } from './table';
-import { IButton } from '../button/button';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { IPagination } from '../pagination/pagination';
 import { ISelect } from '../../forms/select/select';
+import { IButton } from '../button/button';
 
 @Component({
   selector: 'app-bootstrap-html-table',
@@ -48,8 +48,8 @@ export class TableComponent {
       },
     ],
     iconChecked: {
-      library: 'ki-duotone',
-      value: 'ki-check',
+      library: 'fa-regular',
+      value: 'fa-circle-check',
       css: ['fs-2'],
     },
     cssOption: ['border-top-0', 'border-bottom-0'],
@@ -69,9 +69,9 @@ export class TableComponent {
       this.table?.css?.includes('table-card') ? 'active' : '',
     ],
     iconFirst: {
-      library: 'ki-duotone',
-      value: 'ki-element-plus',
-      css: ['fs-2'],
+      library: 'fa-regular',
+      value: 'fa-square-full',
+      css: ['fs-3'],
     },
   };
   rowIcon: IButton = {
@@ -85,9 +85,9 @@ export class TableComponent {
       this.table?.css?.includes('table-row') ? 'active' : '',
     ],
     iconFirst: {
-      library: 'ki-duotone',
-      value: 'ki-row-horizontal',
-      css: ['fs-2'],
+      library: 'bi',
+      value: 'bi-justify',
+      css: ['fs-3'],
     },
   };
 
@@ -198,9 +198,10 @@ export class TableComponent {
       const sortIcon: IButton = {
         css: ['px-2 p-0', 'rotate'],
         iconFirst: {
-          library: 'ki-duotone',
-          value: 'ki-down',
+          library: 'bi',
+          value: 'bi-chevron-down',
           css: ['rotate-180', this.inheritLettering()],
+          cssContainer: ['rotate'],
         },
       };
       if (this.table.tableHeaders?.columns[pos]?.sort) {

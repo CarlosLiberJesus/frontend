@@ -21,13 +21,13 @@ export class DocumentationInputComponent implements OnInit {
   inputType!: IRadioList;
 
   icon: IIcon = {
-    library: 'ki-duotone',
-    value: 'ki-information',
-    css: ['fs-6', 'ms-2', 'cursor-pointer'],
+    library: 'bi',
+    value: 'bi-info-square-fill',
+    css: ['fs-8', 'ms-2', 'cursor-pointer'],
     popOver: {
       content: 'Mensagem importante que você deseja exibir',
-      event: EEvent.CLICK,
-      position: EPosition.BOTTOM,
+      event: EEvent.HOVER,
+      position: EPosition.TOP,
       cssContainer: ['fade show'],
     },
   };
@@ -122,10 +122,10 @@ export class DocumentationInputComponent implements OnInit {
               tInput.cssInputContainer?.push('position-relative');
               tInput.icon = {
                 icon: {
-                  library: 'ki-duotone',
-                  value: 'ki-security-user',
+                  library: 'fa-solid',
+                  value: 'fa-user-lock',
                   css: [
-                    'fs-2x',
+                    'fs-3',
                     this.inputModel.getValue('color')
                       ? 'text-' + this.inputModel.getValue('color')
                       : '',
@@ -142,9 +142,9 @@ export class DocumentationInputComponent implements OnInit {
               tInput.cssInputContainer?.push('position-relative');
               tInput.icon = {
                 icon: {
-                  library: 'ki-duotone',
-                  value: 'ki-eye',
-                  antiValue: 'ki-eye-slash',
+                  library: 'fa-regular',
+                  value: 'fa-eye',
+                  antiValue: 'fa-eye-slash',
                   css: [
                     'fs-2x',
                     'cursor-pointer',

@@ -43,8 +43,8 @@ export class DocumentationSelectComponent implements OnInit {
 
     if (select.css?.includes('icon-check')) {
       select.iconChecked = {
-        library: 'ki-duotone',
-        value: 'ki-check',
+        library: 'fa-regular',
+        value: 'fa-circle-check',
         css: [
           'fs-2',
           select.css?.includes('active') ? 'text-white' : '',

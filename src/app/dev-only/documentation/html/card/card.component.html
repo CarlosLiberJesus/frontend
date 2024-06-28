@@ -10,7 +10,7 @@
           <span *ngIf="!cardModel.getValue('ribbonToggle')">Fita</span>
           <i
             *ngIf="cardModel.getValue('ribbonToggle')"
-            class="ki-solid ki-abstract-25 text-white fs-1"></i>
+            class="fa-regular fa-chess-pawn text-white fs-1"></i>
           <span
             *ngIf="
               cardModel.getFormArrayValue('ribbonOptions').includes('clip')
@@ -23,7 +23,7 @@
           *ngIf="cardModel.getFormArrayValue('options').includes('action')">
           <i
             *ngIf="cardModel.getFormArrayValue('options').includes('collapse')"
-            class="ki-duotone ki-down fs-1"
+            class="fa-solid fa-angle-down fs-1"
             (click)="toggle = !toggle"
             (keyup)="toggle = !toggle"
             tabindex="2"></i>
@@ -33,7 +33,7 @@
             (click)="destroy()"
             (keyup)="destroy()"
             tabindex="2">
-            <i class="ki-duotone ki-cross fs-1"
+            <i class="bi bi-x fs-1"
               ><span class="path1"></span><span class="path2"></span
             ></i>
           </a>

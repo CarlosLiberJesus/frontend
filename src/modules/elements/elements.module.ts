@@ -7,7 +7,7 @@ import { NavigationModule } from './navigation/navigation.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, FormModule, BaseModule, HtmlModule, NavigationModule],
-  exports: [FormModule, BaseModule, HtmlModule, NavigationModule],
+  imports: [CommonModule, BaseModule, FormModule, NavigationModule, HtmlModule],
+  exports: [BaseModule, FormModule, NavigationModule, HtmlModule],
 })
 export class ElementsModule {}

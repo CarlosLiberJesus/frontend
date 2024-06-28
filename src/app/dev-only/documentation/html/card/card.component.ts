@@ -54,7 +54,7 @@ export class DocumentationCardComponent implements OnInit {
         <div class="${this.getClassesRibbon()}">
       `;
         if (this.cardModel.getValue('ribbonToggle')) {
-          cardHtml += `      <i class="ki-solid ki-abstract-25 text-white fs-1"></i>`;
+          cardHtml += `      <i class="fa-regular fa-chess-pawn text-white fs-1"></i>`;
         } else {
           cardHtml += `      Fita`;
           if (
@@ -78,11 +78,11 @@ export class DocumentationCardComponent implements OnInit {
       `;
         if (options.includes('collapse')) {
           cardHtml += `
-          <i class="ki-duotone ki-down fs-1"></i>
+          <i class="fa-solid fa-angle-down fs-1"></i>
         `;
         } else if (options.includes('removable')) {
           cardHtml += `
-          <i class="ki-duotone ki-cross fs-1"></i>
+          <i class="bi bi-x fs-1"></i>
         `;
         } else {
           cardHtml += `

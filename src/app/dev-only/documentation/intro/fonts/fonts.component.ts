@@ -72,6 +72,7 @@ export class DocumentationFontsComponent {
         ];
     }
 
+    classes += ' font-' + this.fontsModel.getValue('fontFamily');
     this.srcCode =
       '\n<span class="' +
       classes +

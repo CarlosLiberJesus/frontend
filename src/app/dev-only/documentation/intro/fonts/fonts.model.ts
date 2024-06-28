@@ -16,6 +16,7 @@ export class FontsModel {
         ),
         []
       ),
+      fontFamily: new FormControl('roboto', []),
       lineHeight: new FormControl('default', []),
       spacing: new FormControl('default', []),
       italic: new FormControl('default', []),
@@ -102,6 +103,33 @@ export class FontsModel {
         'fs-7hx',
         'fs-7tx',
         'fs-fluid',
+      ],
+    };
+  }
+
+  getFontFamilytOptions(): ISelect {
+    return {
+      name: 'fontFamily',
+      cssOption: ['text-dark'],
+      placeholder: 'Familia de Fonte',
+      css: ['mb-5', 'floating'],
+      option: [
+        {
+          text: 'Roboto Slab',
+          value: 'roboto',
+        },
+        {
+          text: 'Droid Serif',
+          value: 'droid',
+        },
+        {
+          text: 'Kaushan Script',
+          value: 'kaushan',
+        },
+        {
+          text: 'Montserrat',
+          value: 'montserrat',
+        },
       ],
     };
   }

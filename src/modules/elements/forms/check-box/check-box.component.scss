@@ -1,0 +1,37 @@
+.form-check:not(.form-check-inline) {
+  align-items: center !important;
+  justify-content: flex-start !important;
+  display: flex !important;
+}
+.form-check-input.no-border:checked {
+  border: 0;
+}
+.form-check.form-check-white .form-check-input:not(:checked) {
+  background-color: white;
+}
+.invalid-feedback {
+  display: block;
+}
+.form-check-inline {
+  display: inline-flex;
+
+  label {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.force-inline-align {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min-content, 162px));
+  justify-content: flex-start;
+}
+
+app-bootstrap-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-check-inline label {
+  text-align: left;
+}

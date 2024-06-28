@@ -1,7 +1,7 @@
 module.exports = {
   packages: {
-    'ngx-highlightjs': {
+    /* 'ngx-highlightjs': {
       ignorableDeepImportMatchers: [/highlight.js\//],
-    },
+    }, */
   },
 };

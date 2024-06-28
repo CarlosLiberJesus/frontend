@@ -25,14 +25,23 @@ export class MenuComponent implements OnChanges {
   @Output() clicked = new EventEmitter<IMenuClickEvent>();
 
   defaultToggle: IButton = {
-    css: ['p-0', 'ps-2'],
+    css: ['d-flex'],
     iconFirst: {
-      library: 'ki-duotone',
-      value: 'ki-down',
+      library: 'fa-solid',
+      value: 'fa-angle-down',
+      css: ['fs-1', 'me-2', 'rotate-360'],
       cssContainer: ['rotate'],
-      css: ['rotate-180'],
     },
   };
+  /*{
+    css: ['p-0', 'ps-2'],
+    iconFirst: {
+      library: "fa-solid",
+      value: "fa-angle-down",
+      css: ['fs-2', 'rotate-180'],
+      cssContainer: ['rotate d-flex'],
+    },
+  };*/
   checkedButtons = false;
 
   constructor(private elementRef: ElementRef) {}

@@ -51,8 +51,8 @@ export class AlertComponent {
         elem.startsWith('text-')
       );
       this.closeIcon = {
-        library: 'ki-solid',
-        value: 'ki-cross',
+        library: 'bi',
+        value: 'bi-x',
         css: ['fs-2x', color ? color[0] : ''],
       };
     }

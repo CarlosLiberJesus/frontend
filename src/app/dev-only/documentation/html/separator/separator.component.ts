@@ -55,8 +55,8 @@ export class DocumentationSeparatorComponent implements OnInit {
       }
       if (this.separatorModel.getValue('type') === 'icon') {
         separator.icon = {
-          library: 'ki-duotone',
-          value: 'ki-heart-circle',
+          library: 'fa-regular',
+          value: 'fa-star-half-stroke',
           css: ['fs-2qx', 'text-' + this.separatorModel.getValue('color')],
         };
       }

@@ -1,5 +1,6 @@
 import { IIcon } from '../../base/icon/icon';
 import { IBadge } from '../badge/badge';
+
 import { ISpinner } from '../spinner/spinner';
 
 export interface IButton {

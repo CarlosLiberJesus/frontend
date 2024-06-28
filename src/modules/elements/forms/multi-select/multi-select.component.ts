@@ -28,9 +28,10 @@ export class MultiSelectComponent {
   }
 
   defaultIcon: IIcon = {
-    library: 'ki-duotone',
-    value: 'ki-down',
-    css: ['fs-2', 'rotate-180'],
+    library: 'fa-solid',
+    value: 'fa-angle-down',
+    css: ['fs-2', 'rotate-180', 'ms-2'],
+    cssContainer: ['rotate d-flex'],
   };
 
   opened = false;
@@ -41,6 +42,24 @@ export class MultiSelectComponent {
   onClick(event: MouseEvent) {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.opened = false;
+      if (!this.multiSelect.iconToggle) {
+        this.defaultIcon = {
+          ...this.defaultIcon,
+          cssContainer: (this.defaultIcon?.cssContainer || []).filter(
+            item => item !== 'active'
+          ),
+        };
+      } else {
+        this.multiSelect = {
+          ...this.multiSelect,
+          iconToggle: {
+            ...this.multiSelect.iconToggle,
+            cssContainer: (
+              this.multiSelect.iconToggle?.cssContainer || []
+            ).filter(item => item !== 'active'),
+          },
+        };
+      }
     }
   }
 
@@ -52,6 +71,28 @@ export class MultiSelectComponent {
       return;
     }
     this.opened = !this.opened;
+    if (!this.multiSelect.iconToggle) {
+      this.defaultIcon = {
+        ...this.defaultIcon,
+        cssContainer: this.opened
+          ? [...(this.defaultIcon.cssContainer || []), 'active']
+          : (this.defaultIcon?.cssContainer || []).filter(
+              item => item !== 'active'
+            ),
+      };
+    } else {
+      this.multiSelect = {
+        ...this.multiSelect,
+        iconToggle: {
+          ...this.multiSelect.iconToggle,
+          cssContainer: this.opened
+            ? [...(this.multiSelect.iconToggle?.cssContainer || []), 'active']
+            : (this.multiSelect.iconToggle?.cssContainer || []).filter(
+                item => item !== 'active'
+              ),
+        },
+      };
+    }
   }
 
   /**

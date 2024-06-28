@@ -44,7 +44,7 @@
     (keydown)="togglePassword()"
     tabindex="1"
     [ngClass]="getIconClass()">
-    <!-- app-bootstrap-icon [icon]="input.icon.icon"></app-bootstrap-icon-->
+    <app-bootstrap-icon [icon]="input.icon.icon"></app-bootstrap-icon>
   </div>
   <label
     *ngIf="input?.cssInputContainer?.includes('form-floating')"

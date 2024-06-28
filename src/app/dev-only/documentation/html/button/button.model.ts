@@ -219,7 +219,7 @@ export class ButtonModel {
           value: 'badge',
         },
         {
-          text: 'Rotacionar Ícone ao Clicar',
+          text: 'Giratório',
           value: 'spinner',
         },
       ],

@@ -78,21 +78,21 @@ export class DocumentationAccordionComponent implements AfterViewInit {
       if (this.accordionModel.getValue('style') === 'two') {
         accordion.css.push('accordion-icon-toggle');
         accordion.icon = {
-          library: 'ki-duotone',
-          value: 'ki-arrow-right',
+          library: 'bi',
+          value: 'bi-chevron-right',
           css: ['fs-4'],
         };
       }
       if (this.accordionModel.getValue('style') === 'three') {
         accordion.css.push('accordion-icon-collapse');
         accordion.icon = {
-          library: 'ki-duotone',
-          value: 'ki-plus-square',
+          library: 'fa-regular',
+          value: 'fa-square-plus',
           css: ['fs-3', 'accordion-icon-off'],
         };
         accordion.iconAux = {
-          library: 'ki-duotone',
-          value: 'ki-minus-square',
+          library: 'fa-regular',
+          value: 'fa-square-minus',
           css: ['fs-3', 'accordion-icon-on'],
         };
       }

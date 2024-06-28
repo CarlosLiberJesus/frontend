@@ -123,7 +123,13 @@ export class InputComponent implements AfterViewInit {
         (this.shouldShowErrors() ? ' me-7' : '')
       );
     } else {
-      return 'position-absolute pb-12 translate-middle ms-6';
+      return (
+        'position-absolute translate-middle ms-6' +
+        (this.input.cssInputContainer?.includes('form-floating')
+          ? ' pb-15'
+          : ' pb-12') +
+        (this.shouldShowErrors() ? ' me-7' : '')
+      );
     }
   }
 

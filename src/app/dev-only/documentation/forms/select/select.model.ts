@@ -194,8 +194,8 @@ export class SelectModel {
         css: ['text-dark'],
         value: 'value1',
         icon: {
-          library: 'ki-duotone',
-          value: 'ki-instagram',
+          library: 'socicon',
+          value: 'socicon-warcraft',
           css: ['fs-2'],
         },
       },
@@ -204,8 +204,8 @@ export class SelectModel {
         value: 'value2',
         css: ['text-dark'],
         icon: {
-          library: 'ki-duotone',
-          value: 'ki-snapchat',
+          library: 'fa-brands',
+          value: 'fa-jedi-order',
           css: ['fs-2'],
         },
       },
@@ -214,8 +214,8 @@ export class SelectModel {
         value: 'value3',
         css: ['text-dark'],
         icon: {
-          library: 'ki-duotone',
-          value: 'ki-facebook',
+          library: 'fa-brands',
+          value: 'fa-wizards-of-the-coast',
           css: ['fs-2'],
         },
       },
@@ -224,8 +224,8 @@ export class SelectModel {
         value: 'value4',
         css: ['text-dark'],
         icon: {
-          library: 'ki-duotone',
-          value: 'ki-twitter',
+          library: 'fa-brands',
+          value: 'fa-battle-net',
           css: ['fs-2'],
         },
       },

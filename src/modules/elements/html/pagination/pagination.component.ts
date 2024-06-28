@@ -24,23 +24,23 @@ export class PaginationComponent {
   }
 
   defaultFirstIcon: IIcon = {
-    library: 'ki-duotone',
-    value: 'ki-double-left',
+    library: 'bi',
+    value: 'bi-chevron-double-left',
     css: ['fs-2', 'p-0'],
   };
   defaultPrevIcon: IIcon = {
-    library: 'ki-duotone',
-    value: 'ki-left',
+    library: 'bi',
+    value: 'bi-chevron-left',
     css: ['fs-2', 'p-0'],
   };
   defaultNextIcon: IIcon = {
-    library: 'ki-duotone',
-    value: 'ki-right',
+    library: 'bi',
+    value: 'bi-chevron-right',
     css: ['fs-2', 'p-0'],
   };
   defaultLasttIcon: IIcon = {
-    library: 'ki-duotone',
-    value: 'ki-double-right',
+    library: 'bi',
+    value: 'bi-chevron-double-right',
     css: ['fs-2', 'p-0'],
   };
 

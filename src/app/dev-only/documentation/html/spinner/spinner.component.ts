@@ -56,8 +56,8 @@ export class DocumentationSpinnerComponent {
     if (this.spinnerModel.getValue('style') === 'icon') {
       this.spinner.animation = {
         icon: {
-          library: 'ki-duotone',
-          value: 'ki-arrows-circle',
+          library: 'bi',
+          value: 'bi-arrow-clockwise',
           css: ['fs-2x'],
         },
         css: [
