@@ -43,7 +43,7 @@ export class InputModel {
         'mb-3',
         'me-5',
         'gap-2',
-        'form-check-primary',
+        'form-check-ancap',
         'form-check-white',
         'form-check-inline',
       ],
@@ -103,7 +103,7 @@ export class InputModel {
   getInputType(): IRadioList {
     return {
       name: 'radio',
-      css: ['mb-3', 'gap-2', 'form-check-primary', 'form-check-white'],
+      css: ['mb-3', 'gap-2', 'form-check-ancap', 'form-check-white'],
       radio: [
         {
           text: EInputType.TEXT,
@@ -168,6 +168,16 @@ export class InputModel {
           text: 'Escuro',
           value: 'dark',
           color: 'bg-dark',
+        },
+        {
+          text: 'Ancap',
+          value: 'ancap',
+          color: 'bg-ancap',
+        },
+        {
+          text: 'Capan',
+          value: 'capan',
+          color: 'bg-capan',
         },
       ],
     };

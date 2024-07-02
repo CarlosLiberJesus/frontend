@@ -147,12 +147,7 @@ export class SeparatorModel {
     return {
       name: 'toggle-content',
       text: 'Adicionar Conteúdo',
-      css: [
-        'gap-2',
-        'form-check-primary',
-        'no-border',
-        'form-check-solid-white',
-      ],
+      css: ['gap-2', 'form-check-ancap', 'no-border', 'form-check-solid-white'],
       size: ['h-30px', 'w-50px'],
     };
   }

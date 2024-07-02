@@ -22,7 +22,7 @@ export class CodeHighlightComponent {
     if (this.language) {
       return 'language-' + this.language;
     }
-    return 'language-js';
+    return 'language-typescript';
   }
 
   copy() {

@@ -63,7 +63,7 @@ export class DocumentationAccordionComponent implements AfterViewInit {
 
     if (this.accordionModel.getValue('style') === 'one') {
       accordion.tab.map(item => {
-        item.cssLink?.push('fs-4', 'fw-semibold');
+        item.cssLink?.push('fs-4', 'fw-semibold', 'text-capan');
       });
       accordion.cssPane = ['accordion-collapse', 'collapse'];
     } else {
@@ -80,7 +80,7 @@ export class DocumentationAccordionComponent implements AfterViewInit {
         accordion.icon = {
           library: 'bi',
           value: 'bi-chevron-right',
-          css: ['fs-4'],
+          css: ['fs-4', 'text-ancap'],
         };
       }
       if (this.accordionModel.getValue('style') === 'three') {
@@ -88,12 +88,12 @@ export class DocumentationAccordionComponent implements AfterViewInit {
         accordion.icon = {
           library: 'fa-regular',
           value: 'fa-square-plus',
-          css: ['fs-3', 'accordion-icon-off'],
+          css: ['fs-3', 'accordion-icon-off', 'text-ancap'],
         };
         accordion.iconAux = {
           library: 'fa-regular',
           value: 'fa-square-minus',
-          css: ['fs-3', 'accordion-icon-on'],
+          css: ['fs-3', 'accordion-icon-on', 'text-ancap'],
         };
       }
     }

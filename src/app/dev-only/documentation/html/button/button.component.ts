@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ButtonModel } from './button.model';
 import { IButton } from 'src/modules/elements/html/button/button';
-import { EPosition } from 'src/modules/elements/elements';
+import { EEvent, EPosition } from 'src/modules/elements/elements';
 import { IIcon } from 'src/modules/elements/base/icon/icon';
 import { IBadge } from 'src/modules/elements/html/badge/badge';
 import { IRadioList } from 'src/modules/elements/forms/radio/radio';
@@ -79,6 +79,14 @@ export class DocumentationButtonComponent implements OnInit {
             style: {
               css: ['me-1', 'text-info', 'spinner-border', 'h-20px w-20px'],
             },
+          };
+        }
+        if (position === 'popover') {
+          button.popOver = {
+            content: 'Mensagem importante que você deseja exibir',
+            event: EEvent.HOVER,
+            position: EPosition.TOP,
+            cssContainer: ['fade show'],
           };
         }
       });

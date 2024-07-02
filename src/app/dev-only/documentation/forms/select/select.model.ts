@@ -45,7 +45,14 @@ export class SelectModel {
   getSelectOptions(): ICheckBoxList {
     return {
       name: 'select-options',
-      css: ['mb-3', 'me-5', 'form-check-inline', 'form-check-white', 'gap-2'],
+      css: [
+        'mb-3',
+        'me-5',
+        'form-check-inline',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       cssContainer: ['force-inline-align', 'gap-1'],
       checkbox: [
         {
@@ -99,7 +106,13 @@ export class SelectModel {
   getStylesOptions(): IRadioList {
     return {
       name: 'select-styles',
-      css: ['gap-1', 'mb-2', 'form-check-white', 'form-check-inline'],
+      css: [
+        'gap-1',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'form-check-inline',
+      ],
       radio: [
         {
           text: 'Padrão',

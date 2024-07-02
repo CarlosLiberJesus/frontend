@@ -56,7 +56,13 @@ export class MenuModel {
   getDirectionOptions(): IRadioList {
     return {
       name: 'direction',
-      css: ['gap-2', 'mb-2', 'form-check-white', 'form-check-inline'],
+      css: [
+        'gap-2',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'form-check-inline',
+      ],
       radio: [
         {
           text: 'Vertical',
@@ -73,7 +79,13 @@ export class MenuModel {
   getOpenOptions(): IRadioList {
     return {
       name: 'openStyle',
-      css: ['gap-2', 'mb-2', 'form-check-white', 'form-check-inline'],
+      css: [
+        'gap-2',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'form-check-inline',
+      ],
       radio: [
         {
           text: 'Clique',
@@ -138,6 +150,16 @@ export class MenuModel {
           text: 'Escuro',
           value: 'dark',
           color: 'bg-dark',
+        },
+        {
+          text: 'Ancap',
+          value: 'ancap',
+          color: 'bg-ancap',
+        },
+        {
+          text: 'Capan',
+          value: 'capan',
+          color: 'bg-capan',
         },
       ],
     };

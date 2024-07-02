@@ -53,7 +53,7 @@ export class SizesModel {
         'mb-3',
         'me-5',
         'gap-2',
-        'form-check-primary',
+        'form-check-ancap',
         'form-check-white',
         'form-check-inline',
       ],

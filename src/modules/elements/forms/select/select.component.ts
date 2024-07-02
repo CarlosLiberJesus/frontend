@@ -27,7 +27,7 @@ export class SelectComponent {
   defaultIcon: IIcon = {
     library: 'fa-solid',
     value: 'fa-angle-down',
-    css: ['fs-2', 'rotate-180', 'ms-2'],
+    css: ['fs-4', 'rotate-180', 'ms-2'],
     cssContainer: ['rotate d-flex'],
   };
 

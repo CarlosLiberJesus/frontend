@@ -293,12 +293,7 @@ export class FontsModel {
   getToggle(): IToggle {
     return {
       name: 'screen',
-      css: [
-        'gap-2',
-        'form-check-primary',
-        'no-border',
-        'form-check-solid-white',
-      ],
+      css: ['gap-2', 'form-check-ancap', 'no-border', 'form-check-solid-white'],
     };
   }
 
@@ -336,12 +331,7 @@ export class FontsModel {
   getUnderline(): IToggle {
     return {
       name: 'underline',
-      css: [
-        'gap-2',
-        'form-check-primary',
-        'no-border',
-        'form-check-solid-white',
-      ],
+      css: ['gap-2', 'form-check-ancap', 'no-border', 'form-check-solid-white'],
     };
   }
 

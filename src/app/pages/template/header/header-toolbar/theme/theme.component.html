@@ -1,0 +1,10 @@
+<div
+  (mouseenter)="showMenu = true"
+  (mouseleave)="showMenu = false"
+  class="position-relative">
+  <app-bootstrap-html-button [button]="themeIcon"></app-bootstrap-html-button>
+  <app-bootstrap-navigation-menu
+    *ngIf="themeMenu && showMenu"
+    [menu]="themeMenu"
+    (clicked)="changeTheme($event)"></app-bootstrap-navigation-menu>
+</div>

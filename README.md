@@ -10,6 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 |    2 | [NPM](https://www.npmjs.com/)     | 10.2.5   |
 
 Check [Angular version](https://angular.dev/reference/versions)
+`npm install -g @angular/cli@17`
 
 - If you like AI, check the FREE [Codeium](https://www.codium.ai/) plugin.
 

@@ -69,7 +69,14 @@ export class PaginationModel {
   getOptions(): ICheckBoxList {
     return {
       name: 'options',
-      css: ['mb-3', 'me-5', 'gap-2', 'form-check-inline', 'form-check-white'],
+      css: [
+        'mb-3',
+        'me-5',
+        'gap-2',
+        'form-check-inline',
+        'form-check-ancap',
+        'form-check-white',
+      ],
       checkbox: [
         {
           text: 'Mostrar extremos',

@@ -88,7 +88,7 @@ export class AlertsModel {
         'form-check-inline',
         'form-check-white',
         'gap-2',
-        'form-check-primary',
+        'form-check-ancap',
       ],
       radio: [
         {

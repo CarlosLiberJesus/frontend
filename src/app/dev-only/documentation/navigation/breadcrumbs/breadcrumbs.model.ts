@@ -21,7 +21,7 @@ export class BreadcrumbsModel {
       name: 'options',
       css: [
         'form-check-inline',
-        'form-check-primary',
+        'form-check-ancap',
         'form-check-white',
         'gap-2',
       ],

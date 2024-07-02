@@ -32,7 +32,14 @@ export class TableModel {
   getOptions(): IRadioList {
     return {
       name: 'options',
-      css: ['mb-3', 'me-5', 'gap-2', 'form-check-inline', 'form-check-white'],
+      css: [
+        'mb-3',
+        'me-5',
+        'gap-2',
+        'form-check-inline',
+        'form-check-ancap',
+        'form-check-white',
+      ],
       radio: [
         {
           text: 'Lista Check',
@@ -81,12 +88,7 @@ export class TableModel {
   getDivider(): IToggle {
     return {
       name: 'divider',
-      css: [
-        'gap-2',
-        'form-check-primary',
-        'no-border',
-        'form-check-solid-white',
-      ],
+      css: ['gap-2', 'form-check-ancap', 'no-border', 'form-check-solid-white'],
       size: ['h-25px', 'w-40px'],
       text: 'Sólido',
       antiText: 'Tracejado',

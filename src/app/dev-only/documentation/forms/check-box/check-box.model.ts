@@ -56,7 +56,7 @@ export class CheckBoxModel {
   getDirectionOptions(): IRadioList {
     return {
       name: 'direction',
-      css: ['mb-2', 'gap-2', 'form-check-white'],
+      css: ['mb-2', 'gap-2', 'form-check-white', 'form-check-ancap'],
       radio: [
         {
           text: 'Vertical',
@@ -121,6 +121,16 @@ export class CheckBoxModel {
           value: 'dark',
           color: 'bg-dark',
         },
+        {
+          text: 'Ancap',
+          value: 'ancap',
+          color: 'bg-ancap',
+        },
+        {
+          text: 'Capan',
+          value: 'capan',
+          color: 'bg-capan',
+        },
       ],
     };
   }
@@ -149,7 +159,14 @@ export class CheckBoxModel {
   getOptions(): ICheckBoxList {
     return {
       name: 'options',
-      css: ['mb-3', 'me-5', 'form-check-inline', 'form-check-white', 'gap-3'],
+      css: [
+        'mb-3',
+        'me-5',
+        'form-check-inline',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-3',
+      ],
       cssContainer: [
         'd-flex',
         'align-items-center',

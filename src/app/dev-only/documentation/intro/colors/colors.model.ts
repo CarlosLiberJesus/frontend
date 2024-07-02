@@ -91,10 +91,14 @@ export class ColorsModel {
           color: 'bg-dark',
         },
         {
-          // TODO Color GC still active ?
-          text: 'GC',
-          value: 'gc',
-          color: 'bg-gc',
+          text: 'Ancap',
+          value: 'ancap',
+          color: 'bg-ancap',
+        },
+        {
+          text: 'Capan',
+          value: 'capan',
+          color: 'bg-capan',
         },
       ],
     };
@@ -157,7 +161,7 @@ export class ColorsModel {
   getLight(): IToggle {
     return {
       name: 'light',
-      css: ['gap-2', 'form-check-primary'],
+      css: ['gap-2', 'form-check-ancap'],
       size: ['h-30px', 'w-50px'],
     };
   }

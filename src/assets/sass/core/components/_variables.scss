@@ -104,6 +104,19 @@ $dark-light: #f9f9f9 !default;
 $dark-clarity: rgba(#1e2129, 0.2) !default;
 $dark-inverse: $white !default;
 
+//ancap
+$ancap: #ffcf37 !default;
+$ancap-active: #000000 !default;
+$ancap-light: #ffe184 !default;
+$ancap-clarity: rgba(255, 207, 55, 0.2) !default;
+$ancap-inverse: #ffffff !default;
+
+$capan: #000000 !default;
+$capan-active: #ffcf37 !default;
+$capan-light: #2f2f2f !default;
+$capan-clarity: rgba(56, 56, 56, 0.2) !default;
+$capan-inverse: #ffffff !default;
+
 // Contextual colors
 $theme-colors: (
   'light': $light,
@@ -114,6 +127,8 @@ $theme-colors: (
   'warning': $warning,
   'danger': $danger,
   'dark': $dark,
+  'ancap': $ancap,
+  'capan': $capan,
 ) !default;
 
 // Contextual active state colors
@@ -126,6 +141,8 @@ $theme-active-colors: (
   'warning': $warning-active,
   'danger': $danger-active,
   'dark': $dark-active,
+  'ancap': $ancap-active,
+  'capan': $capan-active,
 ) !default;
 
 // Contextual inverse state colors
@@ -138,6 +155,8 @@ $theme-inverse-colors: (
   'warning': $warning-inverse,
   'danger': $danger-inverse,
   'dark': $dark-inverse,
+  'ancap': $ancap-inverse,
+  'capan': $capan-inverse,
 ) !default;
 
 // Contextual light state colors
@@ -150,6 +169,8 @@ $theme-light-colors: (
   'danger': $danger-light,
   'dark': $dark-light,
   'light': $light-light,
+  'ancap': $ancap-light,
+  'capan': $capan-light,
 ) !default;
 
 // Contextual light state colors
@@ -162,6 +183,8 @@ $theme-clarity-colors: (
   'danger': $danger-clarity,
   'dark': $dark-clarity,
   'light': $light-clarity,
+  'ancap': $ancap-clarity,
+  'capan': $capan-clarity,
 ) !default;
 
 // Text colors
@@ -185,6 +208,8 @@ $theme-text-colors: (
   'gray-700': $gray-700,
   'gray-800': $gray-800,
   'gray-900': $gray-900,
+  'ancap': $ancap,
+  'capan': $capan,
 ) !default;
 
 // Options
@@ -397,7 +422,7 @@ $component-active-color: $primary-inverse !default;
 $component-active-bg: $primary !default;
 
 //  checked states
-$component-checked-color: $primary-inverse !default;
+$component-checked-color: $capan !default;
 $component-checked-bg: $primary !default;
 
 //  custom transition settings
@@ -599,8 +624,7 @@ $font-sizes: (
   // 88.25px
   7hx: $font-size-base * 7.5,
   // 91.5px
-  7tx: $font-size-base * 7.75
-  // 94.75px
+  7tx: $font-size-base * 7.75 // 94.75px,,
 ) !default;
 
 $headings-font-weight: 600 !default;
@@ -851,6 +875,7 @@ $form-select-focus-box-shadow: 0 0 0 $form-select-focus-width
 $form-range-track-border-radius: $border-radius !default;
 $form-range-track-bg: var(--#{$prefix}gray-300) !default;
 $form-range-thumb-disabled-bg: var(--#{$prefix}gray-500) !default;
+$focus-ring-color: rgba($ancap, 0.5) !important;
 
 // Form file button
 $form-file-button-color: $input-color !default;
@@ -932,7 +957,7 @@ $card-border-width: 1px !default;
 $card-border-style: solid !default;
 $card-border-dashed-color: var(--#{$prefix}border-dashed-color) !default;
 $card-color: null !default;
-$card-cap-bg: transparent !default;
+$card-cap-bg: $ancap !default;
 $card-py: 2rem !default;
 $card-px: 2.25rem !default;
 $card-border-radius: $border-radius-lg !default;

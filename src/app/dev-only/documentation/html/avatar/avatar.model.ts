@@ -66,7 +66,7 @@ export class AvatarModel {
       text: 'Definir Proporção',
       css: [
         'gap-2',
-        'form-check-primary',
+        'form-check-ancap',
         'no-border',
         'form-check-solid-white',
         'mb-3',
@@ -81,7 +81,7 @@ export class AvatarModel {
       text: 'Mostrar Distintivo',
       css: [
         'gap-2',
-        'form-check-primary',
+        'form-check-ancap',
         'no-border',
         'form-check-solid-white',
         'mb-3',
@@ -93,7 +93,13 @@ export class AvatarModel {
   getTypeOptions(): IRadioList {
     return {
       name: 'type',
-      css: ['mb-2', 'gap-2', 'form-check-white', 'form-check-inline'],
+      css: [
+        'mb-2',
+        'gap-2',
+        'form-check-white',
+        'form-check-ancap',
+        'form-check-inline',
+      ],
       radio: [
         {
           text: 'Imagem',
@@ -110,7 +116,13 @@ export class AvatarModel {
   getLabelOptions(): IRadioList {
     return {
       name: 'label',
-      css: ['mb-2', 'gap-2', 'form-check-white', 'form-check-inline'],
+      css: [
+        'mb-2',
+        'gap-2',
+        'form-check-white',
+        'form-check-ancap',
+        'form-check-inline',
+      ],
       radio: [
         {
           text: 'Exemplo 1',
@@ -131,7 +143,13 @@ export class AvatarModel {
   getStylesOptions(): IRadioList {
     return {
       name: 'styles',
-      css: ['mb-2', 'gap-2', 'form-check-white', 'form-check-inline'],
+      css: [
+        'mb-2',
+        'gap-2',
+        'form-check-white',
+        'form-check-ancap',
+        'form-check-inline',
+      ],
       radio: [
         {
           text: 'Arredondado',

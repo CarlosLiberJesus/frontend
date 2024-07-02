@@ -3,15 +3,15 @@
 //
 
 // Prismjs
-$prismjs-bg-dark: #151521;
+$prismjs-bg-dark: #000;
 
 $prismjs-border-dark: rgba($white, 0.1);
 
-$prismjs-btn-bg-dark: lighten($prismjs-bg-dark, 9%);
-$prismjs-btn-bg-hover-dark: lighten($prismjs-bg-dark, 9%);
+$prismjs-btn-bg-dark: lighten(#ffcf37, 9%);
+$prismjs-btn-bg-hover-dark: #ffcf37;
 
-$prismjs-btn-color-dark: rgba($white, 0.75);
-$prismjs-btn-color-hover-dark: $primary;
+$prismjs-btn-color-dark: rgba($prismjs-bg-dark, 0.75);
+$prismjs-btn-color-hover-dark: $prismjs-bg-dark;
 
 $prismjs-scrollbar-color-dark: lighten($prismjs-bg-dark, 12%);
 $prismjs-scrollbar-color-hover-dark: lighten($prismjs-bg-dark, 15%);

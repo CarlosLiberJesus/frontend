@@ -1,0 +1,20 @@
+<div
+  class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
+  <div class="text-gray-900 order-2 order-md-1">
+    <span class="text-muted fw-semibold me-1">2024©</span>
+    <a
+      href="https://www.partidolibertario.pt"
+      target="_blank"
+      class="text-gray-800 text-hover-primary"
+      >Partido Libertário</a
+    >
+  </div>
+
+  <ul class="menu menu-gray-600 menu-active-primary fw-semibold order-1">
+    <li class="menu-item" *ngIf="local">
+      <app-bootstrap-html-button
+        [button]="documentationButton"
+        (clicked)="openDocumentation()"></app-bootstrap-html-button>
+    </li>
+  </ul>
+</div>

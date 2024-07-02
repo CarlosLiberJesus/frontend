@@ -43,7 +43,7 @@ export class TabsModel {
       name: 'tabs-options',
       css: [
         'form-check-inline',
-        'form-check-primary',
+        'form-check-ancap',
         'form-check-white',
         'gap-2',
         'mb-3',
@@ -82,7 +82,7 @@ export class TabsModel {
       name: 'horizontal',
       css: [
         'form-check-inline',
-        'form-check-primary',
+        'form-check-ancap',
         'form-check-white',
         'gap-2',
         'mb-3',

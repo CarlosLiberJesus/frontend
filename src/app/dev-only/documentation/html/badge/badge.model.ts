@@ -132,12 +132,7 @@ export class BadgeModel {
     return {
       name: 'toggle',
       text: 'Cores Claras?',
-      css: [
-        'gap-2',
-        'form-check-primary',
-        'no-border',
-        'form-check-solid-white',
-      ],
+      css: ['gap-2', 'form-check-ancap', 'no-border', 'form-check-solid-white'],
       size: ['h-30px', 'w-50px'],
     };
   }

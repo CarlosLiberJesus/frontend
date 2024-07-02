@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { IAppBreadcrumb } from 'src/app/interfaces/breadcrumbs';
+import { PageService } from 'src/app/services/page.service';
 import { IButton } from 'src/modules/elements/html/button/button';
 
 @Component({
@@ -21,6 +23,7 @@ export class DocumentationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private pageService: PageService,
     private router: Router
   ) {}
 
@@ -41,12 +44,22 @@ export class DocumentationComponent implements OnInit {
               element: parts[1],
             };
           }
+          const breadcrumb: IAppBreadcrumb = {
+            title: 'Ínicio',
+            items: [
+              {
+                label: 'Libertarios',
+              },
+            ],
+          };
+          this.pageService.setBreadcrumb(breadcrumb);
+          this.pageService.hideSplashScreen();
         }
       });
   }
 
   getMainMenuListClass(): string {
-    return 'col-lg-12 col-xl-5 col-xxl-4 flex-wrap d-flex align-items-center justify-content-start mb-lg-3';
+    return 'col-lg-12 col-xl-5 col-xxl-4 flex-wrap d-flex align-items-center justify-content-start mt-md-3';
   }
 
   getSubMenuListClass(): string {
@@ -96,8 +109,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'grelha'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -108,8 +121,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'cores'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -120,8 +133,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'tamanhos'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -132,8 +145,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'fontes'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -144,8 +157,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'margens'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -167,8 +180,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'icons'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -179,8 +192,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'animacoes'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -196,8 +209,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'avatar'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -208,8 +221,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'marcadores'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -231,8 +244,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'separador'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -243,8 +256,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'cracha'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -255,8 +268,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'giratorio'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -267,8 +280,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'mensagens'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -290,8 +303,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'botao'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -302,8 +315,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'alerta'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -314,8 +327,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'cartao'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -337,8 +350,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'paginacao'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -360,8 +373,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'tabela'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -388,8 +401,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'abas'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /*
           iconLast: {
@@ -412,8 +425,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'acordiao'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /*
           iconLast: {
@@ -436,8 +449,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'trilhas'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /*iconLast: {
             library: 'bi',
@@ -459,8 +472,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'menu'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -471,8 +484,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'carrossel'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -499,8 +512,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'interuptor'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -511,8 +524,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'texto'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -523,8 +536,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'grupo'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -535,8 +548,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'radio'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -556,8 +569,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'caixa-selecao'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -579,8 +592,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'selecao'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /* iconLast: {
             library: 'bi',
@@ -602,8 +615,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'selecao-multipla'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -614,8 +627,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'area-texto'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /*iconLast: {
             library: 'bi',
@@ -637,8 +650,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'intervalo'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
         },
       },
@@ -649,8 +662,8 @@ export class DocumentationComponent implements OnInit {
           css: [
             'd-flex',
             this.urlChoices?.element === 'grupo-butoes'
-              ? 'btn btn-bg-secondary btn-color-dark fw-bold'
-              : 'btn-active-light-primary',
+              ? 'btn-bg-capan btn-text-ancap fw-bold'
+              : 'btn-active-light-capan',
           ],
           /*iconLast: {
             library: 'bi',
@@ -670,9 +683,9 @@ export class DocumentationComponent implements OnInit {
 
   getMainMenuActiveClass(main: string): string {
     if (this.urlChoices?.main === main) {
-      return 'btn-bg-primary text-inverse-primary fw-bold';
+      return 'btn-bg-capan btn-text-ancap';
     } else {
-      return 'btn-active-light-primary';
+      return 'btn-active-light-ancap';
     }
   }
 

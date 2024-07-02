@@ -3,8 +3,8 @@
 //
 
 // Reboot
-$app-bg-color: #fcfcfc;
-$app-bg-color-dark: $coal-400;
+$app-bg-color: #ffffff;
+$app-bg-color-dark: #000000;
 $app-blank-bg-color: $app-bg-color;
 $app-blank-bg-color-dark: $app-bg-color-dark;
 
@@ -20,8 +20,8 @@ $app-container-padding-x-mobile: 20px;
 // Header base
 $app-header-base-height: 74px;
 $app-header-base-height-mobile: 60px;
-$app-header-base-bg-color: transparent;
-$app-header-base-bg-color-dark: $coal-500;
+$app-header-base-bg-color: #ffcf37;
+$app-header-base-bg-color-dark: #000000;
 $app-header-base-bg-color-mobile: $app-header-base-bg-color;
 $app-header-base-bg-color-mobile-dark: $app-header-base-bg-color-dark;
 $app-header-base-box-shadow: none;
@@ -30,8 +30,8 @@ $app-header-base-box-shadow-dark: none;
 // Header minimize
 $app-header-minimize-height: 74px;
 $app-header-minimize-height-mobile: 60px;
-$app-header-minimize-bg-color: $body-bg;
-$app-header-minimize-bg-color-dark: $app-header-base-bg-color-dark;
+$app-header-minimize-bg-color: #ffcf37;
+$app-header-minimize-bg-color-dark: #000000;
 $app-header-minimize-box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
 $app-header-minimize-box-shadow-dark: $box-shadow-sm-dark;
 

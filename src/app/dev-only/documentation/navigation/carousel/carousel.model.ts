@@ -66,7 +66,14 @@ export class CarouselModel {
   getOptions(): ICheckBoxList {
     const options: ICheckBoxList = {
       name: 'options',
-      css: ['mb-3', 'me-5', 'form-check-inline', 'form-check-white', 'gap-2'],
+      css: [
+        'mb-3',
+        'me-5',
+        'form-check-inline',
+        'form-check-ancap',
+        'form-check-white',
+        'gap-2',
+      ],
       checkbox: [
         {
           text: 'Definir Temporizador de 3s',

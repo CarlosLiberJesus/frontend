@@ -1,3 +1,8 @@
+<!--  also affects css:hover... on fix crate a container???
+(mouseenter)="hoverEnter()"
+  (mouseleave)="hoverLeave()"
+  #target
+-->
 <a
   *ngIf="button"
   [ngClass]="getClass()"
@@ -19,3 +24,8 @@
     *ngIf="button.spinner"
     [spinner]="button.spinner"></app-bootstrap-html-spinner>
 </a>
+
+<app-bootstrap-pop-over
+  *ngIf="popOver"
+  [popOver]="popOver"
+  [target]="targetElement"></app-bootstrap-pop-over>

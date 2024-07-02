@@ -29,6 +29,7 @@ export class DocumentationSliddlerComponent implements OnInit {
       name: 'slidder',
       placeholder: this.rangeSliderModel.getValue('placeholderText'),
       css: [
+        'form-check-ancap',
         this.rangeSliderModel
           .getFormArrayValue('optionsControl')
           .includes('disabled')

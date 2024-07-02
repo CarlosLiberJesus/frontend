@@ -43,7 +43,14 @@ export class RangeSliderModel {
   getOptions(): ICheckBoxList {
     return {
       name: 'options',
-      css: ['mb-3', 'me-5', 'form-check-inline', 'form-check-white', 'gap-3'],
+      css: [
+        'mb-3',
+        'me-5',
+        'form-check-inline',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-3',
+      ],
       checkbox: [
         {
           text: 'Mostrar etiqueta',

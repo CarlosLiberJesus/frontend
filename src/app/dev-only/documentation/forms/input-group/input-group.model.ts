@@ -42,7 +42,14 @@ export class InputGroupModel {
   getOptions(): ICheckBoxList {
     return {
       name: 'options',
-      css: ['mb-3', 'gap-2', 'me-5', 'form-check-inline', 'form-check-white'],
+      css: [
+        'mb-3',
+        'gap-2',
+        'me-5',
+        'form-check-inline',
+        'form-check-ancap',
+        'form-check-white',
+      ],
       checkbox: [
         {
           text: 'Mostrar Etiqueta',

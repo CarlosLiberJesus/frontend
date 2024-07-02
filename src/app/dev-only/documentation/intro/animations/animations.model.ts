@@ -45,7 +45,7 @@ export class AnimationsModel {
         options: {
           name: 'attention-seekers',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -74,7 +74,7 @@ export class AnimationsModel {
         options: {
           name: 'flippers',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -96,7 +96,7 @@ export class AnimationsModel {
         options: {
           name: 'lightspeed',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -117,7 +117,7 @@ export class AnimationsModel {
         options: {
           name: 'specials',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -138,7 +138,7 @@ export class AnimationsModel {
         options: {
           name: 'back-entrances',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -159,7 +159,7 @@ export class AnimationsModel {
         options: {
           name: 'back-exits',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -180,7 +180,7 @@ export class AnimationsModel {
         options: {
           name: 'bouncing-entrances',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -202,7 +202,7 @@ export class AnimationsModel {
         options: {
           name: 'bouncing-exits',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -224,7 +224,7 @@ export class AnimationsModel {
         options: {
           name: 'fading-entrances',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -254,7 +254,7 @@ export class AnimationsModel {
         options: {
           name: 'fading-exits',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -284,7 +284,7 @@ export class AnimationsModel {
         options: {
           name: 'rotating-entrances',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -306,7 +306,7 @@ export class AnimationsModel {
         options: {
           name: 'rotating-exits',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -328,7 +328,7 @@ export class AnimationsModel {
         options: {
           name: 'zooming-entrances',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -350,7 +350,7 @@ export class AnimationsModel {
         options: {
           name: 'zooming-exits',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -372,7 +372,7 @@ export class AnimationsModel {
         options: {
           name: 'sliding-entrances',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',
@@ -393,7 +393,7 @@ export class AnimationsModel {
         options: {
           name: 'sliding-exits',
           css: [
-            'form-check-primary',
+            'form-check-ancap',
             'form-check-white',
             'form-check-default',
             'form-check-inline',

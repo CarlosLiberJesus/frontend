@@ -1,12 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { IButton } from './button';
-import { EPosition } from '../../elements';
+import { EEvent, EPosition } from '../../elements';
+import { IPopOver } from '../../base/pop-over/pop-over';
 
 @Component({
   selector: 'app-bootstrap-html-button',
@@ -17,6 +20,9 @@ import { EPosition } from '../../elements';
 export class ButtonComponent {
   @Input() button!: IButton;
   @Output() clicked = new EventEmitter<boolean>();
+
+  popOver!: IPopOver | null;
+  @ViewChild('target', { static: false }) targetElement!: ElementRef;
 
   randomId: string = this.trimTrailingZeros(Math.random().toString());
   trimTrailingZeros(num: string): string {
@@ -33,6 +39,7 @@ export class ButtonComponent {
       'btn',
       'btn_' + this.randomId,
       this.button.name ?? '',
+      //this.button?.popOver !== undefined ? 'd-inline-flex' : '',
     ]
       .filter(Boolean)
       .join(' ');
@@ -67,6 +74,13 @@ export class ButtonComponent {
    * Triggers event
    */
   click(): void {
+    if (this.button.popOver && this.button.popOver?.event === EEvent.CLICK) {
+      if (!this.popOver) {
+        this.popOver = this.button.popOver;
+      } else {
+        this.popOver = null;
+      }
+    }
     if (this.button?.autoReturn !== false) {
       this.clicked.emit(true);
     }
@@ -106,6 +120,18 @@ export class ButtonComponent {
           ],
         };
       }
+    }
+  }
+
+  hoverEnter(): void {
+    if (this.button.popOver && this.button.popOver?.event === EEvent.HOVER) {
+      this.popOver = this.button.popOver;
+    }
+  }
+
+  hoverLeave(): void {
+    if (this.button.popOver && this.button.popOver?.event === EEvent.HOVER) {
+      this.popOver = null;
     }
   }
 }

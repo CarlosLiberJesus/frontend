@@ -51,3 +51,96 @@ app-bootstrap-html-table {
     --#{$prefix}form-switch-bg: #{escape-svg($form-switch-bg-image)};
   }
 }
+
+[data-bs-theme='dark'] {
+  img.logoPL {
+    filter: invert(75%) sepia(65%) saturate(512%) hue-rotate(348deg)
+      brightness(103%) contrast(101%);
+  }
+  .card-header {
+    .elements {
+      .btn-active-light-capan {
+        span {
+          color: $capan;
+        }
+        span:hover {
+          color: $ancap;
+        }
+      }
+    }
+  }
+}
+
+.btn.btn-active-light-ancap,
+.btn.btn-capan:hover,
+.btn.btn-capan:hover i,
+.btn.btn-capan i,
+.btn.btn-light-ancap,
+.btn.btn-light-ancap i,
+.btn.btn-ancap i,
+.btn.btn-ancap {
+  color: var(--bs-capan) !important; // preto
+}
+.btn.btn-active-light-capan:hover,
+.btn.btn-active-light-capan:hover i,
+.btn.btn-light-capan,
+.btn.btn-light-capan i,
+.btn.btn-capan,
+.btn.btn-capan i,
+.btn.btn-ancap:hover i,
+.btn.btn-ancap i:hover,
+.btn.btn-ancap:hover {
+  color: var(--bs-ancap) !important; // amarelo
+}
+
+.form-check {
+  &.form-check-ancap {
+    .form-check-input {
+      &:checked {
+        border: 0;
+        background-color: var(--bs-ancap);
+      }
+    }
+  }
+}
+
+.form-check {
+  &.form-check-capan {
+    .form-check-input {
+      &:checked {
+        border: 0;
+        background-color: var(--bs-capan);
+      }
+    }
+  }
+}
+
+.form-range {
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-webkit-slider-thumb {
+    @include gradient-bg(var(--bs-ancap));
+
+    &:active {
+      @include gradient-bg(var(--bs-ancap));
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    background-color: black;
+  }
+
+  &::-moz-range-thumb {
+    @include gradient-bg(var(--bs-ancap));
+
+    &:active {
+      @include gradient-bg(var(--bs-ancap));
+    }
+  }
+
+  &::-moz-range-track {
+    background-color: black;
+  }
+}

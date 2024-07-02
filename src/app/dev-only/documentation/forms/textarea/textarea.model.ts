@@ -45,7 +45,14 @@ export class TextareaModel {
   getOptions(): ICheckBoxList {
     return {
       name: 'check-box',
-      css: ['mb-3', 'me-5', 'form-check-inline', 'form-check-white', 'gap-2'],
+      css: [
+        'mb-3',
+        'me-5',
+        'form-check-inline',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       cssContainer: ['force-inline-align', 'gap-1'],
       checkbox: [
         {

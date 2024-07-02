@@ -2,30 +2,97 @@
 // Page loader
 //
 
-// CSS3 Transitions only after page load(data-kt-app-page-loading="on" attribute added to body tag and removed with JS on page loaded)
-[data-kt-app-page-loading='on'] {
-  overflow: hidden;
+#splash-screen {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f2f3f8;
 }
 
-[data-kt-app-page-loading='on'] * {
-  transition: none !important;
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-// Base
-.app-page-loader {
-  background: var(--#{$prefix}body-bg);
-  color: var(--#{$prefix}body-color);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10000;
-  display: none;
+.spinner-container svg {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
 
-  [data-kt-app-page-loading='on'] & {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#splash-screen > img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 30px;
+}
+
+#splash-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-spinner {
+  animation: rotate 2s linear infinite;
+  width: 100px;
+  height: 100px;
+}
+
+.splash-spinner .path {
+  stroke: #000000;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+.splash-screen {
+  background-color: #151521 !important;
+}
+
+.splash-screen span {
+  margin-top: 20px;
+  font-size: medium;
+}
+
+.splash-screen span {
+  color: #92929f !important;
+}
+[data-bs-theme='dark'] {
+  #splash-screen {
+    .splash-spinner .path {
+      stroke: #ffffff;
+    }
+    span {
+      color: #92929f !important;
+    }
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
   }
 }

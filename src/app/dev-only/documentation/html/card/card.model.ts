@@ -60,7 +60,7 @@ export class CardModel {
         'form-check-white',
         'gap-2',
         'mb-3',
-        'form-check-primary',
+        'form-check-ancap',
       ],
       checkbox: [
         {
@@ -115,7 +115,13 @@ export class CardModel {
   getBorderOptions(): IRadioList {
     return {
       name: 'borders-option',
-      css: ['form-check-inline', 'mb-2', 'form-check-white', 'gap-2'],
+      css: [
+        'form-check-inline',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       radio: [
         {
           text: 'Sem Margens',
@@ -136,7 +142,13 @@ export class CardModel {
   getShadowOptions(): IRadioList {
     return {
       name: 'shadow-option',
-      css: ['form-check-inline', 'mb-2', 'form-check-white', 'gap-2'],
+      css: [
+        'form-check-inline',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       radio: [
         {
           text: 'Pequena',
@@ -157,7 +169,7 @@ export class CardModel {
       antiText: 'Alternar para Texto',
       css: [
         'gap-2',
-        'form-check-primary',
+        'form-check-ancap',
         'no-border',
         'form-check-solid-white',
         'mb-3',
@@ -169,7 +181,13 @@ export class CardModel {
   getRibbonPositionOptions(): IRadioList {
     return {
       name: 'ribbon-position-option',
-      css: ['form-check-inline', 'mb-2', 'form-check-white', 'gap-2'],
+      css: [
+        'form-check-inline',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       radio: [
         {
           text: 'Topo',
@@ -250,7 +268,12 @@ export class CardModel {
   getRibbonOptions(): ICheckBoxList {
     const options: ICheckBoxList = {
       name: 'ribbon-options',
-      css: ['form-check-inline', 'form-check-white', 'gap-2'],
+      css: [
+        'form-check-inline',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       checkbox: [
         {
           text: 'Vertical',

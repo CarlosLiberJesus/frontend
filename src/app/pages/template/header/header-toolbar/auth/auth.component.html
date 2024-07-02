@@ -1,0 +1,25 @@
+<div class="position-relative gap-0">
+  <app-bootstrap-html-button
+    [button]="authIcon"
+    (click)="showMenu = !showMenu"></app-bootstrap-html-button>
+  <div *ngIf="showMenu" [ngClass]="getPanelClass()">
+    <div class="card-body">
+      <h5 class="mb-7">Bem Vindo!</h5>
+      <app-bootstrap-html-separator
+        [separator]="separator"></app-bootstrap-html-separator>
+      <app-bootstrap-forms-input
+        [input]="emailInput"
+        [control]="getControl('email')"></app-bootstrap-forms-input>
+      <app-bootstrap-forms-input
+        [input]="passwordInput"
+        [control]="getControl('password')"
+        (submitForm)="submit($event)"></app-bootstrap-forms-input>
+      <div class="invalid-feedback" *ngIf="errorMsg" style="display: block">
+        {{ errorMsg }}
+      </div>
+      <app-bootstrap-html-button
+        [button]="getSubmitButton()"
+        (clicked)="submit($event)"></app-bootstrap-html-button>
+    </div>
+  </div>
+</div>

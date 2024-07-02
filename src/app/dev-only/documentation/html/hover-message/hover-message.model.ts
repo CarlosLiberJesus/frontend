@@ -28,7 +28,13 @@ export class HoverMessageModel {
   getTypeOptions(): IRadioList {
     return {
       name: 'type',
-      css: ['mb-2', 'form-check-white', 'gap-2', 'form-check-inline'],
+      css: [
+        'mb-2',
+        'form-check-white',
+        'gap-2',
+        'form-check-ancap',
+        'form-check-inline',
+      ],
       radio: [
         {
           value: 'popover',
@@ -45,7 +51,13 @@ export class HoverMessageModel {
   getEventOptions(): IRadioList {
     return {
       name: 'event',
-      css: ['mb-2', 'form-check-white', 'gap-2', 'form-check-inline'],
+      css: [
+        'mb-2',
+        'form-check-white',
+        'gap-2',
+        'form-check-ancap',
+        'form-check-inline',
+      ],
       radio: [
         {
           value: 'click',
@@ -62,7 +74,13 @@ export class HoverMessageModel {
   getPositionOptions(): IRadioList {
     return {
       name: 'position',
-      css: ['form-check-inline', 'mb-2', 'form-check-white', 'gap-2'],
+      css: [
+        'form-check-inline',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       radio: [
         {
           value: 'top',

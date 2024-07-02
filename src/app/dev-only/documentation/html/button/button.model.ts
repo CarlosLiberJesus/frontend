@@ -72,7 +72,13 @@ export class ButtonModel {
   getEffectsOption(): IRadioList {
     return {
       name: 'button-effects',
-      css: ['form-check-inline', 'mb-2', 'form-check-white', 'gap-2'],
+      css: [
+        'form-check-inline',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       radio: [
         {
           text: 'Elevar',
@@ -150,6 +156,16 @@ export class ButtonModel {
           value: 'dark',
           color: 'bg-dark',
         },
+        {
+          text: 'Ancap',
+          value: 'ancap',
+          color: 'bg-ancap',
+        },
+        {
+          text: 'Capan',
+          value: 'capan',
+          color: 'bg-capan',
+        },
       ],
     };
   }
@@ -160,7 +176,7 @@ export class ButtonModel {
       text: 'Hover Ativo',
       css: [
         'gap-2',
-        'form-check-primary',
+        'form-check-ancap',
         'no-border',
         'form-check-solid-white',
         this.getValue('colorBackground') ? '' : 'disabled',
@@ -175,7 +191,7 @@ export class ButtonModel {
       text: 'Cores Claras?',
       css: [
         'gap-2',
-        'form-check-primary',
+        'form-check-ancap',
         'no-border',
         'form-check-solid-white',
         'mb-2',
@@ -187,7 +203,13 @@ export class ButtonModel {
   getHoverEffectsOption(): IRadioList {
     return {
       name: 'button-hover-effects',
-      css: ['form-check-inline', 'mb-2', 'form-check-white', 'gap-2'],
+      css: [
+        'form-check-inline',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       radio: [
         {
           text: 'Texto',
@@ -204,7 +226,13 @@ export class ButtonModel {
   getExtrasOptions(): ICheckBoxList {
     const options = {
       name: 'extra-options',
-      css: ['form-check-inline', 'mb-2', 'form-check-white', 'gap-2'],
+      css: [
+        'form-check-inline',
+        'mb-2',
+        'form-check-white',
+        'form-check-ancap',
+        'gap-2',
+      ],
       checkbox: [
         {
           text: 'Ícone Início',
@@ -221,6 +249,10 @@ export class ButtonModel {
         {
           text: 'Giratório',
           value: 'spinner',
+        },
+        {
+          text: 'Mensagem PopOver',
+          value: 'popover',
         },
       ],
     };
