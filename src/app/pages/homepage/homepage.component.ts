@@ -16,6 +16,5 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageService.setBreadcrumb(null);
-    //this.pageService.hideSplashScreen();
   }
 }

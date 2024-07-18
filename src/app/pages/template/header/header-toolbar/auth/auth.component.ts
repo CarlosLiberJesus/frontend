@@ -4,6 +4,8 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import {
   ValidatorFn,
@@ -13,7 +15,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { takeUntil, catchError, EMPTY, Subject } from 'rxjs';
 import { AlertService } from 'src/app/services/alert.service';
+import { SplashScreenService } from 'src/app/services/splash-screen.service';
+import { AuthUser, UserService } from 'src/app/services/user.service';
+import { IAvatar } from 'src/modules/elements/base/avatar/avatar';
+import { IIcon } from 'src/modules/elements/base/icon/icon';
 import { EPosition } from 'src/modules/elements/elements';
 import { IInput, EInputType } from 'src/modules/elements/forms/input/input';
 import { IButton } from 'src/modules/elements/html/button/button';
@@ -34,13 +41,16 @@ export function customEmailValidator(): ValidatorFn {
   styleUrl: './auth.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit, OnDestroy {
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.showMenu = false;
     }
   }
+
+  private destroy$: Subject<boolean> = new Subject<boolean>();
+  user: AuthUser | undefined;
 
   formGroup: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, customEmailValidator()]),
@@ -110,32 +120,75 @@ export class AuthComponent {
     ],
   };
 
+  logOutIcon: IIcon = {
+    library: 'bi',
+    value: 'bi-arrow-bar-left',
+    css: ['fs-3'],
+  };
+
+  avatar!: IAvatar;
   submitButton!: IButton;
 
-  authIcon: IButton = {
-    css: ['btn-icon btn-custom'],
-    spinner: {
-      style: {
-        css: ['me-1', 'text-gray-900', 'spinner-border', 'h-20px w-20px'],
-      },
-    },
-  };
+  authIcon!: IButton;
 
   showMenu = false;
   errorMsg = '';
   processing = false;
+  firstLog = false;
 
   constructor(
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private splashScreenService: SplashScreenService
   ) {
-    this.setOfflineContent();
+    //this.setOfflineContent();
+  }
+
+  ngOnInit(): void {
+    this.userService
+      .isLoadingSubject$()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((isLoading: boolean) => {
+        this.user = this.userService.getUser();
+        if (!isLoading && this.user === undefined) {
+          this.setOfflineContent();
+        } else if (isLoading && this.user === undefined) {
+          this.firstLog = true;
+          this.setLoadingContent();
+        } else if (!isLoading && this.user) {
+          this.setOnlineContent();
+        }
+        this.cdr.detectChanges();
+      });
   }
 
   getControl(name: string): FormControl {
     return this.formGroup.get(name) as FormControl;
+  }
+
+  setLoadingContent(): void {
+    this.authIcon = {
+      css: ['btn-icon', 'btn-custom', 'btn-icon-gray-900'],
+      spinner: {
+        style: {
+          css: ['me-1', 'text-gray-900', 'spinner-border', 'h-20px w-20px'],
+        },
+      },
+    };
+  }
+
+  setOnlineContent(): void {
+    this.avatar = {
+      img: !this.user?.profile?.avatar
+        ? 'assets/bootstrap-lib/media/avatars/blank.png'
+        : undefined,
+      base64: this.user?.profile?.avatar ?? undefined,
+      css: ['symbol-35px', 'cursor-pointer', 'mb-3'],
+    };
+    this.cdr.detectChanges();
   }
 
   setOfflineContent(): void {
@@ -180,12 +233,19 @@ export class AuthComponent {
     if (isPristine || !hasNoErrors) {
       this.submitButton = {
         text: 'Entrar',
-        css: ['mt-5', 'btn-ancap', 'w-100'],
+        css: [
+          'mt-5',
+          'btn-ancap',
+          'btn-outline',
+          'btn-outline-dashed',
+          'btn-outline-ancap',
+          'w-100',
+        ],
       };
     } else {
       this.submitButton = {
         text: 'Entrar',
-        css: ['btn', 'hover-elevate-down', 'btn-primary', 'w-100', 'mt-5'],
+        css: ['btn', 'btn-ancap', 'w-100', 'mt-5'],
         spinner: this.processing
           ? {
               name: 'auth-loading',
@@ -204,11 +264,111 @@ export class AuthComponent {
 
   submit(_event: boolean): void {
     if (!this.formGroup.valid && !this.processing) {
+      if (!this.formGroup.valid) {
+        const emailControl = this.formGroup.get('email');
+        if (emailControl?.errors) {
+          this.emailInput = {
+            ...this.emailInput,
+            errors: {
+              config: {
+                startsInvalid: true,
+              },
+              messages: {
+                required: 'Campo obrigatório',
+                email: 'Indique um email válido',
+              },
+            },
+          };
+        }
+        const passwordControl = this.formGroup.get('password');
+        if (passwordControl?.errors) {
+          this.passwordInput = {
+            ...this.passwordInput,
+            errors: {
+              config: {
+                startsInvalid: true,
+              },
+              messages: {
+                required: 'Campo obrigatório',
+                minlength: 'A palavra-chave tem pelo menos 6 caracteres',
+              },
+            },
+          };
+        }
+      }
       return;
     }
     this.processing = true;
     const email = this.formGroup.get('email')?.value;
     const password = this.formGroup.get('password')?.value;
-    console.log(email, password);
+    if (email && password) {
+      this.userService
+        .login(email, password)
+        .pipe(
+          takeUntil(this.destroy$),
+          catchError(_error => {
+            this.alertService.setAlert({
+              code: 500,
+              title: 'Erro de Servidor',
+              message: 'Confirme se tem acesso ao servidor',
+            });
+            this.processing = false;
+            this.showMenu = false;
+            this.formGroup.reset();
+            this.cdr.detectChanges();
+            return EMPTY;
+          })
+        )
+        .subscribe({
+          next: response => {
+            this.showMenu = false;
+            this.processing = false;
+            this.formGroup.reset();
+            this.cdr.detectChanges();
+            if (response === '') {
+              setTimeout(() => {
+                this.userService
+                  .isLoadingSubject$()
+                  .pipe(takeUntil(this.destroy$))
+                  .subscribe((_isLoading: boolean) => {
+                    if (this.userService.getUser()) {
+                      this.alertService.setAlert({
+                        code: 200,
+                        title: 'Bem vindo',
+                        message: 'Login efetuado com sucesso',
+                      });
+                      this.router.navigate(['/inicio']);
+                    }
+                  });
+                this.splashScreenService.show();
+              }, 500);
+            } else {
+              this.alertService.setAlert({
+                code: 500,
+                title: 'Erro de Servidor',
+                message: response,
+              });
+            }
+          },
+        });
+    }
+  }
+
+  changeAuthMenu(_event: MouseEvent | KeyboardEvent, action: string): void {
+    this.showMenu = false;
+    switch (action) {
+      case 'logout':
+        this.userService.logOut();
+        this.cdr.detectChanges();
+        break;
+      case 'profile':
+        this.router.navigate(['/libertario', this.user?.uuid]);
+        break;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

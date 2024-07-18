@@ -1,7 +1,18 @@
-<h1
-  class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-  {{ pageTitle }}
-</h1>
-<app-bootstrap-navigation-breadcrumbs
-  *ngIf="breadcrumbs"
-  [breadcrumbs]="breadcrumbs"></app-bootstrap-navigation-breadcrumbs>
+<div
+  [ngClass]="{
+    '': !breadcrumbs,
+    'py-3 py-lg-6': breadcrumbs,
+  }">
+  <h1
+    class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
+    {{ pageTitle }}
+  </h1>
+  <app-bootstrap-navigation-breadcrumbs
+    *ngIf="breadcrumbs"
+    [ngClass]="{
+      animate__animated: true,
+      'animate__bounceOutLeft animate__faster': !breadcrumbs,
+      'animate__slideInDown animate__faster': breadcrumbs,
+    }"
+    [breadcrumbs]="breadcrumbs"></app-bootstrap-navigation-breadcrumbs>
+</div>

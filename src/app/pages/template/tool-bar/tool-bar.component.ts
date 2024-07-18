@@ -16,7 +16,7 @@ import { ToolsService } from 'src/app/services/tools.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolBarComponent implements OnInit, OnDestroy {
-  private unsubscribe: Subject<void> = new Subject<void>();
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   tools!: TemplateRef<HTMLElement> | null;
 
@@ -26,7 +26,7 @@ export class ToolBarComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit(): void {
     this.toolsService.tools$
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((tools: TemplateRef<HTMLElement> | null) => {
         this.tools = tools;
         this.cdr.detectChanges();
@@ -34,7 +34,7 @@ export class ToolBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

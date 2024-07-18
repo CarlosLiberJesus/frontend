@@ -7,16 +7,22 @@ import {
 } from '@angular/animations';
 
 export const routeTransition = trigger('routeTransition', [
+  transition(':enter', [
+    style({ opacity: 0, transform: 'scale(0.6)' }),
+    animate('0.6s ease-in', style({ opacity: 1, transform: 'scale(1)' })),
+  ]),
   transition('* => *', [
-    query(':enter', [style({ opacity: 0, scale: 0.9 })], { optional: true }),
+    query(':enter', [style({ opacity: 0, transform: 'scale(0.6)' })], {
+      optional: true,
+    }),
     query(
       ':leave',
       [
         animate(
-          '0.6s',
+          '0.4s',
           style({
             opacity: 0,
-            scale: 0.9,
+            transform: 'scale(0.9)',
             position: 'absolute',
             top: 0,
             left: 0,
@@ -26,8 +32,15 @@ export const routeTransition = trigger('routeTransition', [
       ],
       { optional: true }
     ),
-    query(':enter', [animate('0.4s', style({ opacity: 1, scale: 1 }))], {
-      optional: true,
-    }),
+    query(
+      ':enter',
+      [
+        style({ opacity: 0, transform: 'scale(0.6)' }),
+        animate('0.6s ease-in', style({ opacity: 1, transform: 'scale(1)' })),
+      ],
+      {
+        optional: true,
+      }
+    ),
   ]),
 ]);

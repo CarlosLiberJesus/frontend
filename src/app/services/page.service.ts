@@ -14,13 +14,12 @@ export class PageService {
     private breadcrumbService: BreadcrumbsService,
     private alertService: AlertService
   ) {}
-
-  /**
-   * Hide splash screen
-   * @deprecated
-   */
   hideSplashScreen(): void {
     this.splashScreenService.hide();
+  }
+
+  showSplashScreen(): void {
+    this.splashScreenService.show();
   }
 
   setAlert(alert: IAppAlert): void {

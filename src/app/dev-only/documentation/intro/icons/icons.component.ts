@@ -23,7 +23,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class DocumentationIconsComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
-  private unsubscribe: Subject<void> = new Subject<void>();
+  private destroy$: Subject<boolean> = new Subject<boolean>();
   showIconsList = false;
 
   loading: ISpinner = {
@@ -258,15 +258,15 @@ export class DocumentationIconsComponent
       if (style === 'solid') {
         iconQuery = this.iconsModel
           .getFontawesomeIconsSolidList()
-          .pipe(takeUntil(this.unsubscribe));
+          .pipe(takeUntil(this.destroy$));
       } else if (style === 'regular') {
         iconQuery = this.iconsModel
           .getFontawesomeIconsRegularList()
-          .pipe(takeUntil(this.unsubscribe));
+          .pipe(takeUntil(this.destroy$));
       } else {
         iconQuery = this.iconsModel
           .getFontawesomeIconsBrandsList()
-          .pipe(takeUntil(this.unsubscribe));
+          .pipe(takeUntil(this.destroy$));
       }
 
       switch (tab) {
@@ -295,7 +295,7 @@ export class DocumentationIconsComponent
           this.showLoading(1);
           this.iconsModel
             .getBootstrapIconsList()
-            .pipe(takeUntil(this.unsubscribe))
+            .pipe(takeUntil(this.destroy$))
             .subscribe(iconsList => {
               this.iconsList = iconsList;
               this.tabs = {
@@ -316,7 +316,7 @@ export class DocumentationIconsComponent
           this.showLoading(2);
           this.iconsModel
             .getSocialIconsList()
-            .pipe(takeUntil(this.unsubscribe))
+            .pipe(takeUntil(this.destroy$))
             .subscribe(iconsList => {
               this.iconsList = iconsList;
               this.tabs = {
@@ -337,7 +337,7 @@ export class DocumentationIconsComponent
           this.showLoading(3);
           this.iconsModel
             .getFlagsList()
-            .pipe(takeUntil(this.unsubscribe))
+            .pipe(takeUntil(this.destroy$))
             .subscribe(iconsList => {
               this.iconsList = iconsList;
               this.tabs = {
@@ -466,7 +466,7 @@ export class DocumentationIconsComponent
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

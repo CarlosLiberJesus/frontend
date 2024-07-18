@@ -109,13 +109,13 @@ $ancap: #ffcf37 !default;
 $ancap-active: #000000 !default;
 $ancap-light: #ffe184 !default;
 $ancap-clarity: rgba(255, 207, 55, 0.2) !default;
-$ancap-inverse: #ffffff !default;
+$ancap-inverse: #ffcf37 !default;
 
 $capan: #000000 !default;
 $capan-active: #ffcf37 !default;
 $capan-light: #2f2f2f !default;
 $capan-clarity: rgba(56, 56, 56, 0.2) !default;
-$capan-inverse: #ffffff !default;
+$capan-inverse: #000000 !default;
 
 // Contextual colors
 $theme-colors: (
@@ -624,7 +624,7 @@ $font-sizes: (
   // 88.25px
   7hx: $font-size-base * 7.5,
   // 91.5px
-  7tx: $font-size-base * 7.75 // 94.75px,,,,,,,
+  7tx: $font-size-base * 7.75 // 94.75px,,,,,,,,,,,
 ) !default;
 
 $headings-font-weight: 600 !default;

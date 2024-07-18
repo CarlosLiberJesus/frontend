@@ -5,7 +5,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { delay, Subject, takeUntil } from 'rxjs';
 import { IAppBreadcrumb } from 'src/app/interfaces/breadcrumbs';
 import { BreadcrumbsService } from 'src/app/services/breadcrumbs.service';
 import { Title } from '@angular/platform-browser';
@@ -18,7 +18,7 @@ import { IBreadcrumbs } from 'src/modules/elements/navigation/breadcrumbs/breadc
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTitleComponent implements OnInit, OnDestroy {
-  private unsubscribe: Subject<void> = new Subject<void>();
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   pageTitle: string | null = null;
   breadcrumbs: IBreadcrumbs | null = null;
@@ -34,7 +34,10 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     const pageTabTitle = 'Futuro Partido Libertário';
 
     this.breadcrumbsService.breadcrumb$
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(
+        takeUntil(this.destroy$),
+        delay(500) // Delay the transition by 1 second (adjust the delay value as needed)
+      )
       .subscribe((breadcrumb: IAppBreadcrumb | null) => {
         this.breadcrumbs = null;
         this.pageTitle = null;
@@ -75,7 +78,7 @@ export class PageTitleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

@@ -8,9 +8,12 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ElementsModule } from 'src/modules/elements/elements.module';
 import { TemplateModule } from './pages/template/template.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ApiHttpInterceptor } from './lib/http.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, HomepageComponent],
+  declarations: [AppComponent, HomepageComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +22,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ElementsModule,
     TemplateModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

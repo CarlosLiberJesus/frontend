@@ -24,7 +24,7 @@ export class DocumentationAnimationsComponent {
   }
 
   getCss(): string {
-    let classes = '';
+    let classes = 'sticky-element ';
 
     if (this.animationsModel.getValue('animationControl')) {
       classes +=

@@ -18,7 +18,7 @@ import { IAlert } from 'src/modules/elements/html/alert/alert';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertsComponent implements OnInit, OnDestroy {
-  private unsubscribe: Subject<void> = new Subject<void>();
+  private destroy$: Subject<boolean> = new Subject<boolean>();
   alert!: IAlert | null;
 
   constructor(
@@ -29,7 +29,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.alertService
       .getAlert()
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((incoming: IAppAlert | undefined) => {
         //console.log('## incoming Alert', incoming);
         this.alert = null;
@@ -129,7 +129,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

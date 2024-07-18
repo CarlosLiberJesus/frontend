@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -16,15 +17,14 @@ import { IButton } from 'src/modules/elements/html/button/button';
   styleUrls: ['./documentation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DocumentationComponent implements OnInit {
+export class DocumentationComponent implements OnInit, OnDestroy {
   slug!: string; // First part of the url, ex: localhost:4200/dev-only
   urlChoices: { main: string; element: string } = {
     main: 'intro',
     element: 'intro',
   }; // starts with forced values, its the #intro#intro
 
-  // Unsubscribe on destroy, not needed since .pipe(takeUntil(this.unsubscribe))
-  private unsubscribe: Subject<void> = new Subject<void>();
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private route: ActivatedRoute,
@@ -39,7 +39,7 @@ export class DocumentationComponent implements OnInit {
    */
   ngOnInit(): void {
     this.route.fragment
-      ?.pipe(takeUntil(this.unsubscribe))
+      ?.pipe(takeUntil(this.destroy$))
       .subscribe((fragment: null | string) => {
         this.slug = window.location.pathname;
         if (fragment) {
@@ -78,7 +78,6 @@ export class DocumentationComponent implements OnInit {
           });
         }
         this.pageService.setBreadcrumb(breadcrumb);
-        //this.pageService.hideSplashScreen();
       });
   }
 
@@ -731,5 +730,10 @@ export class DocumentationComponent implements OnInit {
     this.router.navigate([this.slug], {
       fragment: this.urlChoices.main + '#' + this.urlChoices.element,
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

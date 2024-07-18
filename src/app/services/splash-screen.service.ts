@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, delay } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SplashScreenService {
-  private isVisible = new BehaviorSubject<boolean>(false);
+  private isVisible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
-  showWithDelay(delayTime: number) {
-    // Show splash screen
+  show() {
     this.isVisible.next(true);
-
-    // Delay navigation
-    return this.isVisible.pipe(delay(delayTime)).toPromise();
   }
 
   hide() {
     this.isVisible.next(false);
   }
 
-  isVisible$() {
+  isVisible$(): Observable<boolean> {
     return this.isVisible.asObservable();
   }
 }

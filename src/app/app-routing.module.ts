@@ -3,12 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { DocumentationComponent } from './dev-only/documentation/documentation.component';
 import { DevGuard } from './lib/route-guard/dev.guard';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LoggedInGuard } from './lib/route-guard/logged.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
-    title: 'Inicio',
+    title: 'Home',
+  },
+  {
+    path: 'inicio',
+    component: DashboardComponent,
+    title: 'Ínicio',
+    canActivate: [LoggedInGuard],
   },
   {
     path: 'dev-only',

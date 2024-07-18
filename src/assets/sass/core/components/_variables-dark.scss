@@ -87,30 +87,17 @@ $dark-light-dark: #1e2027 !default;
 $dark-clarity-dark: rgba(#272a34, 0.2) !default;
 $dark-inverse-dark: $white !default;
 
-/*
-$ancap-dark: #000000 !default;
-$ancap-active-dark: #000000 !default;
-$ancap-light-dark: #363535 !default;
-$ancap-clarity-dark: rgba(33, 33, 33, 0.2) !default;
-$ancap-inverse-dark: #ffcf37 !default;
-
-$capan-dark: #ffcf37 !default;
-$capan-active-dark: #ffcf37 !default;
-$capan-light-dark: #2f2f2f !default;
-$capan-clarity-dark: rgba(255,207,55, 0.2) !default;
-$capan-inverse-dark: #000000 !default;
-*/
 $ancap-dark: #ffcf37 !default;
 $ancap-active-dark: #000000 !default;
 $ancap-light-dark: #ffe184 !default;
 $ancap-clarity-dark: rgba(255, 207, 55, 0.2) !default;
-$ancap-inverse-dark: #ffffff !default;
+$ancap-inverse-dark: #ffcf37 !default;
 
 $capan-dark: #000000 !default;
 $capan-active-dark: #ffcf37 !default;
 $capan-light-dark: #2f2f2f !default;
 $capan-clarity-dark: rgba(56, 56, 56, 0.2) !default;
-$capan-inverse-dark: #ffffff !default;
+$capan-inverse-dark: #000000 !default;
 
 // Contextual colors
 $theme-colors-dark: (

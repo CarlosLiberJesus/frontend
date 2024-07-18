@@ -1,8 +1,63 @@
 <div class="position-relative gap-0">
+  <app-bootstrap-html-avatar
+    *ngIf="user"
+    [avatar]="avatar"
+    (click)="showMenu = !showMenu"
+    (keypress)="showMenu = !showMenu"
+    tabindex="1"></app-bootstrap-html-avatar>
+  <div *ngIf="user && showMenu" [ngClass]="getPanelClass()">
+    <div class="card-body p-0">
+      <ul class="mb-0 list-unstyled">
+        <li class="border-bottom cursor-pointer mb-3">
+          <div class="d-flex align-items-center px-3 mb-4">
+            <div class="symbol symbol-50px me-5">
+              <img
+                alt=""
+                [title]="user.firstname + ' ' + user.lastname"
+                [src]="'data:image/png;base64,' + user.profile.avatar"
+                *ngIf="user?.profile?.avatar" />
+              <img
+                alt=""
+                [title]="user.firstname + ' ' + user.lastname"
+                [src]="'assets/bootstrap-lib/media/avatars/blank.png'"
+                *ngIf="!user?.profile?.avatar" />
+            </div>
+            <div class="fw-bold d-flex align-items-center fs-5">
+              {{ user.firstname + ' ' + user.lastname }}
+              <!-- TODO Roles-->
+              <span
+                class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-4">
+                teste</span
+              >
+            </div>
+          </div>
+        </li>
+        <li
+          (click)="changeAuthMenu($event, 'profile')"
+          (keypress)="changeAuthMenu($event, 'profile')"
+          tabindex="2"
+          class="text-hover-primary bg-hover-light cursor-pointer px-6 py-2 fw-semibold">
+          Perfil
+        </li>
+        <li
+          (click)="changeAuthMenu($event, 'logout')"
+          (keypress)="changeAuthMenu($event, 'logout')"
+          tabindex="2"
+          class="text-hover-primary bg-hover-light cursor-pointer px-6 py-2 mb-3 fw-semibold d-flex d-flex justify-content-between align-items-center">
+          Sair
+          <app-bootstrap-icon
+            [icon]="logOutIcon"
+            class="ml-auto"></app-bootstrap-icon>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <app-bootstrap-html-button
+    *ngIf="!user"
     [button]="authIcon"
     (click)="showMenu = !showMenu"></app-bootstrap-html-button>
-  <div *ngIf="showMenu" [ngClass]="getPanelClass()">
+  <div *ngIf="!user && showMenu" [ngClass]="getPanelClass()">
     <div class="card-body">
       <h5 class="mb-7">Bem Vindo!</h5>
       <app-bootstrap-html-separator

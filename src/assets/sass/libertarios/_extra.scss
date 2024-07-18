@@ -79,7 +79,7 @@ app-bootstrap-html-table {
 .btn.btn-light-ancap i,
 .btn.btn-ancap i,
 .btn.btn-ancap {
-  color: var(--bs-capan) !important; // preto
+  color: var(--bs-capan); // preto
 }
 .btn.btn-active-light-capan:hover,
 .btn.btn-active-light-capan:hover i,
@@ -90,7 +90,8 @@ app-bootstrap-html-table {
 .btn.btn-ancap:hover i,
 .btn.btn-ancap i:hover,
 .btn.btn-ancap:hover {
-  color: var(--bs-ancap) !important; // amarelo
+  color: var(--bs-ancap); // amarelo
+  border: 1px solid var(--bs-ancap) !important;
 }
 
 .form-check {

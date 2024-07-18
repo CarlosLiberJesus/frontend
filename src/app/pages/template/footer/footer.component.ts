@@ -14,7 +14,7 @@ export class FooterComponent {
 
   documentationButton: IButton = {
     text: 'Documentação',
-    css: ['btn', 'btn-ancap'],
+    css: ['btn', 'btn-capan'],
   };
 
   constructor(private router: Router) {}

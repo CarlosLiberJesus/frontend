@@ -36,6 +36,122 @@
       }
     </script>
 
-    <app-root></app-root>
+    <app-root>
+      <style>
+        #splash-screen {
+          position: absolute;
+          z-index: 1000;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          background-color: #ffffff;
+        }
+
+        .spinner-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+        }
+
+        .spinner-container svg {
+          position: absolute;
+          top: -10px;
+          left: -10px;
+        }
+
+        #splash-screen > img {
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          margin-bottom: 30px;
+        }
+
+        #splash-screen.hidden {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .splash-spinner {
+          animation: rotate 2s linear infinite;
+          width: 100px;
+          height: 100px;
+        }
+
+        .splash-spinner .path {
+          stroke: #000000;
+          stroke-linecap: round;
+          animation: dash 1.5s ease-in-out infinite;
+        }
+
+        .splash-screen {
+          background-color: var(--bs-body-bg) !important;
+        }
+
+        .splash-screen span {
+          margin-top: 20px;
+          font-size: medium;
+        }
+
+        .splash-screen span {
+          color: #92929f !important;
+        }
+        [data-bs-theme='dark'] {
+          #splash-screen {
+            background-color: #000000;
+            .splash-spinner .path {
+              stroke: #ffffff;
+            }
+            span {
+              color: #92929f !important;
+            }
+          }
+        }
+
+        @keyframes rotate {
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes dash {
+          0% {
+            stroke-dasharray: 1, 150;
+            stroke-dashoffset: 0;
+          }
+
+          50% {
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: -35;
+          }
+
+          100% {
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: -124;
+          }
+        }
+      </style>
+      <div #splashScreen id="splash-screen" class="splash-screen">
+        <div class="spinner-container">
+          <img
+            src="/assets/media/icons/sun-bird.png"
+            width="80px"
+            alt="Partido Libertário" />
+          <svg class="splash-spinner" viewBox="0 0 50 50">
+            <circle
+              class="path"
+              cx="25"
+              cy="25"
+              r="20"
+              fill="none"
+              stroke-width="3"></circle>
+          </svg>
+        </div>
+        <span>Libertando...</span>
+      </div>
+    </app-root>
   </body>
 </html>
