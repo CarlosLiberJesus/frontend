@@ -6,4 +6,5 @@ export interface IAppBreadcrumb {
 export interface IAppBreadcrumbItem {
   label: string;
   link?: string;
+  fragment?: string;
 }

@@ -10,6 +10,9 @@ import { MobileMenuComponent } from './menus/mobile-menu/mobile-menu.component';
 import { RouterModule } from '@angular/router';
 import { ThemeComponent } from './header/header-toolbar/theme/theme.component';
 import { AuthComponent } from './header/header-toolbar/auth/auth.component';
+import { ToolBarComponent } from './tool-bar/tool-bar.component';
+import { AlertsComponent } from './tool-bar/alerts/alerts.component';
+import { PageTitleComponent } from './tool-bar/page-title/page-title.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,16 @@ import { AuthComponent } from './header/header-toolbar/auth/auth.component';
     MobileMenuComponent,
     ThemeComponent,
     AuthComponent,
+    ToolBarComponent,
+    AlertsComponent,
+    PageTitleComponent,
   ],
   imports: [CommonModule, ElementsModule, RouterModule.forRoot([])],
-  exports: [SplashScreenComponent, HeaderComponent, FooterComponent],
+  exports: [
+    SplashScreenComponent,
+    HeaderComponent,
+    ToolBarComponent,
+    FooterComponent,
+  ],
 })
 export class TemplateModule {}

@@ -146,7 +146,7 @@ export class PopOverComponent
     let padding = 0;
     const vertical = 0;
     let popOverWidth: number = this.defaultWidth;
-    console.log(top, left, this.popOverTarget.nativeElement.offsetWidth);
+    //console.log(top, left, this.popOverTarget.nativeElement.offsetWidth);
     switch (this.popOver?.position) {
       case EPosition.TOP:
         top =

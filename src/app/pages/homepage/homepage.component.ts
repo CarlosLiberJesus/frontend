@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { IAppBreadcrumb } from 'src/app/interfaces/breadcrumbs';
 import { PageService } from 'src/app/services/page.service';
 import { environment } from 'src/environments/environment';
 
@@ -16,15 +15,7 @@ export class HomepageComponent implements OnInit {
   constructor(private pageService: PageService) {}
 
   ngOnInit(): void {
-    const _breadcrumb: IAppBreadcrumb = {
-      title: 'Ínicio',
-      items: [
-        {
-          label: 'Libertarios',
-        },
-      ],
-    };
-    //this.pageService.setBreadcrumb(breadcrumb);
-    this.pageService.hideSplashScreen();
+    this.pageService.setBreadcrumb(null);
+    //this.pageService.hideSplashScreen();
   }
 }

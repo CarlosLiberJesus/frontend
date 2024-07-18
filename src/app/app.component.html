@@ -7,12 +7,13 @@
     <div class="app-wrapper flex-column flex-row-fluid">
       <div class="app-main flex-column flex-row-fluid">
         <div class="d-flex flex-column flex-column-fluid">
-          <!-- TODO::Toolbar <app-layout-tool-bar
-            class="app-toolbar py-3 py-lg-6 position-relative"></app-layout-tool-bar>
-          -->
-
           <div class="app-content pt-0">
-            <div class="app-container container-fluid">
+            <app-layout-tool-bar
+              class="app-toolbar py-3 py-lg-6 position-relative"></app-layout-tool-bar>
+
+            <div
+              class="app-container container-fluid"
+              [@routeTransition]="route.snapshot.data">
               <router-outlet></router-outlet>
             </div>
           </div>

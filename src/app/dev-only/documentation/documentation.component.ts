@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { IAppBreadcrumb } from 'src/app/interfaces/breadcrumbs';
@@ -24,6 +29,7 @@ export class DocumentationComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private pageService: PageService,
+    private cdr: ChangeDetectorRef,
     private router: Router
   ) {}
 
@@ -44,17 +50,35 @@ export class DocumentationComponent implements OnInit {
               element: parts[1],
             };
           }
-          const breadcrumb: IAppBreadcrumb = {
-            title: 'Ínicio',
-            items: [
-              {
-                label: 'Libertarios',
-              },
-            ],
-          };
-          this.pageService.setBreadcrumb(breadcrumb);
-          this.pageService.hideSplashScreen();
+          this.cdr.detectChanges();
         }
+        const breadcrumb: IAppBreadcrumb = {
+          title: 'Documentação',
+          items: [
+            {
+              label: 'Inicio',
+              link: '/',
+            },
+          ],
+        };
+
+        if (this.urlChoices.main) {
+          breadcrumb.items?.push({
+            label: this.urlChoices.main,
+            link: this.slug,
+            fragment: this.urlChoices.main,
+          });
+        }
+
+        if (this.urlChoices.element) {
+          breadcrumb.items?.push({
+            label: this.urlChoices.element,
+            link: this.slug,
+            fragment: this.urlChoices.main + '#' + this.urlChoices.element,
+          });
+        }
+        this.pageService.setBreadcrumb(breadcrumb);
+        //this.pageService.hideSplashScreen();
       });
   }
 

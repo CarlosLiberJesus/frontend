@@ -11,7 +11,7 @@ export class BreadcrumbsService {
   public breadcrumb$: Observable<IAppBreadcrumb | null> =
     this.breadcrumbSubject.asObservable();
 
-  setBreadcrumb(breadcrumb: IAppBreadcrumb): void {
+  setBreadcrumb(breadcrumb: IAppBreadcrumb | null): void {
     this.breadcrumbSubject.next(breadcrumb);
   }
 

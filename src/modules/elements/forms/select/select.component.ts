@@ -133,7 +133,7 @@ export class SelectComponent {
     }
     return this.select?.css?.includes('floating')
       ? ''
-      : this.select.placeholder ?? '';
+      : (this.select.placeholder ?? '');
   }
 
   /**

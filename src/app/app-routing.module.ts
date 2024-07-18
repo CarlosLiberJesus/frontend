@@ -8,10 +8,12 @@ const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
+    title: 'Inicio',
   },
   {
     path: 'dev-only',
     component: DocumentationComponent,
+    title: 'Documentação',
     canActivate: [DevGuard],
   },
   { path: '**', component: HomepageComponent }, // TODO or 404

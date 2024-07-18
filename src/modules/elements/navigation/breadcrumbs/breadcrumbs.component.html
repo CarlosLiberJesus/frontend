@@ -2,8 +2,12 @@
   <li
     *ngFor="let breadcrumb of breadcrumbs.items; let i = index"
     [ngClass]="getBreadcrumbItemCss(i)">
-    <a [ngClass]="getBreadcrumbLinkCss(i)" [routerLink]="breadcrumb.slug">{{
-      breadcrumb.title
-    }}</a>
+    <a
+      [ngClass]="getBreadcrumbLinkCss(i)"
+      (click)="forwardSection(i)"
+      tabindex="2"
+      (keypress)="forwardSection(i)"
+      >{{ breadcrumb.title }}</a
+    >
   </li>
 </ol>
