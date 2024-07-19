@@ -1,0 +1,169 @@
+.mainWrapper {
+  height: calc(100vh - var(--bs-app-header-height));
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  span {
+    font-size: 10rem;
+    display: block;
+  }
+  span.ancap {
+    font-size: 14rem;
+    display: block;
+  }
+  .video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .video-container video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.new-section {
+  height: 100vh;
+  overflow: hidden;
+
+  .header-height {
+    height: var(--bs-app-header-height);
+  }
+}
+
+@media (max-width: 374.98px) {
+  .mainWrapper {
+    span {
+      font-size: 2rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 4rem;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 375px) and (max-width: 499.98px) {
+  .mainWrapper {
+    span {
+      font-size: 3rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 5rem;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 500px) and (max-width: 621.98px) {
+  .mainWrapper {
+    span {
+      font-size: 4rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 6rem;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 622px) and (max-width: 767.98px) {
+  .mainWrapper {
+    span {
+      font-size: 5rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 7rem;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .mainWrapper {
+    span {
+      font-size: 6rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 8rem;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1049.98px) {
+  .mainWrapper {
+    span {
+      font-size: 7rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 9rem;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 1050px) and (max-width: 1278.98px) {
+  .mainWrapper {
+    span {
+      font-size: 7rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 10rem;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 1277px) and (max-width: 1521.98px) {
+  .mainWrapper {
+    span {
+      font-size: 8rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 11rem;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 1522px) {
+  .mainWrapper {
+    span {
+      font-size: 8rem;
+      display: block;
+    }
+    span.text-ancap {
+      font-size: 12rem;
+      display: block;
+    }
+  }
+}

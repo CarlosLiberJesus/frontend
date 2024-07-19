@@ -89,8 +89,8 @@ $dark-inverse-dark: $white !default;
 
 $ancap-dark: #ffcf37 !default;
 $ancap-active-dark: #000000 !default;
-$ancap-light-dark: #ffe184 !default;
-$ancap-clarity-dark: rgba(255, 207, 55, 0.2) !default;
+$ancap-light-dark: #ffcf37a6 !default;
+$ancap-clarity-dark: #ffcf37a6 !default;
 $ancap-inverse-dark: #ffcf37 !default;
 
 $capan-dark: #000000 !default;
@@ -294,10 +294,10 @@ $scrolltop-opacity-dark: 0 !default;
 $scrolltop-opacity-on-dark: 0.3 !default;
 $scrolltop-opacity-hover-dark: 1 !default;
 $scrolltop-box-shadow-dark: $box-shadow !default;
-$scrolltop-bg-color-dark: $primary !default;
-$scrolltop-bg-color-hover-dark: $primary !default;
-$scrolltop-icon-color-dark: $primary-inverse !default;
-$scrolltop-icon-color-hover-dark: $primary-inverse !default;
+$scrolltop-bg-color-dark: $ancap !default;
+$scrolltop-bg-color-hover-dark: $ancap !default;
+$scrolltop-icon-color-dark: $ancap-inverse !default;
+$scrolltop-icon-color-hover-dark: $capan !default;
 
 //  drawer component
 $drawer-box-shadow-dark: 0px 0px 30px rgba(0, 0, 0, 0.1) !default;

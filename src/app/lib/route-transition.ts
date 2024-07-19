@@ -35,7 +35,7 @@ export const routeTransition = trigger('routeTransition', [
     query(
       ':enter',
       [
-        style({ opacity: 0, transform: 'scale(0.6)' }),
+        //style({ opacity: 0, transform: 'scale(0.6)' }),
         animate('0.6s ease-in', style({ opacity: 1, transform: 'scale(1)' })),
       ],
       {

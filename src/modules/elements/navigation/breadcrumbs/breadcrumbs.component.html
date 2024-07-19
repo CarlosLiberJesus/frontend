@@ -1,13 +1,18 @@
-<ol [ngClass]="getBreadcrumbClass()" *ngIf="breadcrumbs">
-  <li
-    *ngFor="let breadcrumb of breadcrumbs.items; let i = index"
-    [ngClass]="getBreadcrumbItemCss(i)">
-    <a
-      [ngClass]="getBreadcrumbLinkCss(i)"
-      (click)="forwardSection(i)"
-      tabindex="2"
-      (keypress)="forwardSection(i)"
-      >{{ breadcrumb.title }}</a
-    >
-  </li>
-</ol>
+<nav aria-label="breadcrumb" *ngIf="breadcrumbs">
+  <ol [ngClass]="getBreadcrumbClass()">
+    <li
+      *ngFor="let breadcrumb of breadcrumbs.items; let i = index"
+      [ngClass]="getBreadcrumbItemCss(i)">
+      <a
+        [ngClass]="getBreadcrumbLinkCss(i)"
+        (click)="forwardSection(i)"
+        tabindex="2"
+        (keypress)="forwardSection(i)"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ariaCurrentWhenActive="page"
+        >{{ breadcrumb.title }}</a
+      >
+    </li>
+  </ol>
+</nav>

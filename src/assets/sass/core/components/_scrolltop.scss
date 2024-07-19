@@ -16,7 +16,9 @@
   background-color: var(--#{$prefix}scrolltop-bg-color);
   box-shadow: var(--#{$prefix}scrolltop-box-shadow);
   opacity: $scrolltop-opacity;
-  transition: $transition-link;
+  transition-property: opacity, display;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
   @include border-radius($border-radius);
 
   .svg-icon {
@@ -38,15 +40,8 @@
     }
   }
 
-  [data-kt-scrolltop='on'] & {
-    opacity: var(--#{$prefix}scrolltop-opacity-on);
-    animation: animation-scrolltop 0.4s ease-out 1;
-    display: flex;
-
-    &:hover {
-      transition: $transition-link;
-      opacity: var(--#{$prefix}scrolltop-opacity-hover);
-    }
+  &:hover {
+    opacity: $scrolltop-opacity-hover !important;
   }
 }
 

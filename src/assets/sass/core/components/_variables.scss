@@ -107,8 +107,8 @@ $dark-inverse: $white !default;
 //ancap
 $ancap: #ffcf37 !default;
 $ancap-active: #000000 !default;
-$ancap-light: #ffe184 !default;
-$ancap-clarity: rgba(255, 207, 55, 0.2) !default;
+$ancap-light: #ffcf37a6 !default;
+$ancap-clarity: #ffcf37a6 !default;
 $ancap-inverse: #ffcf37 !default;
 
 $capan: #000000 !default;
@@ -624,7 +624,7 @@ $font-sizes: (
   // 88.25px
   7hx: $font-size-base * 7.5,
   // 91.5px
-  7tx: $font-size-base * 7.75 // 94.75px,,,,,,,,,,,
+  7tx: $font-size-base * 7.75 // 94.75px,,,,,,,,,,,,,,
 ) !default;
 
 $headings-font-weight: 600 !default;
@@ -1303,10 +1303,10 @@ $scrolltop-end-mobile: 15px !default;
 $scrolltop-size: 36px !default;
 $scrolltop-size-mobile: 30px !default;
 $scrolltop-box-shadow: var(--#{$prefix}box-shadow) !default;
-$scrolltop-bg-color: var(--#{$prefix}primary) !default;
-$scrolltop-bg-color-hover: var(--#{$prefix}primary) !default;
-$scrolltop-icon-color: var(--#{$prefix}primary-inverse) !default;
-$scrolltop-icon-color-hover: var(--#{$prefix}primary-inverse) !default;
+$scrolltop-bg-color: var(--#{$prefix}ancap) !default;
+$scrolltop-bg-color-hover: var(--#{$prefix}ancap) !default;
+$scrolltop-icon-color: var(--#{$prefix}black) !default;
+$scrolltop-icon-color-hover: var(--#{$prefix}black) !default;
 
 //  sticky toolbar component
 $sticky-toolbar-z-index: 95 !default;

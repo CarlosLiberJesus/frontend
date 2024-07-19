@@ -1,2 +1,136 @@
-<p>homepage works!</p>
-<h1>{{ title }}</h1>
+<div class="mainWrapper">
+  <div
+    class="video-container"
+    [ngClass]="{
+      'd-none':
+        step === 'hidden' ||
+        step.startsWith('first') ||
+        step.startsWith('second'),
+    }">
+    <video
+      id="autoplay-video"
+      width="100%"
+      [autoplay]="true"
+      [loop]="true"
+      [muted]="true">
+      <source src="assets/media/video/video-hd.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div
+    class="row h-300px"
+    [ngClass]="{
+      'd-none':
+        step === 'hidden' ||
+        step.startsWith('first') ||
+        step.startsWith('second'),
+    }">
+    <div
+      class="col-xs-6 d-flex align-items-center justify-content-center text-white">
+      <span
+        [ngClass]="{
+          animate__animated: true,
+          'd-none':
+            step === 'hidden' ||
+            step.startsWith('first') ||
+            step.startsWith('second'),
+          animate__wobble: step === 'third-enterance',
+        }"
+        >Apenas</span
+      >
+      <span
+        [ngClass]="{
+          'animate__animated text-ancap font-kaushan': true,
+          'd-none':
+            step === 'hidden' ||
+            step.startsWith('first') ||
+            step.startsWith('second'),
+          'animate__flash animate__slower animate__repeat-1':
+            step === 'third-enterance',
+        }"
+        >&nbsp;Liberdade</span
+      >
+    </div>
+  </div>
+  <div
+    class="row h-300px"
+    [ngClass]="{
+      'd-none':
+        step === 'hidden' ||
+        step.startsWith('third') ||
+        step.startsWith('second'),
+    }">
+    <div class="col-xs-6 d-flex align-items-center justify-content-center">
+      <span
+        [ngClass]="{
+          'animate__animated text-ancap font-kaushan': true,
+          'animate__flipInY animate__normal': step === 'first-enterance',
+          'animate__lightSpeedOutLeft animate__normal': step === 'first-exit',
+        }"
+        >Esquerda</span
+      ><span
+        [ngClass]="{
+          animate__animated: true,
+          'animate__flipInX animate__slower': step === 'first-enterance',
+          'animate__lightSpeedOutRight animate__normal': step === 'first-exit',
+        }"
+        >, não é</span
+      >
+    </div>
+  </div>
+  <div
+    class="row h-300px"
+    [ngClass]="{
+      'd-none':
+        step === 'hidden' ||
+        step.startsWith('first') ||
+        step.startsWith('third'),
+    }">
+    <div class="col-xs-6 d-flex align-items-center justify-content-center">
+      <span
+        [ngClass]="{
+          'animate__animated text-ancap font-kaushan': true,
+          'animate__flipInY animate__normal': step === 'second-enterance',
+          'animate__lightSpeedOutLeft animate__normal': step === 'second-exit',
+        }"
+        >Direita</span
+      >
+      <span
+        [ngClass]="{
+          animate__animated: true,
+          'animate__flipInX animate__slower': step === 'second-enterance',
+          'animate__lightSpeedOutRight animate__normal': step === 'second-exit',
+        }"
+        >,&nbsp;também não</span
+      >
+    </div>
+  </div>
+
+  <div
+    class="row position-absolute bottom-0 mb-calc"
+    [ngClass]="{
+      'd-none':
+        step === 'hidden' ||
+        step.startsWith('first') ||
+        step.startsWith('second'),
+    }">
+    <div class="col-auto d-flex align-items-center justify-content-center">
+      <button
+        class="btn btn-ancap fs-2x fw-bold"
+        (click)="scrollToNextSection()">
+        Íniciar
+        <app-bootstrap-html-spinner
+          class="position-relative"
+          style="top: 10px"
+          [spinner]="spinner"></app-bootstrap-html-spinner>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="new-section" id="next-section">
+  <div class="header-height">
+    <h1 class="pt-7">{{ title }}</h1>
+  </div>
+  <div class="mainWrapper"></div>
+</div>
