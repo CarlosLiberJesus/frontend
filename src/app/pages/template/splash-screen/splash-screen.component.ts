@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 export class SplashScreenComponent implements AfterViewInit, OnDestroy {
   @ViewChild('splashScreen', { static: false }) splashScreen: ElementRef;
 
+  fastTransition = false;
   isAnimationComplete = true;
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -54,14 +55,15 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                       message: 'Erro na validação do Token:: ' + response,
                     });
 
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/libertario/entrar']);
                   }
                   this.isAnimationComplete = false;
+                  this.fastTransition = true;
                   this.hide();
                 },
               });
           }
-        } else {
+        } else if (!this.fastTransition) {
           const auth = JSON.parse(localStorage.getItem('auth') ?? '{}');
           if (auth.accessToken) {
             this.isAnimationComplete = false;
@@ -77,13 +79,14 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                       title: 'Erro do Servidor',
                       message: 'Erro na validação do Token:: ' + response,
                     });
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/libertario/entrar']);
                   }
                   this.isAnimationComplete = false;
                   this.hide();
                 },
               });
           } else {
+            this.fastTransition = false;
             this.hide();
           }
         }

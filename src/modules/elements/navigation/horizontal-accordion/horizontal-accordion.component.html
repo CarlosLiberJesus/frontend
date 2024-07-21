@@ -1,0 +1,55 @@
+<div
+  *ngIf="
+    horizontalAccordion &&
+    !horizontalAccordion.css?.includes('horizontal-accordion-flush')
+  "
+  [ngClass]="getHorizontalAccordionClass()">
+  <div
+    [ngClass]="getHorizontalAccordionItemClass(i)"
+    *ngFor="let item of horizontalAccordion.tab; let i = index">
+    <div
+      [ngClass]="getHeaderClass(i)"
+      tabindex="2"
+      (click)="changeTabPane($event, i)"
+      (keydown)="changeTabPane($event, i)">
+      <button
+        [ngClass]="
+          getHorizontalAccordionLinkClass(i, 'horizontal-accordion-button')
+        ">
+        {{ item.title }}
+      </button>
+    </div>
+    <div [ngClass]="getPaneClass(i)">
+      <div class="horizontal-accordion-body">
+        <ng-container
+          *ngIf="item.content"
+          [ngTemplateOutlet]="item.content"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="
+    horizontalAccordion &&
+    horizontalAccordion.css?.includes('horizontal-accordion-flush')
+  "
+  [ngClass]="getHorizontalAccordionClass()">
+  <div
+    [ngClass]="getHorizontalAccordionItemClass(i)"
+    *ngFor="let item of horizontalAccordion.tab; let i = index">
+    <div
+      tabindex="2"
+      (click)="changeTabPane($event, i)"
+      (keydown)="changeTabPane($event, i)"
+      [ngClass]="getHeaderClass(i, isActive(i))">
+      <div [ngClass]="getHorizontalAccordionLinkClass(i)">{{ item.title }}</div>
+    </div>
+
+    <div [ngClass]="getPaneClass(i)">
+      <ng-container
+        *ngIf="item.content"
+        [ngTemplateOutlet]="item.content"></ng-container>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { MenuComponent } from './menu/menu.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { BaseModule } from '../base/base.module';
 import { HtmlModule } from '../html/html.module';
+import { HorizontalAccordionComponent } from './horizontal-accordion/horizontal-accordion.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HtmlModule } from '../html/html.module';
     BreadcrumbsComponent,
     AccordionComponent,
     CarouselComponent,
+    HorizontalAccordionComponent,
   ],
   imports: [CommonModule, BaseModule, HtmlModule, RouterModule],
   exports: [
@@ -24,6 +26,7 @@ import { HtmlModule } from '../html/html.module';
     BreadcrumbsComponent,
     AccordionComponent,
     CarouselComponent,
+    HorizontalAccordionComponent,
   ],
 })
 export class NavigationModule {}

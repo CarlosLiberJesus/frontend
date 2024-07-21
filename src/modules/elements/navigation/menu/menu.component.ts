@@ -29,7 +29,7 @@ export class MenuComponent implements OnChanges {
     iconFirst: {
       library: 'fa-solid',
       value: 'fa-angle-down',
-      css: ['fs-1', 'me-2', 'rotate-360'],
+      css: ['fs-1', 'me-2', 'rotate-180'],
       cssContainer: ['rotate'],
     },
   };
@@ -92,6 +92,7 @@ export class MenuComponent implements OnChanges {
         : false;
     }
   }
+
   ngOnChanges(): void {
     this.menu.items = this.menu.items.map(subMenu => ({
       ...subMenu,
@@ -357,10 +358,10 @@ export class MenuComponent implements OnChanges {
         subSubMenu: subSubMenu ?? undefined,
       });
       this.closeAll();
-      event.stopPropagation();
+      //event.stopPropagation();
     }
     if (subSubMenu) {
-      event.stopPropagation();
+      //event.stopPropagation();
     } else if (this.getOpenMethod(pos, subMenu) === EEvent.CLICK) {
       if (subMenu !== undefined) {
         if (this.menu.items[pos].items?.[subMenu].opened === true) {
@@ -411,7 +412,7 @@ export class MenuComponent implements OnChanges {
             };
           }
         }
-        event.stopPropagation();
+        //event.stopPropagation();
         return;
       } else {
         if (this.menu?.items[pos].opened === true) {
@@ -446,7 +447,7 @@ export class MenuComponent implements OnChanges {
             };
           }
         }
-        event.stopPropagation();
+        //event.stopPropagation();
       }
     }
   }

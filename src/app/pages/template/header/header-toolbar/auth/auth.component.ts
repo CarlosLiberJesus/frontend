@@ -8,14 +8,13 @@ import {
   OnInit,
 } from '@angular/core';
 import {
-  ValidatorFn,
-  AbstractControl,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { takeUntil, catchError, EMPTY, Subject } from 'rxjs';
+import { emailValidator } from 'src/app/lib/validator/email-validator';
 import { AlertService } from 'src/app/services/alert.service';
 import { SplashScreenService } from 'src/app/services/splash-screen.service';
 import { AuthUser, UserService } from 'src/app/services/user.service';
@@ -25,15 +24,6 @@ import { EPosition } from 'src/modules/elements/elements';
 import { IInput, EInputType } from 'src/modules/elements/forms/input/input';
 import { IButton } from 'src/modules/elements/html/button/button';
 import { ISeparator } from 'src/modules/elements/html/separator/separator';
-
-export function customEmailValidator(): ValidatorFn {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const isValid = emailPattern.test(control.value);
-    return isValid ? null : { email: { value: control.value } };
-  };
-}
 
 @Component({
   selector: 'app-layout-header-toolbar-auth',
@@ -53,7 +43,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   user: AuthUser | undefined;
 
   formGroup: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, customEmailValidator()]),
+    email: new FormControl('', [Validators.required, emailValidator()]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
@@ -127,22 +117,19 @@ export class AuthComponent implements OnInit, OnDestroy {
   };
 
   avatar!: IAvatar;
+  authIcon!: IButton;
   submitButton!: IButton;
 
-  authIcon!: IButton;
-
   showMenu = false;
-  errorMsg = '';
   processing = false;
-  firstLog = false;
 
   constructor(
     private elementRef: ElementRef,
     private cdr: ChangeDetectorRef,
-    private alertService: AlertService,
     private router: Router,
-    private userService: UserService,
-    private splashScreenService: SplashScreenService
+    private alertService: AlertService,
+    private splashScreenService: SplashScreenService,
+    private userService: UserService
   ) {
     //this.setOfflineContent();
   }
@@ -156,7 +143,6 @@ export class AuthComponent implements OnInit, OnDestroy {
         if (!isLoading && this.user === undefined) {
           this.setOfflineContent();
         } else if (isLoading && this.user === undefined) {
-          this.firstLog = true;
           this.setLoadingContent();
         } else if (!isLoading && this.user) {
           this.setOnlineContent();
@@ -316,6 +302,7 @@ export class AuthComponent implements OnInit, OnDestroy {
             this.showMenu = false;
             this.formGroup.reset();
             this.cdr.detectChanges();
+            this.router.navigate(['/libertario/entrar']);
             return EMPTY;
           })
         )
@@ -337,6 +324,7 @@ export class AuthComponent implements OnInit, OnDestroy {
                         title: 'Bem vindo',
                         message: 'Login efetuado com sucesso',
                       });
+                      //TODO ver a route onde estou, o forcing para o inicio apenas na home ;)
                       this.router.navigate(['/inicio']);
                     }
                   });
@@ -348,6 +336,7 @@ export class AuthComponent implements OnInit, OnDestroy {
                 title: 'Erro de Servidor',
                 message: response,
               });
+              this.router.navigate(['/libertario/entrar']);
             }
           },
         });

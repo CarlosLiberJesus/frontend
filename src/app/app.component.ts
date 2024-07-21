@@ -13,6 +13,7 @@ export class AppComponent implements AfterViewInit {
   title = 'Bem vindos Libertários';
   local: boolean = environment.local;
 
+  //TODO o prettier consegue só os do git, não todos?
   constructor(
     private router: Router,
     protected route: ActivatedRoute

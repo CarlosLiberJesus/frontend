@@ -69,9 +69,6 @@
         [input]="passwordInput"
         [control]="getControl('password')"
         (submitForm)="submit($event)"></app-bootstrap-forms-input>
-      <div class="invalid-feedback" *ngIf="errorMsg" style="display: block">
-        {{ errorMsg }}
-      </div>
       <app-bootstrap-html-button
         [button]="getSubmitButton()"
         (clicked)="submit($event)"></app-bootstrap-html-button>

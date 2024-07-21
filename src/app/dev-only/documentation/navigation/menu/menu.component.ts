@@ -74,7 +74,23 @@ export class DocumentationMenuComponent implements OnInit {
                 this.menuModel.getValue('openControl') === EEvent.CLICK
                   ? EEvent.CLICK
                   : EEvent.HOVER,
-              //direction: EPosition.BOTTOM,
+              cssMenuItemClass: ['position-relative'],
+              cssSubMenuClass: [
+                this.menuModel.getValue('leveltwo'),
+                'position-absolute',
+                'top-0',
+                'start-100',
+              ],
+              button: {
+                css: ['p-0', 'ps-2'],
+                //TODO muito mais bonito replicar
+                iconFirst: {
+                  library: 'bi',
+                  value: 'bi-chevron-right',
+                  cssContainer: ['rotate'],
+                  css: ['rotate-180'],
+                },
+              },
               items: [
                 { title: lang + ' 1.2.1' },
                 { title: lang + ' 1.2.2' },
@@ -87,22 +103,7 @@ export class DocumentationMenuComponent implements OnInit {
                 this.menuModel.getValue('openControl') === EEvent.CLICK
                   ? EEvent.CLICK
                   : EEvent.HOVER,
-              cssMenuItemClass: ['position-relative'],
-              cssSubMenuClass: [
-                this.menuModel.getValue('leveltwo'),
-                'position-absolute',
-                'top-0',
-                'start-100',
-              ],
-              button: {
-                css: ['p-0', 'ps-2'],
-                iconFirst: {
-                  library: 'bi',
-                  value: 'bi-chevron-right',
-                  cssContainer: ['rotate'],
-                  css: ['rotate-180'],
-                },
-              },
+              //direction: EPosition.BOTTOM,
               items: [
                 { title: lang + ' 1.3.1' },
                 { title: lang + ' 1.3.2' },

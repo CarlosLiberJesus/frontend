@@ -34,6 +34,7 @@ export interface ITable {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tableData?: any[] | null;
   pagination?: IPagination;
+  seeAll?: string; //TODO no fotter da tabela link para nova página
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rowTemplate: TemplateRef<any> | null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

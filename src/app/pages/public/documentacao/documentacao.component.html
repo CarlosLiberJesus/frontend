@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="mb-3">Documentação</h1>
+    <app-bootstrap-navigation-horizontal-accordion
+      *ngIf="horizontalAccordion"
+      [horizontalAccordion]="
+        horizontalAccordion
+      "></app-bootstrap-navigation-horizontal-accordion>
+    <ng-template #admin> admin </ng-template>
+    <ng-template #nacional> nacional </ng-template>
+    <ng-template #distrito> distrito </ng-template>
+    <ng-template #concelho> concelho </ng-template>
+    <ng-template #freguesia> freguesia </ng-template>
+  </div>
+</div>

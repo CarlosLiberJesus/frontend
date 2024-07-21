@@ -1,0 +1,18 @@
+<div class="card shadow-sm">
+  <div class="card-header bg-ancap text-capan">
+    <h1 class="card-title">Iniciar Sessão</h1>
+  </div>
+  <div class="card-body">
+    <h2 class="mb-7">Alto! Identifique-se...</h2>
+    <app-bootstrap-forms-input
+      [input]="emailInput"
+      [control]="getControl('email')"></app-bootstrap-forms-input>
+    <app-bootstrap-forms-input
+      [input]="passwordInput"
+      [control]="getControl('password')"
+      (submitForm)="submit($event)"></app-bootstrap-forms-input>
+    <app-bootstrap-html-button
+      [button]="getSubmitButton()"
+      (clicked)="submit($event)"></app-bootstrap-html-button>
+  </div>
+</div>
