@@ -1,7 +1,9 @@
 <div
   [ngClass]="getIconContainerClass()"
-  (mouseenter)="hoverEnter()"
-  (mouseleave)="hoverLeave()"
+  (mouseenter)="hoverEnter($event)"
+  (mouseleave)="hoverLeave($event)"
+  (touchstart)="hoverEnter($event, { passive: true })"
+  (touchend)="hoverLeave($event)"
   (click)="clicked()"
   (keydown)="clicked()"
   tabindex="3">

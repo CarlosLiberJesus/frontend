@@ -134,4 +134,16 @@ export class ButtonComponent {
       this.popOver = null;
     }
   }
+
+  mobileEnter(_event: TouchEvent): void {
+    if (this.button.popOver && this.button.popOver?.event === EEvent.HOVER) {
+      this.popOver = this.button.popOver;
+    }
+  }
+
+  mobileLeave(_event: TouchEvent): void {
+    if (this.button.popOver && this.button.popOver?.event === EEvent.HOVER) {
+      this.popOver = null;
+    }
+  }
 }

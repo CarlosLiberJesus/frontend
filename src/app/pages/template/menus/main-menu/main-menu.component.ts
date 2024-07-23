@@ -12,17 +12,18 @@ import { EEvent } from 'src/modules/elements/elements';
 import { IMenu } from 'src/modules/elements/navigation/menu/menu';
 
 @Component({
-  selector: 'app-mobile-menu',
-  templateUrl: './mobile-menu.component.html',
-  styleUrl: './mobile-menu.component.scss',
+  selector: 'app-main-menu',
+  templateUrl: './main-menu.component.html',
+  styleUrl: './main-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MobileMenuComponent implements OnInit, OnDestroy {
+export class MainMenuComponent implements OnInit, OnDestroy {
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
   menu: IMenu = {
-    name: 'frontend-mobile-menu',
+    name: 'frontend-main-menu',
     cssMenuClass: [
+      'menu-row',
       'menu-primary',
       'menu-hover-bg-light-primary',
       'menu-rounded',
@@ -32,57 +33,31 @@ export class MobileMenuComponent implements OnInit, OnDestroy {
       'menu-here-bg-light-primary',
       'menu-show-bg-light-primary',
       'fw-semibold',
-      'menu-hide-arrow-layer-1',
     ],
     items: [
       {
-        iconLast: {
-          library: 'socicon',
-          value: 'socicon-rss',
-          css: ['fs-6', 'ms-2', 'text-primary'],
-        },
+        title: 'Recursos',
         event: EEvent.CLICK,
-        cssMenuItemClass: ['position-relative'],
+        cssMenuItemClass: ['position-relative', 'here'],
         cssSubMenuClass: [
-          'menu-sub-dropdown w-100px',
+          'menu-sub-dropdown',
           'position-absolute',
           'top-100',
           'start-0',
         ],
         items: [
           {
-            title: 'Recursos',
-            event: EEvent.HOVER,
-            cssMenuItemClass: ['position-relative'],
-            cssSubMenuClass: [
-              'menu-sub-dropdown w-100px',
-              'position-absolute',
-              'top-0',
-              'start-100',
-            ],
-            button: {
-              css: ['p-0', 'ps-2'],
-              iconFirst: {
-                library: 'bi',
-                value: 'bi-chevron-right',
-                cssContainer: ['rotate'],
-                css: ['rotate-180'],
-              },
-            },
-            items: [
-              {
-                title: 'Documenção',
-                slug: '/documentacao',
-              },
-              {
-                title: 'Biblioteca',
-                slug: '/biblioteca',
-              },
-              {
-                title: 'Blogs',
-                slug: '/blogs',
-              },
-            ],
+            title: 'Documentação',
+            slug: '/documentacao',
+            cssMenuItemLinkClass: ['active'],
+          },
+          {
+            title: 'Biblioteca',
+            slug: '/biblioteca',
+          },
+          {
+            title: 'Blogs',
+            slug: '/blogs',
           },
         ],
       },
@@ -116,7 +91,7 @@ export class MobileMenuComponent implements OnInit, OnDestroy {
 
         if (breadcrumb) {
           console.log(breadcrumb);
-          cleanedMenu.items[0].items?.map(item => {
+          cleanedMenu.items.map(item => {
             if (item.title === breadcrumb.title) {
               item.cssMenuItemClass = [
                 ...(item.cssMenuItemLinkClass ?? []),

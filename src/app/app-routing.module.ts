@@ -33,7 +33,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'blog',
+    path: 'blogs',
     loadChildren: () =>
       import('./pages/public/blog/blog.module').then(m => m.BlogModule),
   },

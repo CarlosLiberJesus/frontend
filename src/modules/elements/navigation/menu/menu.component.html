@@ -6,12 +6,17 @@
     (mouseleave)="menuHoverLeave($event, i)"
     (click)="menuClicked($event, i)"
     (keydown)="menuClicked($event, i)"
+    (touchstart)="mobileEnter($event, i)"
+    (touchend)="mobileLeave($event, i)"
     tabindex="1">
     <a
       *ngIf="menuItem.slug"
       [ngClass]="getMenuItemLinkClass(i)"
       [routerLink]="menuItem.slug"
-      [fragment]="getMenuFragment(i)">
+      [fragment]="getMenuFragment(i)"
+      (click)="closeAll()"
+      (keydown)="closeAll()"
+      tabindex="2">
       <span class="menu-icon" *ngIf="menuItem.iconFirst">
         <app-bootstrap-icon [icon]="menuItem.iconFirst"></app-bootstrap-icon>
       </span>
@@ -63,12 +68,16 @@
         (keydown)="menuClicked($event, i, j)"
         (mouseenter)="menuHoverEnter($event, i, j)"
         (mouseleave)="menuHoverLeave($event, i, j)"
-        tabindex="1">
+        (touchstart)="mobileEnter($event, i, j)"
+        tabindex="3">
         <a
           *ngIf="subMenuItem.slug"
           [ngClass]="getMenuItemLinkClass(i, j)"
           [routerLink]="subMenuItem.slug"
-          [fragment]="getSubMenuFragment(i, j)">
+          [fragment]="getSubMenuFragment(i, j)"
+          (click)="closeAll()"
+          (keydown)="closeAll()"
+          tabindex="4">
           <span class="menu-icon" *ngIf="subMenuItem.iconFirst">
             <app-bootstrap-icon
               [icon]="subMenuItem.iconFirst"></app-bootstrap-icon>
@@ -128,12 +137,15 @@
             [ngClass]="getMenuItemClass(i, j, k)"
             (click)="menuClicked($event, i, j, k)"
             (keydown)="menuClicked($event, i, j, k)"
-            tabindex="1">
+            tabindex="5">
             <a
               *ngIf="subSubMenuItem.slug"
               [ngClass]="getMenuItemLinkClass(i, j, k)"
               [routerLink]="subSubMenuItem.slug"
-              [fragment]="getSubMenuFragment(i, j, k)">
+              [fragment]="getSubMenuFragment(i, j, k)"
+              (click)="closeAll()"
+              (keydown)="closeAll()"
+              tabindex="2">
               <span class="menu-icon" *ngIf="subSubMenuItem.iconFirst">
                 <app-bootstrap-icon
                   [icon]="subSubMenuItem.iconFirst"></app-bootstrap-icon>
@@ -153,7 +165,7 @@
               </span>
             </a>
             <a
-              *ngIf="!subMenuItem.slug"
+              *ngIf="!subSubMenuItem.slug"
               [ngClass]="getMenuItemLinkClass(i, j, k)">
               <span class="menu-icon" *ngIf="subSubMenuItem.iconFirst">
                 <app-bootstrap-icon

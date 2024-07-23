@@ -4,8 +4,10 @@
     <div
       (mouseenter)="hoverEnter()"
       (mouseleave)="hoverLeave()"
-      (click)="clicked()"
-      (keydown)="clicked()"
+      (click)="clicked($event)"
+      (keydown)="clicked($event)"
+      (touchstart)="mobileEnter($event)"
+      (touchend)="mobileLeave($event)"
       tabindex="4"
       class="btn bg-secondary btn-demo rounded position-relative"
       #target>

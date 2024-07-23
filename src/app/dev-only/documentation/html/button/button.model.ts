@@ -18,7 +18,7 @@ export class ButtonModel {
       activateHover: new FormControl(false, []),
       colorText: new FormControl(null, []),
       hoverEffects: new FormControl(null, []),
-      extras: new FormArray([], []),
+      extras: new FormArray([new FormControl('popover', [])], []),
       badge: new FormControl('inside', []),
       // TODO ? size: new FormControl(this.getSizeOptions().valuesList.findIndex((elem: string) => elem === 'none'), []),
     });

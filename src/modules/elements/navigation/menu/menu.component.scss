@@ -14,3 +14,20 @@
     position: relative;
   }
 }
+.menu.menu-hide-arrow-layer-1 {
+  .menu-layer-1 {
+    app-bootstrap-html-button {
+      display: none;
+    }
+  }
+  .menu-layer-2 {
+    app-bootstrap-html-button {
+      display: block;
+    }
+  }
+  .menu-layer-3 {
+    app-bootstrap-html-button {
+      display: none;
+    }
+  }
+}

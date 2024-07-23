@@ -16,14 +16,14 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     const breadcrumb: IAppBreadcrumb = {
-      title: 'Blog',
+      title: 'Blogs',
       items: [
         {
           label: 'Inicio',
           link: this.userService.getUser() ? '/inicio' : '/',
         },
         {
-          label: 'Blog',
+          label: 'Blogs',
         },
       ],
     };

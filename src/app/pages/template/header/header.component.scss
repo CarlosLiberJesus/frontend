@@ -1,0 +1,33 @@
+.logoPL {
+  height: 60px;
+}
+
+@media (max-width: 450px) {
+  @keyframes reduceLogoSize {
+    from {
+      height: 60px;
+    }
+    to {
+      height: 40px;
+    }
+  }
+
+  .logoPL {
+    animation: reduceLogoSize 0.3s forwards; // Adjust the animation duration as needed
+  }
+}
+
+@media (max-width: 320px) {
+  @keyframes reduceLogoSize {
+    from {
+      height: 60px;
+    }
+    to {
+      height: 30px;
+    }
+  }
+
+  .logoPL {
+    animation: reduceLogoSize 0.3s forwards; // Adjust the animation duration as needed
+  }
+}

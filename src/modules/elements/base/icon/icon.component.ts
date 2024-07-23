@@ -95,13 +95,17 @@ export class IconComponent {
     }
   }
 
-  hoverEnter(): void {
+  hoverEnter(
+    event: MouseEvent | TouchEvent,
+    _options?: { passive: boolean }
+  ): void {
     if (this.icon.popOver && this.icon.popOver?.event === EEvent.HOVER) {
       this.popOver = this.icon.popOver;
     }
+    event.preventDefault();
   }
 
-  hoverLeave(): void {
+  hoverLeave(_event: MouseEvent | TouchEvent): void {
     if (this.icon.popOver && this.icon.popOver?.event === EEvent.HOVER) {
       this.popOver = null;
     }

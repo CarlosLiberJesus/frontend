@@ -83,9 +83,9 @@ export class DocumentationHoverMessageComponent implements OnInit {
       '\nIPopOver = ' + JSON.stringify(this.getPopOverMessage(), null, 2);
   }
 
-  clicked(): void {
+  clicked(event: MouseEvent | KeyboardEvent | TouchEvent): void {
     const eventValue = this.hoverMessageModel.getValue('event');
-    if (eventValue === 'hover') {
+    if (eventValue === 'hover' && !(event instanceof TouchEvent)) {
       return;
     }
     if (this.popOver) {
@@ -104,6 +104,22 @@ export class DocumentationHoverMessageComponent implements OnInit {
   }
 
   hoverLeave(): void {
+    const eventValue = this.hoverMessageModel.getValue('event');
+    if (eventValue !== 'hover') {
+      return;
+    }
+    this.popOver = null;
+  }
+
+  mobileEnter(_event: TouchEvent): void {
+    const eventValue = this.hoverMessageModel.getValue('event');
+    if (eventValue !== 'hover') {
+      return;
+    }
+    this.setMessage();
+  }
+
+  mobileLeave(_event: TouchEvent): void {
     const eventValue = this.hoverMessageModel.getValue('event');
     if (eventValue !== 'hover') {
       return;

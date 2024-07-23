@@ -24,24 +24,20 @@ export class MenuComponent implements OnChanges {
   @Input() menu!: IMenu;
   @Output() clicked = new EventEmitter<IMenuClickEvent>();
 
+  isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
   defaultToggle: IButton = {
-    css: ['d-flex'],
+    css: ['d-flex', 'p-0', 'ps-2'],
     iconFirst: {
-      library: 'fa-solid',
-      value: 'fa-angle-down',
-      css: ['fs-1', 'me-2', 'rotate-180'],
+      library: 'bi',
+      value: 'bi-chevron-down',
+      css: ['fs-6', 'me-2', 'rotate-180'],
       cssContainer: ['rotate'],
     },
   };
-  /*{
-    css: ['p-0', 'ps-2'],
-    iconFirst: {
-      library: "fa-solid",
-      value: "fa-angle-down",
-      css: ['fs-2', 'rotate-180'],
-      cssContainer: ['rotate d-flex'],
-    },
-  };*/
   checkedButtons = false;
 
   constructor(private elementRef: ElementRef) {}
@@ -112,6 +108,7 @@ export class MenuComponent implements OnChanges {
             : subMenuItem.button,
       })),
     }));
+    console.log(this.menu);
   }
 
   /**
@@ -172,6 +169,7 @@ export class MenuComponent implements OnChanges {
     const css: string[] = ['menu-item', this.menu.name];
     if (subMenuItem !== undefined && subSubMenuItem !== undefined) {
       css.push(
+        'menu-layer-3',
         'menu-item_' +
           this.menu.name +
           '_' +
@@ -187,6 +185,7 @@ export class MenuComponent implements OnChanges {
     }
     if (subMenuItem !== undefined) {
       css.push(
+        'menu-layer-2',
         'menu-item_' + this.menu.name + '_' + menuItem + '_' + subMenuItem,
         this.menu?.items[menuItem].items?.[subMenuItem]?.cssMenuItemClass?.join(
           ' '
@@ -194,6 +193,7 @@ export class MenuComponent implements OnChanges {
       );
     } else {
       css.push(
+        'menu-layer-1',
         'menu-item_' + this.menu.name + '_' + menuItem,
         this.menu?.items[menuItem].cssMenuItemClass?.join(' ') ?? ''
       );
@@ -271,13 +271,17 @@ export class MenuComponent implements OnChanges {
    * @returns {string|undefined}
    */
   getOpenMethod(pos: number, subMenu?: number): EEvent | undefined {
+    let event: EEvent | undefined = undefined;
     if (subMenu !== undefined) {
-      return this.menu?.items[pos].items?.[subMenu].event ?? EEvent.CLICK;
+      event = this.menu?.items[pos].items?.[subMenu].event ?? EEvent.CLICK;
     }
     if (this.menu?.items[pos].items) {
-      return this.menu?.items[pos].event ?? EEvent.CLICK;
+      event = this.menu?.items[pos].event ?? EEvent.CLICK;
     }
-    return undefined;
+    if (event && this.isMobile) {
+      event = EEvent.CLICK;
+    }
+    return event;
   }
 
   /**
@@ -340,13 +344,8 @@ export class MenuComponent implements OnChanges {
     return this.menu?.items[menu].items?.[subMenu].opened ? 'show' : '';
   }
 
-  /**
-   * Handles the click event
-   * @param _event - The mouse event
-   * @param pos - The position of the menu
-   */
   menuClicked(
-    event: MouseEvent | KeyboardEvent,
+    event: MouseEvent | KeyboardEvent | TouchEvent,
     pos: number,
     subMenu?: number,
     subSubMenu?: number
@@ -358,10 +357,10 @@ export class MenuComponent implements OnChanges {
         subSubMenu: subSubMenu ?? undefined,
       });
       this.closeAll();
-      //event.stopPropagation();
     }
+
     if (subSubMenu) {
-      //event.stopPropagation();
+      // Handle sub-sub-menu click event
     } else if (this.getOpenMethod(pos, subMenu) === EEvent.CLICK) {
       if (subMenu !== undefined) {
         if (this.menu.items[pos].items?.[subMenu].opened === true) {
@@ -380,76 +379,61 @@ export class MenuComponent implements OnChanges {
             };
           }
         } else {
-          this.menu.items = this.menu.items.map(subMenu => ({
-            ...subMenu,
-            items: (subMenu.items || []).map(subMenuItem => ({
-              ...subMenuItem,
-              opened: false,
-              button: {
-                ...subMenuItem.button,
-                iconFirst: {
-                  ...(subMenuItem.button?.iconFirst || {}),
-                  cssContainer:
-                    subMenuItem.button?.iconFirst?.cssContainer?.filter(
-                      cssClass => cssClass !== 'active'
-                    ),
-                } as IIcon,
-              },
-            })),
-          }));
           this.menu.items[pos].items![subMenu].opened = true;
           if (this.menu.items[pos].items?.[subMenu].button) {
             this.menu.items[pos].items![subMenu].button = {
-              ...this.menu.items[pos].items![subMenu].button,
+              ...this.menu.items[pos].items![subMenu].button!,
               iconFirst: {
-                ...this.menu.items[pos].items![subMenu].button!.iconFirst,
+                ...this.menu.items[pos].items![subMenu].button!.iconFirst!,
                 cssContainer: [
-                  ...(this.menu.items[pos].items![subMenu].button!.iconFirst!
-                    .cssContainer || []),
+                  ...this.menu.items[pos].items![subMenu].button!.iconFirst!
+                    .cssContainer!,
                   'active',
                 ],
-              } as IIcon,
+              },
             };
           }
         }
-        //event.stopPropagation();
-        return;
+        if (event instanceof TouchEvent) {
+          event.preventDefault();
+        }
       } else {
-        if (this.menu?.items[pos].opened === true) {
+        if (this.menu.items[pos].opened === true) {
           this.menu.items[pos].opened = false;
           if (this.menu.items[pos].button) {
             this.menu.items[pos].button = {
-              ...this.menu.items[pos].button,
+              ...this.menu.items[pos].button!,
               iconFirst: {
-                ...(this.menu.items[pos].button?.iconFirst || {}),
+                ...this.menu.items[pos].button!.iconFirst!,
                 cssContainer: this.menu.items[
                   pos
-                ].button?.iconFirst?.cssContainer?.filter(
+                ].button!.iconFirst!.cssContainer!.filter(
                   cssClass => cssClass !== 'active'
                 ),
               } as IIcon,
             };
           }
         } else {
-          this.closeAll();
           this.menu.items[pos].opened = true;
           if (this.menu.items[pos].button) {
             this.menu.items[pos].button = {
-              ...this.menu.items[pos].button,
+              ...this.menu.items[pos].button!,
               iconFirst: {
-                ...(this.menu.items[pos].button?.iconFirst || {}),
+                ...this.menu.items[pos].button!.iconFirst!,
                 cssContainer: [
-                  ...(this.menu.items[pos].button?.iconFirst?.cssContainer ??
-                    []),
+                  ...this.menu.items[pos].button!.iconFirst!.cssContainer!,
                   'active',
                 ],
-              } as IIcon,
+              },
             };
           }
         }
-        //event.stopPropagation();
+        if (event instanceof TouchEvent) {
+          event.stopPropagation();
+        }
       }
     }
+    event.stopPropagation();
   }
 
   menuHoverEnter(
@@ -492,7 +476,7 @@ export class MenuComponent implements OnChanges {
   }
 
   menuHoverLeave(
-    _event: MouseEvent | KeyboardEvent,
+    _event: MouseEvent | KeyboardEvent | TouchEvent,
     pos: number,
     subMenu?: number
   ): void {
@@ -540,6 +524,15 @@ export class MenuComponent implements OnChanges {
         };
       }
     }
+  }
+
+  mobileEnter(event: MouseEvent | TouchEvent, pos: number, subMenu?: number) {
+    this.menuClicked(event, pos, subMenu);
+    event.stopPropagation();
+  }
+
+  mobileLeave(event: MouseEvent | TouchEvent, _pos: number, _subMenu?: number) {
+    event.stopPropagation();
   }
 
   /**
