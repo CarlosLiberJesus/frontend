@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { IAppBreadcrumb } from 'src/app/interfaces/breadcrumbs';
+import { IAppBreadcrumb } from 'src/app/lib/interfaces/breadcrumbs';
 import { PageService } from 'src/app/services/page.service';
 import { IButton } from 'src/modules/elements/html/button/button';
 
@@ -53,7 +53,7 @@ export class DocumentationComponent implements OnInit, OnDestroy {
           this.cdr.detectChanges();
         }
         const breadcrumb: IAppBreadcrumb = {
-          title: 'Documentação',
+          title: 'Documentação Bootstrap',
           items: [
             {
               label: 'Inicio',
@@ -706,9 +706,9 @@ export class DocumentationComponent implements OnInit, OnDestroy {
 
   getMainMenuActiveClass(main: string): string {
     if (this.urlChoices?.main === main) {
-      return 'btn-bg-capan btn-text-ancap';
+      return 'btn-bg-capan btn-text-ancap fw-bold';
     } else {
-      return 'btn-active-light-ancap';
+      return 'btn-active-dark';
     }
   }
 

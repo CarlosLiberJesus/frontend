@@ -234,7 +234,7 @@ export class TableComponent {
           cssClass.startsWith('bg-')
         );
       }) ?? [];
-    return filteredClasses.join(' ');
+    return filteredClasses.filter(Boolean).join(' ');
   }
 
   /**

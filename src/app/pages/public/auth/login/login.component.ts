@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil, catchError, EMPTY } from 'rxjs';
-import { IAppBreadcrumb } from 'src/app/interfaces/breadcrumbs';
-import { emailValidator } from 'src/app/lib/validator/email-validator';
+import { IAppBreadcrumb } from 'src/app/lib/interfaces/breadcrumbs';
+import { emailValidator } from 'src/app/lib/validators/email-validator';
 import { AlertService } from 'src/app/services/alert.service';
 import { PageService } from 'src/app/services/page.service';
 import { SplashScreenService } from 'src/app/services/splash-screen.service';
@@ -205,11 +205,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.submitButton = {
         text: 'Entrar',
         css: [
+          'border-danger border-1 border border-dashed rounded-1',
           'mt-5',
-          'btn-ancap',
-          'btn-outline',
-          'btn-outline-dashed',
-          'btn-outline-ancap',
+          'btn-active-light-danger',
           'w-100',
         ],
       };
@@ -220,10 +218,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         spinner: this.processing
           ? {
               name: 'auth-loading',
+              cssContainer: ['fw-bolder', 'fs-2'],
               animation: {
                 text: '...',
                 css: [
-                  'animate__animated animate__lightSpeedInLeft animate__faster animate__infinite',
+                  'animate__animated animate__lightSpeedInLeft animate__faster animate__infinite fw-bolder',
                 ],
               },
             }

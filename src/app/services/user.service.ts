@@ -9,9 +9,9 @@ import {
   takeUntil,
 } from 'rxjs';
 import { ApiService } from './api.service';
-import { IJWTToken } from '../interfaces/jwt-token';
+import { IJWTToken } from '../lib/interfaces/jwt-token';
 import { AlertService } from './alert.service';
-import { IUser } from '../interfaces/user';
+import { IUser } from '../lib/interfaces/user';
 import { Router } from '@angular/router';
 
 export type AuthUser = IUser | undefined;
@@ -38,6 +38,13 @@ export class UserService implements OnDestroy {
 
   getUser(): AuthUser | undefined {
     return this.user;
+  }
+
+  hasRole(userRole: string): boolean {
+    if (this.user) {
+      return this.user.roles.some(role => role.code === userRole);
+    }
+    return false;
   }
 
   login(email: string, password: string): Observable<string> {

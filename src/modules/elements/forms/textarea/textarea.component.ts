@@ -4,11 +4,12 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   Output,
 } from '@angular/core';
 import { ITextarea } from './textarea';
 import { FormControl } from '@angular/forms';
-import { distinctUntilChanged } from 'rxjs';
+import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-bootstrap-forms-textarea',
@@ -16,11 +17,12 @@ import { distinctUntilChanged } from 'rxjs';
   styleUrls: ['./textarea.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextareaComponent implements AfterViewInit {
+export class TextareaComponent implements AfterViewInit, OnDestroy {
   @Input() control!: FormControl;
   @Input() textarea!: ITextarea;
   @Output() inputChanged = new EventEmitter<string>();
 
+  private destroy$: Subject<boolean> = new Subject<boolean>();
   randomId: string = this.trimTrailingZeros(Math.random().toString());
   trimTrailingZeros(num: string): string {
     return parseFloat(num).toFixed(8).replace('.', '').replace(/^0+/, '');
@@ -32,11 +34,14 @@ export class TextareaComponent implements AfterViewInit {
    */
   ngAfterViewInit(): void {
     if (this.textarea?.autoReturn !== false) {
-      this.control?.valueChanges.pipe(distinctUntilChanged()).subscribe(() => {
-        if (this.control.dirty && !this.control.pristine) {
-          this.inputChanged.emit(this.control.value);
-        }
-      });
+      this.control?.valueChanges
+        .pipe(distinctUntilChanged())
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+          if (this.control.dirty && !this.control.pristine) {
+            this.inputChanged.emit(this.control.value);
+          }
+        });
     }
   }
 
@@ -165,5 +170,10 @@ export class TextareaComponent implements AfterViewInit {
       }
     }
     return '';
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

@@ -9,8 +9,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AlertService } from '../services/alert.service';
-import { UserService } from '../services/user.service';
+import { AlertService } from '../../services/alert.service';
+import { UserService } from '../../services/user.service';
 
 @Injectable()
 export class ApiHttpInterceptor implements HttpInterceptor {

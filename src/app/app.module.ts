@@ -10,7 +10,7 @@ import { TemplateModule } from './pages/template/template.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/private/dashboard/dashboard.component';
-import { ApiHttpInterceptor } from './lib/http.interceptor';
+import { ApiHttpInterceptor } from './lib/route-guards/http.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomepageComponent, DashboardComponent],

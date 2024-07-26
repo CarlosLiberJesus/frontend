@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { delay, Subject, takeUntil } from 'rxjs';
-import { IAppBreadcrumb } from 'src/app/interfaces/breadcrumbs';
+import { IAppBreadcrumb } from 'src/app/lib/interfaces/breadcrumbs';
 import { BreadcrumbsService } from 'src/app/services/breadcrumbs.service';
 import { Title } from '@angular/platform-browser';
 import { IBreadcrumbs } from 'src/modules/elements/navigation/breadcrumbs/breadcrumbs';

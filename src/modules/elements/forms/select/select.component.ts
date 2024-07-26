@@ -167,7 +167,9 @@ export class SelectComponent {
       ...(this.select?.css ?? []),
       'select',
       'form-select_' + this.randomId,
-    ].join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
   /**
@@ -280,7 +282,9 @@ export class SelectComponent {
       ...(this.select?.search?.css ?? []),
       ...(this.select?.cssOption ?? []),
       'list-group-item',
-    ].join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
   getOptionClass(value: string): string {
@@ -293,7 +297,9 @@ export class SelectComponent {
       'd-flex',
       'justify-content-between',
       'align-items-center',
-    ].join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
   /**

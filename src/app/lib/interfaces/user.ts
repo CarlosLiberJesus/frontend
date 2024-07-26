@@ -1,4 +1,6 @@
 import { IPagination } from './api-response';
+import { IUserPermission, IUserRole } from './roles-permissions';
+import { IUserLocation } from './user-location';
 
 export interface IUser {
   uuid: string;
@@ -8,6 +10,8 @@ export interface IUser {
   lastname: string;
   profile: IUserProfile;
   lastLogin?: string;
+  roles: IUserRole[];
+  permissions?: IUserPermission[];
   details: IUserDetails | null;
 }
 
@@ -17,18 +21,13 @@ export interface IUsers {
 }
 
 export interface IUserProfile {
-  freguesia: {
-    uuid: string;
-    name: string;
-  };
+  location: IUserLocation;
   status: {
     name: string;
     color: string;
   };
   rating?: number;
   avatar: string | null;
-  roles: IUserRole[];
-  permissions?: IUserPermission[];
   rgbd?: boolean;
 }
 
@@ -37,18 +36,6 @@ export interface IUserDetails {
   nif?: number;
   address?: string;
   zipCode?: string;
-}
-
-export interface IUserRole {
-  uuid: string;
-  code: string;
-  name: string;
-}
-
-export interface IUserPermission {
-  uuid: string;
-  code: string;
-  name: string;
 }
 
 export interface IUserStatus {

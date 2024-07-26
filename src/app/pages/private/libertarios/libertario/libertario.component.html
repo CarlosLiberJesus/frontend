@@ -1,1 +1,140 @@
-<p>libertario works!</p>
+<div class="row" *ngIf="!libertario">
+  <div class="col-12">
+    <app-bootstrap-html-spinner
+      [spinner]="loading"></app-bootstrap-html-spinner>
+  </div>
+</div>
+<div class="row" *ngIf="libertario">
+  <div class="card mb-5 mb-xl-10">
+    <div class="card-body pt-9 pb-0">
+      <div class="d-flex flex-wrap flex-sm-nowrap">
+        <div class="me-7 mb-4">
+          <div
+            class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+            <img
+              alt=""
+              [title]="libertario.firstname + ' ' + libertario.lastname"
+              [src]="'data:image/png;base64,' + libertario.profile.avatar"
+              *ngIf="libertario?.profile?.avatar" />
+            <img
+              alt=""
+              [title]="libertario.firstname + ' ' + libertario.lastname"
+              [src]="'assets/bootstrap-lib/media/avatars/blank.png'"
+              *ngIf="!libertario?.profile?.avatar" />
+            <div
+              class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+          </div>
+        </div>
+
+        <div class="flex-grow-1">
+          <div
+            class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+            <div class="d-flex flex-column">
+
+              <div class="d-flex align-items-center mb-2">
+                <span class="text-gray-900 fs-2 fw-bold me-1">{{
+                  libertario.fullname
+                }}</span>
+                <span
+                  ><i class="ki-duotone ki-verify fs-1 text-primary"
+                    ><span class="path1"></span><span class="path2"></span></i
+                ></span>
+              </div>
+
+              <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                <span class="d-flex align-items-center text-gray-500 me-5 mb-2">
+                  <span [ngClass]="getUserStatusIcon()">
+                    {{ libertario.profile.status.name }}
+                  </span>
+                </span>
+                <span class="d-flex align-items-center text-gray-500 mb-2 pe-2">
+                  <i class="bi bi-envelope-paper fs-4 me-2"
+                    ><span class="path1"></span><span class="path2"></span
+                  ></i>
+                  <span class="fw-bold">{{ libertario.email }}</span>
+                </span>
+                <span class="d-flex align-items-center text-gray-500 mb-2">
+                  <i class="bi bi-geo-alt fs-4 me-1"
+                    ><span class="path1"></span><span class="path2"></span
+                  ></i>
+                  <span class="fw-bold">{{ libertario.profile.location.distrito.concelho.name }}</span>
+                </span>
+              </div>
+
+            </div>
+
+            <div
+              class="d-flex my-4">
+
+              <app-bootstrap-forms-toggle
+                [control]="getControl('public')"
+                [toggle]="pulicToggle"
+                (change)="onChanged()"></app-bootstrap-forms-toggle>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap" *ngIf="libertario.roles">
+            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3" *ngFor="let item of this.libertario.roles">
+                <div class="d-flex align-items-center mb-3">
+                  <span class="badge badge-square px-2 badge-{{ item.color }}">{{ item.name }}</span>
+                </div>
+
+                <div class="fw-semibold fs-6 text-gray-500">
+                  <ul>
+                    <li>lista de permissões</li>
+                  </ul>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap" *ngIf="libertario.permissions">
+              <div class="fw-semibold fs-6 text-gray-500">
+                <ul>
+                  <li>lista de permissões extra</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <ul
+        class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold cursor-pointer">
+        <li class="nav-item mt-2">
+          <a
+            (click)="setActivePane('details')"
+            (keypress)="setActivePane('details')"
+            tabindex="2"
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            [ngClass]="{ active: activePane === 'details' }">
+            Detalhes
+          </a>
+        </li>
+        <li class="nav-item mt-2">
+          <a
+            (click)="setActivePane('logs')"
+            (keypress)="setActivePane('logs')"
+            tabindex="2"
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            [ngClass]="{ active: activePane === 'logs' }">
+            Logs
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="activePane === 'details' && libertario">
+  <app-private-libertario-detalhe
+    [user]="libertario"
+    class="p-0"
+    (edit)="setActivePane('edit')"></app-private-libertario-detalhe>
+</div>
+
+<div class="row" *ngIf="activePane === 'edit' && libertario">
+  <app-private-libertario-edit
+    [user]="libertario"
+    [self]="isSameUser"
+    (cancel)="setActivePane('details')"
+    class="p-0"></app-private-libertario-edit>
+</div>

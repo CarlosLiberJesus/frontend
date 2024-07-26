@@ -6,7 +6,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { IAppBreadcrumb } from 'src/app/interfaces/breadcrumbs';
+import { IAppBreadcrumb } from 'src/app/lib/interfaces/breadcrumbs';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 import { IHorizontalAccordion } from 'src/modules/elements/navigation/horizontal-accordion/horizontal-accordion';

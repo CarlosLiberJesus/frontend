@@ -241,7 +241,9 @@ export class MultiSelectComponent {
       ...(this.multiSelect?.search?.css ?? []),
       ...(this.multiSelect?.cssOption ?? []),
       'list-group-item',
-    ].join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
   getOptionClass(): string {
@@ -251,7 +253,9 @@ export class MultiSelectComponent {
       'd-flex',
       'justify-content-between',
       'align-items-center',
-    ].join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
   /**

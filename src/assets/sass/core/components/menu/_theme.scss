@@ -258,11 +258,11 @@
 .menu-active-bg-primary {
   .menu-item {
     @include menu-link-active-state(
+      var(--#{$prefix}ancap),
       var(--#{$prefix}primary-inverse),
       var(--#{$prefix}primary-inverse),
       var(--#{$prefix}primary-inverse),
-      var(--#{$prefix}primary-inverse),
-      var(--#{$prefix}primary)
+      var(--#{$prefix}gray-100)
     );
   }
 }
@@ -327,11 +327,11 @@
 .menu-here-bg-light-primary {
   .menu-item {
     @include menu-link-here-state(
+      var(--#{$prefix}capan),
       var(--#{$prefix}primary),
       var(--#{$prefix}primary),
       var(--#{$prefix}primary),
-      var(--#{$prefix}primary),
-      var(--#{$prefix}primary-light)
+      var(--#{$prefix}gray-900)
     );
   }
 }
@@ -339,11 +339,11 @@
 .menu-hover-bg-light-primary {
   .menu-item {
     @include menu-link-hover-state(
+      var(--#{$prefix}ancap),
       var(--#{$prefix}primary),
       var(--#{$prefix}primary),
       var(--#{$prefix}primary),
-      var(--#{$prefix}primary),
-      var(--#{$prefix}primary-light)
+      var(--#{$prefix}gray-100)
     );
   }
 }

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DocumentationComponent } from './dev-only/documentation/documentation.component';
-import { DevGuard } from './lib/route-guard/dev.guard';
+import { DevGuard } from './lib/route-guards/dev.guard';
 import { HomepageComponent } from './pages/public/homepage/homepage.component';
 import { DashboardComponent } from './pages/private/dashboard/dashboard.component';
-import { LoggedInGuard } from './lib/route-guard/logged.guard';
+import { LoggedInGuard } from './lib/route-guards/logged.guard';
 
 const routes: Routes = [
   {

@@ -8,9 +8,9 @@
   <div *ngIf="user && showMenu" [ngClass]="getPanelClass()">
     <div class="card-body p-0">
       <ul class="mb-0 list-unstyled">
-        <li class="border-bottom cursor-pointer mb-3">
-          <div class="d-flex align-items-center px-3 mb-4">
-            <div class="symbol symbol-50px me-5">
+        <li class="border-bottom mb-3">
+          <div class="d-flex align-items-center px-5 mb-4">
+            <div class="symbol symbol-50px my-5 mb-0">
               <img
                 alt=""
                 [title]="user.firstname + ' ' + user.lastname"
@@ -22,13 +22,13 @@
                 [src]="'assets/bootstrap-lib/media/avatars/blank.png'"
                 *ngIf="!user?.profile?.avatar" />
             </div>
-            <div class="fw-bold d-flex align-items-center fs-5">
-              {{ user.firstname + ' ' + user.lastname }}
-              <!-- TODO Roles-->
-              <span
-                class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-4">
-                teste</span
-              >
+            <div class="d-flex flex-column ms-5 pt-5">
+              <div class="fw-bold d-flex align-items-center fs-5">
+                {{ user.firstname + ' ' + user.lastname }}
+              </div>
+              <span href="#" class="fw-semibold text-muted fs-7">
+                {{ user.email }}
+              </span>
             </div>
           </div>
         </li>
@@ -36,14 +36,14 @@
           (click)="changeAuthMenu($event, 'profile')"
           (keypress)="changeAuthMenu($event, 'profile')"
           tabindex="2"
-          class="text-hover-primary bg-hover-light cursor-pointer px-6 py-2 fw-semibold">
+          class="text-hover-ancap bg-hover-light cursor-pointer px-6 py-2 fw-semibold">
           Perfil
         </li>
         <li
           (click)="changeAuthMenu($event, 'logout')"
           (keypress)="changeAuthMenu($event, 'logout')"
           tabindex="2"
-          class="text-hover-primary bg-hover-light cursor-pointer px-6 py-2 mb-3 fw-semibold d-flex d-flex justify-content-between align-items-center">
+          class="text-hover-ancap bg-hover-light cursor-pointer px-6 py-2 mb-3 fw-semibold d-flex d-flex justify-content-between align-items-center">
           Sair
           <app-bootstrap-icon
             [icon]="logOutIcon"

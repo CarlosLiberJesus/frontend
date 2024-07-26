@@ -4,10 +4,11 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { distinctUntilChanged } from 'rxjs';
+import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { EInputType, IInput } from './input';
 import { EPosition } from '../../elements';
 
@@ -17,11 +18,13 @@ import { EPosition } from '../../elements';
   styleUrls: ['./input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputComponent implements AfterViewInit {
+export class InputComponent implements AfterViewInit, OnDestroy {
   @Input() control!: FormControl;
   @Input() input!: IInput;
   @Output() inputChanged = new EventEmitter<string>();
   @Output() submitForm = new EventEmitter<boolean>();
+
+  private destroy$: Subject<boolean> = new Subject<boolean>();
 
   toggleShowPassword = false;
   randomId: string = this.trimTrailingZeros(Math.random().toString());
@@ -35,11 +38,14 @@ export class InputComponent implements AfterViewInit {
    */
   ngAfterViewInit(): void {
     if (this.input?.autoReturn !== false) {
-      this.control?.valueChanges.pipe(distinctUntilChanged()).subscribe(() => {
-        if (this.control.dirty && !this.control.pristine) {
-          this.inputChanged.emit(this.control.value);
-        }
-      });
+      this.control?.valueChanges
+        .pipe(distinctUntilChanged())
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+          if (this.control.dirty && !this.control.pristine) {
+            this.inputChanged.emit(this.control.value);
+          }
+        });
     }
   }
 
@@ -223,5 +229,10 @@ export class InputComponent implements AfterViewInit {
     if (event.key === 'Enter') {
       this.submitForm.emit(true);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

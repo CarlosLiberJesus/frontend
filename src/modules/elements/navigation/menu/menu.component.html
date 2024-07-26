@@ -68,8 +68,10 @@
         (keydown)="menuClicked($event, i, j)"
         (mouseenter)="menuHoverEnter($event, i, j)"
         (mouseleave)="menuHoverLeave($event, i, j)"
-        (touchstart)="mobileEnter($event, i, j)"
         tabindex="3">
+        <!--
+         (touchstart)="mobileEnter($event, i, j)"
+        -->
         <a
           *ngIf="subMenuItem.slug"
           [ngClass]="getMenuItemLinkClass(i, j)"

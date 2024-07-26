@@ -1,7 +1,7 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../environments/environment';
-import { routeTransition } from './lib/route-transition';
+import { routeTransition } from './lib/route-guards/route-transition';
 
 @Component({
   selector: 'app-root',

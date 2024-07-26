@@ -1,0 +1,65 @@
+<div class="card mb-5 mb-xl-10">
+  <div class="card-header">
+    <div class="card-title m-0">
+      Detalhes do Utilizador
+    </div>
+    <div class="card-toolbar">
+      <app-bootstrap-html-button
+        [button]="editButton"
+        (clicked)="onEdit()"></app-bootstrap-html-button>
+    </div>
+  </div>
+  <div class="card-body border-top p-9">
+    <div class="row mb-6">
+      <label class="col-lg-4 fw-semibold text-muted">
+        Nome
+      </label>
+      <div class="col-lg-8">
+        <label class="fw-bold fs-6 text-gray-800">
+          {{ user.fullname }}
+        </label>
+      </div>
+    </div>
+
+    <div class="row mb-6">
+      <label class="col-lg-4 fw-semibold text-muted">
+        NIF
+      </label>
+      <div class="col-lg-8">
+        <label class="fw-bold fs-6 text-gray-800">
+          {{ user.details?.nif ?? '-' }}
+        </label>
+      </div>
+    </div>
+
+    <div class="row mb-6">
+      <label class="col-lg-4 fw-semibold text-muted">
+        Morada
+      </label>
+      <div class="col-lg-8">
+        <label class="fw-bold fs-6 text-gray-800">
+          {{ user.details?.address ?? '-' }}
+        </label>
+      </div>
+    </div>
+
+    <div class="row mb-6">
+      <label class="col-lg-4 fw-semibold text-muted">
+        Permissões RGBD
+      </label>
+      <div class="col-lg-8">
+        <span class="fw-bold fs-6 text-gray-800">
+          <i
+            class="ki-duotone ki-sms fs-1 mt-2"
+            [ngClass]="{
+              'text-success': user.profile.rgbd,
+              'text-danger': !user.profile.rgbd
+            }">
+            <span class="path1"></span>
+            <span class="path2"></span>
+          </i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

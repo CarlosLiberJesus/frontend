@@ -39,7 +39,7 @@ export class ButtonComponent {
       'btn',
       'btn_' + this.randomId,
       this.button.name ?? '',
-      //this.button?.popOver !== undefined ? 'd-inline-flex' : '',
+      this.button?.popOver !== undefined ? 'd-inline-flex' : '',
     ]
       .filter(Boolean)
       .join(' ');
@@ -123,16 +123,23 @@ export class ButtonComponent {
     }
   }
 
-  hoverEnter(): void {
+  /**
+   * @deprecated from now on
+   *
+   * to create the popOver with over, it block the click event
+   */
+  hoverEnter(event: MouseEvent): void {
     if (this.button.popOver && this.button.popOver?.event === EEvent.HOVER) {
       this.popOver = this.button.popOver;
     }
+    event.preventDefault(); // Stop the event propagation
   }
 
-  hoverLeave(): void {
+  hoverLeave(event: MouseEvent): void {
     if (this.button.popOver && this.button.popOver?.event === EEvent.HOVER) {
       this.popOver = null;
     }
+    event.stopPropagation();
   }
 
   mobileEnter(_event: TouchEvent): void {

@@ -8,7 +8,7 @@ import {
 import { AnimationBuilder, animate, style } from '@angular/animations';
 import { SplashScreenService } from 'src/app/services/splash-screen.service';
 import { UserService } from 'src/app/services/user.service';
-import { takeUntil, Subject } from 'rxjs';
+import { takeUntil, Subject, catchError, EMPTY } from 'rxjs';
 import { AlertService } from 'src/app/services/alert.service';
 import { Router } from '@angular/router';
 
@@ -44,7 +44,21 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
             this.isAnimationComplete = false;
             this.userService
               .getUserByToken()
-              .pipe(takeUntil(this.destroy$))
+              .pipe(
+                takeUntil(this.destroy$),
+                catchError(() => {
+                  localStorage.removeItem('auth');
+                  this.alertService.setAlert({
+                    code: 500,
+                    title: 'Erro do Servidor',
+                    message:
+                      'Erro na validação do Token:: Transição In Abortada',
+                  });
+                  this.fastTransition = true;
+                  this.router.navigate(['/libertario/entrar']);
+                  return EMPTY;
+                })
+              )
               .subscribe({
                 next: response => {
                   if (response) {
@@ -69,7 +83,20 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
             this.isAnimationComplete = false;
             this.userService
               .getUserByToken()
-              .pipe(takeUntil(this.destroy$))
+              .pipe(
+                takeUntil(this.destroy$),
+                catchError(() => {
+                  localStorage.removeItem('auth');
+                  this.alertService.setAlert({
+                    code: 500,
+                    title: 'Erro do Servidor',
+                    message:
+                      'Erro na validação do Token:: Transição Out Abortada',
+                  });
+                  this.router.navigate(['/libertario/entrar']);
+                  return EMPTY;
+                })
+              )
               .subscribe({
                 next: response => {
                   if (response) {

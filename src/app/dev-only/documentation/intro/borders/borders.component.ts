@@ -100,7 +100,7 @@ export class DocumentationBordersComponent implements OnInit {
       borderClasses.push(result);
     }
 
-    classes += ' ' + borderClasses.join(' ');
+    classes += ' ' + borderClasses.filter(Boolean).join(' ');
 
     this.srcCode = '\n<span class="' + classes + '">' + text + '</span>';
 

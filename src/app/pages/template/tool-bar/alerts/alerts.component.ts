@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { IAppAlert } from 'src/app/interfaces/app-alert';
+import { IAppAlert } from 'src/app/lib/interfaces/app-alert';
 import { AlertService } from 'src/app/services/alert.service';
 import { IIcon } from 'src/modules/elements/base/icon/icon';
 import { IAlert } from 'src/modules/elements/html/alert/alert';

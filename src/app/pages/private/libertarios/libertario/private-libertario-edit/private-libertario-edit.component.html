@@ -1,0 +1,136 @@
+<div class="row">
+  <div [ngClass]="{ 'col-lg-8': self || hasRole('admin'), 'col-lg-12': !self && !hasRole('admin') }">
+    <!-- Detalhes -->
+    <div class="card mb-5 mb-xl-10">
+      <div class="card-header">
+        <div class="card-title m-0">
+          Editar
+        </div>
+        <div class="card-toolbar">
+          <div class="d-flex gap-2 d-md-block">
+            <app-bootstrap-html-button
+              class="d-inline-flex"
+              [button]="cancelButton"
+              (clicked)="onCancel()"></app-bootstrap-html-button>
+            <app-bootstrap-html-button
+              class="ms-3 d-inline-flex"
+              [button]="saveButton"
+              (clicked)="onSave()"></app-bootstrap-html-button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body border-top p-9">
+        <div class="row" *ngIf="hasRole('admin')">
+          <div class="col-md-12" *ngIf="!roleRadio && !statusRadio">
+            <app-bootstrap-html-spinner
+              [spinner]="loading"></app-bootstrap-html-spinner>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-semibold fs-6">
+              Perfis
+            </label>
+            <div class="col-lg-8">
+              <app-bootstrap-forms-radio
+                [radioList]="roleRadio"
+                [control]="getControl('role')"></app-bootstrap-forms-radio>
+            </div>
+          </div>
+
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-semibold fs-6">
+              Status
+            </label>
+            <div class="col-lg-8">
+              <app-bootstrap-forms-radio
+                [radioList]="statusRadio"
+                [control]="getControl('status')"></app-bootstrap-forms-radio>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-semibold fs-6">
+            Nome
+          </label>
+          <div class="col-lg-8">
+            <app-bootstrap-forms-input
+              [input]="nameInput"
+              [control]="getControl('name')"></app-bootstrap-forms-input>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-semibold fs-6">
+            NIF
+          </label>
+          <div class="col-lg-8">
+            <app-bootstrap-forms-input
+              [input]="nifInput"
+              [control]="getControl('nif')"></app-bootstrap-forms-input>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-semibold fs-6">
+            Morada
+          </label>
+          <div class="col-lg-8">
+            <div class="row">
+              <app-bootstrap-forms-input
+                [input]="addressInput"
+                [control]="getControl('address')"></app-bootstrap-forms-input>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <app-bootstrap-forms-input
+                  [input]="zipCodeInput"
+                  [control]="getControl('zipCode')"></app-bootstrap-forms-input>
+              </div>
+              <div class="col-sm-8">
+                <app-bootstrap-forms-input
+                  [input]="cityInput"
+                  [control]="getControl('city')"></app-bootstrap-forms-input>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-semibold fs-6">
+            RGBD
+          </label>
+          <div class="col-lg-8">
+            <app-bootstrap-forms-toggle
+              [toggle]="rgbdToggle"
+              [control]="getControl('rgbd')"></app-bootstrap-forms-toggle>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4" *ngIf="self">
+    <!-- pass -->
+    <div class="card mb-5 mb-xl-10">
+      <div class="card-header">
+        <div class="card-title m-0">
+          Password
+        </div>
+      </div>
+      <div class="card-body border-top p-9">
+        Iniciar o Reset de Palavra Pass
+      </div>
+    </div>
+    <!-- avatar -->
+    <div class="card mb-5 mb-xl-10">
+      <div class="card-header">
+        <div class="card-title m-0">
+          Avatar
+        </div>
+      </div>
+      <div class="card-body border-top p-9">
+        Não sei se vai ser aqui o file upload...
+      </div>
+    </div>
+  </div>
+</div>
+

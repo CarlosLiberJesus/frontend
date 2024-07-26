@@ -108,7 +108,6 @@ export class MenuComponent implements OnChanges {
             : subMenuItem.button,
       })),
     }));
-    console.log(this.menu);
   }
 
   /**
@@ -135,7 +134,7 @@ export class MenuComponent implements OnChanges {
       this.isSubMenuOpen(pos),
       this.isSubMenuOpen(pos) ? '' : '',
     ];
-    return css.join(' ');
+    return css.filter(Boolean).join(' ');
   }
 
   /**
@@ -152,7 +151,7 @@ export class MenuComponent implements OnChanges {
       this.isSubSubMenuOpen(menu, subMenu),
       this.isSubSubMenuOpen(menu, subMenu) ? '' : 'd-none',
     ];
-    return css.join(' ');
+    return css.filter(Boolean).join(' ');
   }
 
   /**
@@ -177,13 +176,16 @@ export class MenuComponent implements OnChanges {
           '_' +
           subMenuItem +
           '_' +
-          subSubMenuItem,
+          subSubMenuItem
+      );
+      const classes =
         this.menu?.items[menuItem].items?.[subMenuItem]?.items?.[
           subSubMenuItem
-        ]?.cssMenuItemClass?.join(' ') ?? ''
-      );
-    }
-    if (subMenuItem !== undefined) {
+        ]?.cssMenuItemLinkClass?.join(' ') ?? '';
+      if (classes) {
+        css.push(classes);
+      }
+    } else if (subMenuItem !== undefined) {
       css.push(
         'menu-layer-2',
         'menu-item_' + this.menu.name + '_' + menuItem + '_' + subMenuItem,
@@ -198,7 +200,7 @@ export class MenuComponent implements OnChanges {
         this.menu?.items[menuItem].cssMenuItemClass?.join(' ') ?? ''
       );
     }
-    return css.join(' ');
+    return css.filter(Boolean).join(' ');
   }
 
   /**
@@ -230,7 +232,7 @@ export class MenuComponent implements OnChanges {
         this.menu?.items[menuItem].cssMenuItemLinkClass?.join(' ') ?? ''
       );
     }
-    return css.join(' ');
+    return css.filter(Boolean).join(' ');
   }
 
   /**
@@ -262,7 +264,7 @@ export class MenuComponent implements OnChanges {
         this.menu?.items[menuItem].cssMenuItemTitleClass?.join(' ') ?? ''
       );
     }
-    return css.join(' ');
+    return css.filter(Boolean).join(' ');
   }
 
   /**
@@ -386,8 +388,8 @@ export class MenuComponent implements OnChanges {
               iconFirst: {
                 ...this.menu.items[pos].items![subMenu].button!.iconFirst!,
                 cssContainer: [
-                  ...this.menu.items[pos].items![subMenu].button!.iconFirst!
-                    .cssContainer!,
+                  ...(this.menu.items[pos].items![subMenu].button!.iconFirst!
+                    .cssContainer ?? []),
                   'active',
                 ],
               },
@@ -421,7 +423,8 @@ export class MenuComponent implements OnChanges {
               iconFirst: {
                 ...this.menu.items[pos].button!.iconFirst!,
                 cssContainer: [
-                  ...this.menu.items[pos].button!.iconFirst!.cssContainer!,
+                  ...(this.menu.items[pos].button!.iconFirst!.cssContainer ??
+                    []),
                   'active',
                 ],
               },

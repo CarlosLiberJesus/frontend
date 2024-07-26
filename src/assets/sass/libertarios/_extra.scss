@@ -23,7 +23,9 @@ h6,
 .text-justify {
   text-align: justify !important;
 }
-
+.text-uppercase {
+  text-transform: uppercase !important;
+}
 app-bootstrap-html-table {
   width: 100%;
 }
@@ -52,97 +54,61 @@ app-bootstrap-html-table {
   }
 }
 
+.btn-check:checked + .btn.btn-capan,
+.btn-check:active + .btn.btn-capan,
+.btn.btn-capan:focus:not(.btn-active),
+.btn.btn-capan:hover:not(.btn-active),
+.btn.btn-capan:hover:not(.btn-active),
+.btn.btn-capan:active:not(.btn-active),
+.btn.btn-capan.active, .btn.btn-capan.show,
+.show > .btn.btn-capan {
+  color: var(--bs-capan);
+  app-bootstrap-icon i{
+    color: var(--bs-capan);
+  }
+}
+.btn-check:checked + .btn.btn-ancap,
+.btn-check:active + .btn.btn-ancap,
+.btn.btn-ancap:focus:not(.btn-active),
+.btn.btn-ancap:hover:not(.btn-active),
+.btn.btn-ancap:active:not(.btn-active),
+.btn.btn-ancap.active,
+.btn.btn-ancap.show,
+.show > .btn.btn-ancap {
+  color: var(--bs-ancap);
+  app-bootstrap-icon i{
+    color: var(--bs-ancap);
+  }
+}
+
+.menu-here-bg-light-primary .menu-item.here > .menu-link .menu-title,
+.menu-active-bg-primary .menu-item .menu-link.active .menu-title,
+.app-header-menu .menu .menu-item .menu-link.active .menu-title {
+  font-weight: bold;
+}
+
 [data-bs-theme='dark'] {
   img.logoPL {
     filter: invert(75%) sepia(65%) saturate(512%) hue-rotate(348deg)
       brightness(103%) contrast(101%);
   }
   .card-header {
+    .btn-active-dark {
+      span {
+        color: $capan;
+      }
+    }
+    .btn-active-dark:hover {
+      span {
+        color: $ancap;
+      }
+    }
     .elements {
       .btn-active-light-capan {
         span {
           color: $capan;
         }
-        span:hover {
-          color: $ancap;
-        }
       }
     }
-  }
-}
-
-
-//TODO rever as cores da documentação e erro do butão login
-.btn.btn-active-light-ancap,
-.btn.btn-capan:hover,
-.btn.btn-capan:hover i,
-.btn.btn-capan i,
-.btn.btn-light-ancap,
-.btn.btn-light-ancap i,
-.btn.btn-ancap i,
-.btn.btn-ancap {
-  color: var(--bs-capan); // preto
-}
-.btn.btn-active-light-capan:hover,
-.btn.btn-active-light-capan:hover i,
-.btn.btn-light-capan,
-.btn.btn-light-capan i,
-.btn.btn-capan,
-.btn.btn-capan i,
-.btn.btn-ancap:hover i,
-.btn.btn-ancap i:hover,
-.btn.btn-ancap:hover {
-  color: var(--bs-ancap); // amarelo
-}
-
-.form-check {
-  &.form-check-ancap {
-    .form-check-input {
-      &:checked {
-        border: 0;
-        background-color: var(--bs-ancap);
-      }
-    }
-  }
-}
-
-.form-check {
-  &.form-check-capan {
-    .form-check-input {
-      &:checked {
-        border: 0;
-        background-color: var(--bs-capan);
-      }
-    }
-  }
-}
-
-.form-range {
-  &::-moz-focus-outer {
-    border: 0;
-  }
-
-  &::-webkit-slider-thumb {
-    @include gradient-bg(var(--bs-ancap));
-
-    &:active {
-      @include gradient-bg(var(--bs-ancap));
-    }
-  }
-
-  &::-webkit-slider-runnable-track {
-    background-color: black;
-  }
-
-  &::-moz-range-thumb {
-    @include gradient-bg(var(--bs-ancap));
-
-    &:active {
-      @include gradient-bg(var(--bs-ancap));
-    }
-  }
-
-  &::-moz-range-track {
-    background-color: black;
   }
 }

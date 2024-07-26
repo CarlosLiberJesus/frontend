@@ -91,7 +91,7 @@ export class DocumentationToggleComponent implements OnInit {
 
     const color = this.toggleModel.getValue('color');
     if (color) {
-      toggle.css?.push('form-check-' + color, 'no-border');
+      toggle.css?.push('form-check-' + color);
     }
     const size = this.toggleModel.getValue('size');
     if (size) {

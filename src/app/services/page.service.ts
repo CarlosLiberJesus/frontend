@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SplashScreenService } from './splash-screen.service';
-import { IAppBreadcrumb } from '../interfaces/breadcrumbs';
+import { IAppBreadcrumb } from '../lib/interfaces/breadcrumbs';
 import { BreadcrumbsService } from './breadcrumbs.service';
-import { IAppAlert } from '../interfaces/app-alert';
+import { IAppAlert } from '../lib/interfaces/app-alert';
 import { AlertService } from './alert.service';
 
 @Injectable({

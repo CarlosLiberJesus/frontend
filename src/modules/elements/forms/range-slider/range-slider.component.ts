@@ -4,11 +4,13 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { IRangeSlider } from './range-slider';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-bootstrap-forms-range-slider',
@@ -16,11 +18,12 @@ import { distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./range-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RangeSliderComponent implements AfterViewInit {
+export class RangeSliderComponent implements AfterViewInit, OnDestroy {
   @Input() control!: FormControl;
   @Input() rangeSlider!: IRangeSlider;
   @Output() sliderChanged = new EventEmitter<boolean>();
 
+  private destroy$: Subject<boolean> = new Subject<boolean>();
   randomId: string = this.trimTrailingZeros(Math.random().toString());
   trimTrailingZeros(num: string): string {
     return parseFloat(num).toFixed(8).replace('.', '').replace(/^0+/, '');
@@ -35,9 +38,12 @@ export class RangeSliderComponent implements AfterViewInit {
       this.control.disable();
     }
     if (this.rangeSlider?.autoReturn !== false) {
-      this.control?.valueChanges.pipe(distinctUntilChanged()).subscribe(() => {
-        this.sliderChanged.emit(true);
-      });
+      this.control?.valueChanges
+        .pipe(distinctUntilChanged())
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+          this.sliderChanged.emit(true);
+        });
     }
   }
 
@@ -139,5 +145,10 @@ export class RangeSliderComponent implements AfterViewInit {
    */
   getPositionSelectedAsText(): string {
     return this.rangeSlider?.valuesList?.[this.control.value];
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

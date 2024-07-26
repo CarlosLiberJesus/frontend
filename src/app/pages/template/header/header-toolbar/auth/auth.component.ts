@@ -10,7 +10,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { takeUntil, catchError, EMPTY, Subject } from 'rxjs';
-import { emailValidator } from 'src/app/lib/validator/email-validator';
+import { emailValidator } from 'src/app/lib/validators/email-validator';
 import { AlertService } from 'src/app/services/alert.service';
 import { SplashScreenService } from 'src/app/services/splash-screen.service';
 import { AuthUser, UserService } from 'src/app/services/user.service';
@@ -202,8 +202,9 @@ export class AuthComponent implements OnInit, OnDestroy {
       'end-0',
       'card',
       'card-dashed',
+      'cursor-default',
       'z-index-3',
-      'w-200px w-sm-350px',
+      this.userService.getUser() ? '' : 'w-350px',
     ]
       .filter(Boolean)
       .join(' ');
@@ -216,11 +217,9 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.submitButton = {
         text: 'Entrar',
         css: [
+          'border-danger border-1 border border-dashed rounded-1',
           'mt-5',
-          'btn-ancap',
-          'btn-outline',
-          'btn-outline-dashed',
-          'btn-outline-ancap',
+          'btn-active-light-danger',
           'w-100',
         ],
       };
@@ -347,7 +346,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.cdr.detectChanges();
         break;
       case 'profile':
-        this.router.navigate(['/libertario', this.user?.uuid]);
+        this.router.navigate(['/libertarios', this.user?.uuid]);
         break;
     }
   }

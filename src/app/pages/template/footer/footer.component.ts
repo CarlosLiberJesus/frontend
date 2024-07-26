@@ -13,7 +13,7 @@ export class FooterComponent {
   local: boolean = environment.local;
 
   documentationButton: IButton = {
-    text: 'Documentação',
+    text: 'Bootstrap',
     css: ['btn', 'btn-capan'],
   };
 

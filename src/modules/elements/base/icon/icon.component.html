@@ -2,10 +2,10 @@
   [ngClass]="getIconContainerClass()"
   (mouseenter)="hoverEnter($event)"
   (mouseleave)="hoverLeave($event)"
-  (touchstart)="hoverEnter($event, { passive: true })"
-  (touchend)="hoverLeave($event)"
   (click)="clicked()"
   (keydown)="clicked()"
+  (touchstart)="hoverEnter($event, { passive: true })"
+  (touchend)="hoverLeave($event)"
   tabindex="3">
   <ng-container *ngIf="icon?.library?.startsWith('fa-')">
     <i [ngClass]="getIcon()" #target> </i>

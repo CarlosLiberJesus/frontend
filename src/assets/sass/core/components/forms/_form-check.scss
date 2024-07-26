@@ -4,6 +4,36 @@
 
 // Customization
 .form-check {
+
+  // Internal Colors
+  &.form-check-white {
+    .form-check-input {
+      &:checked {
+        border: 1;
+        background-color: var(--bs-white);
+        border-color: var(--bs-gray-400);
+      }
+    }
+  }
+
+  &.form-check-ancap {
+    .form-check-input {
+      &:checked {
+        border: 0;
+        background-color: var(--bs-ancap);
+      }
+    }
+  }
+
+  &.form-check-capan {
+    .form-check-input {
+      &:checked {
+        border: 0;
+        background-color: var(--bs-capan);
+      }
+    }
+  }
+
   // Input
   &:not(.form-switch) {
     .form-check-input {

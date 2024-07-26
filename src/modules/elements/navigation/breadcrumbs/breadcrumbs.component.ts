@@ -23,18 +23,21 @@ export class BreadcrumbsComponent {
       ...(this.breadcrumbs.css ?? []),
       'breadcrumb',
       'breadcrumb_' + this.randomId,
-    ].join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
   getBreadcrumbItemCss(pos: number): string {
-    return [
-      ...(this.breadcrumbs.items[pos].cssItem ?? []),
-      'breadcrumb-item',
-    ].join(' ');
+    return [...(this.breadcrumbs.items[pos].cssItem ?? []), 'breadcrumb-item']
+      .filter(Boolean)
+      .join(' ');
   }
 
   getBreadcrumbLinkCss(pos: number): string {
-    return [...(this.breadcrumbs.items[pos].cssLink ?? [])].join(' ');
+    return [...(this.breadcrumbs.items[pos].cssLink ?? [])]
+      .filter(Boolean)
+      .join(' ');
   }
 
   getFullLink(pos: number): string {

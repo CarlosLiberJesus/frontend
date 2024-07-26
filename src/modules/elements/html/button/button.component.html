@@ -3,17 +3,13 @@
   (mouseleave)="hoverLeave()"
   #target
 -->
-<div class="d-flex align-items-center justify-content-center position-relative">
+<div [ngClass]="{'d-flex align-items-center justify-content-center position-relative': popOver}"
+  (click)="click()"
+  (keydown)="click()"
+  tabindex="1">
   <a
     *ngIf="button"
     [ngClass]="getClass()"
-    (click)="click()"
-    (keydown)="click()"
-    tabindex="1"
-    (mouseenter)="hoverEnter()"
-    (mouseleave)="hoverLeave()"
-    (touchstart)="mobileEnter($event)"
-    (touchend)="mobileLeave($event)"
     #target>
     <app-bootstrap-icon
       *ngIf="button.iconFirst"

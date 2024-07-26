@@ -1,0 +1,10 @@
+// @deprecated Failed Experience
+app-bootstrap-icon {
+  @include menu-link-hover-state(
+        $title-color: var(--#{$prefix}ancap),
+        $icon-color: var(--#{$prefix}gray-700),
+        $bullet-color: var(--#{$prefix}gray-700),
+        $arrow-color: var(--#{$prefix}gray-700),
+        $bg-color: var(--#{$prefix}dark-light),
+      );
+}

@@ -1,0 +1,29 @@
+.form-range {
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-webkit-slider-thumb {
+    @include gradient-bg(var(--bs-ancap));
+
+    &:active {
+      @include gradient-bg(var(--bs-ancap));
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    background-color: black;
+  }
+
+  &::-moz-range-thumb {
+    @include gradient-bg(var(--bs-ancap));
+
+    &:active {
+      @include gradient-bg(var(--bs-ancap));
+    }
+  }
+
+  &::-moz-range-track {
+    background-color: black;
+  }
+}

@@ -273,23 +273,25 @@ export class DocumentationIconsComponent
         case 0:
           this.showLoading(0);
 
-          iconQuery.subscribe((iconsList: IIconFile) => {
-            this.iconsList = iconsList;
+          iconQuery
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((iconsList: IIconFile) => {
+              this.iconsList = iconsList;
 
-            this.tabs.tab[0].content = this.icons;
-            this.tabs = {
-              ...this.tabs,
-              tab: [
-                ...this.tabs.tab.slice(0, 0), // Copy elements before index 0
-                {
-                  ...this.tabs.tab[0],
-                  content: this.icons,
-                },
-                ...this.tabs.tab.slice(1), // Copy elements after index 0
-              ],
-            };
-            this.cdr.detectChanges();
-          });
+              this.tabs.tab[0].content = this.icons;
+              this.tabs = {
+                ...this.tabs,
+                tab: [
+                  ...this.tabs.tab.slice(0, 0), // Copy elements before index 0
+                  {
+                    ...this.tabs.tab[0],
+                    content: this.icons,
+                  },
+                  ...this.tabs.tab.slice(1), // Copy elements after index 0
+                ],
+              };
+              this.cdr.detectChanges();
+            });
           break;
         case 1:
           this.showLoading(1);
