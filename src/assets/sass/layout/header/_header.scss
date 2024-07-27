@@ -20,9 +20,8 @@
         $icon-color: var(--#{$prefix}ancap),
         $bullet-color: var(--#{$prefix}gray-700),
         $arrow-color: var(--#{$prefix}gray-700),
-        $bg-color: var(--#{$prefix}dark-light),
+        $bg-color: var(--#{$prefix}dark-light)
       );
-
 
       @include menu-link-show-state(
         $title-color: var(--#{$prefix}primary),
@@ -37,7 +36,7 @@
         $icon-color: var(--#{$prefix}gray-700),
         $bullet-color: var(--#{$prefix}gray-700),
         $arrow-color: var(--#{$prefix}gray-700),
-        $bg-color: null,
+        $bg-color: null
       );
 
       @include menu-link-active-state(

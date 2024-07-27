@@ -1,11 +1,13 @@
 <div class="row">
-  <div [ngClass]="{ 'col-lg-8': self || hasRole('admin'), 'col-lg-12': !self && !hasRole('admin') }">
+  <div
+    [ngClass]="{
+      'col-lg-8': self || hasRole('admin'),
+      'col-lg-12': !self && !hasRole('admin'),
+    }">
     <!-- Detalhes -->
     <div class="card mb-5 mb-xl-10">
       <div class="card-header">
-        <div class="card-title m-0">
-          Editar
-        </div>
+        <div class="card-title m-0">Editar</div>
         <div class="card-toolbar">
           <div class="d-flex gap-2 d-md-block">
             <app-bootstrap-html-button
@@ -26,9 +28,9 @@
               [spinner]="loading"></app-bootstrap-html-spinner>
           </div>
           <div class="row mb-6">
-            <label class="col-lg-4 col-form-label required fw-semibold fs-6">
+            <span class="col-lg-4 col-form-label required fw-semibold fs-6">
               Perfis
-            </label>
+            </span>
             <div class="col-lg-8">
               <app-bootstrap-forms-radio
                 [radioList]="roleRadio"
@@ -37,9 +39,9 @@
           </div>
 
           <div class="row mb-6">
-            <label class="col-lg-4 col-form-label required fw-semibold fs-6">
+            <span class="col-lg-4 col-form-label required fw-semibold fs-6">
               Status
-            </label>
+            </span>
             <div class="col-lg-8">
               <app-bootstrap-forms-radio
                 [radioList]="statusRadio"
@@ -49,9 +51,9 @@
         </div>
 
         <div class="row mb-6">
-          <label class="col-lg-4 col-form-label required fw-semibold fs-6">
+          <span class="col-lg-4 col-form-label required fw-semibold fs-6">
             Nome
-          </label>
+          </span>
           <div class="col-lg-8">
             <app-bootstrap-forms-input
               [input]="nameInput"
@@ -60,9 +62,7 @@
         </div>
 
         <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-semibold fs-6">
-            NIF
-          </label>
+          <span class="col-lg-4 col-form-label fw-semibold fs-6"> NIF </span>
           <div class="col-lg-8">
             <app-bootstrap-forms-input
               [input]="nifInput"
@@ -71,9 +71,7 @@
         </div>
 
         <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-semibold fs-6">
-            Morada
-          </label>
+          <span class="col-lg-4 col-form-label fw-semibold fs-6"> Morada </span>
           <div class="col-lg-8">
             <div class="row">
               <app-bootstrap-forms-input
@@ -96,9 +94,7 @@
         </div>
 
         <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-semibold fs-6">
-            RGBD
-          </label>
+          <span class="col-lg-4 col-form-label fw-semibold fs-6"> RGBD </span>
           <div class="col-lg-8">
             <app-bootstrap-forms-toggle
               [toggle]="rgbdToggle"
@@ -112,9 +108,7 @@
     <!-- pass -->
     <div class="card mb-5 mb-xl-10">
       <div class="card-header">
-        <div class="card-title m-0">
-          Password
-        </div>
+        <div class="card-title m-0">Password</div>
       </div>
       <div class="card-body border-top p-9">
         Iniciar o Reset de Palavra Pass
@@ -123,9 +117,7 @@
     <!-- avatar -->
     <div class="card mb-5 mb-xl-10">
       <div class="card-header">
-        <div class="card-title m-0">
-          Avatar
-        </div>
+        <div class="card-title m-0">Avatar</div>
       </div>
       <div class="card-body border-top p-9">
         Não sei se vai ser aqui o file upload...
@@ -133,4 +125,3 @@
     </div>
   </div>
 </div>
-

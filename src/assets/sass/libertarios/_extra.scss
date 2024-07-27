@@ -60,10 +60,11 @@ app-bootstrap-html-table {
 .btn.btn-capan:hover:not(.btn-active),
 .btn.btn-capan:hover:not(.btn-active),
 .btn.btn-capan:active:not(.btn-active),
-.btn.btn-capan.active, .btn.btn-capan.show,
+.btn.btn-capan.active,
+.btn.btn-capan.show,
 .show > .btn.btn-capan {
   color: var(--bs-capan);
-  app-bootstrap-icon i{
+  app-bootstrap-icon i {
     color: var(--bs-capan);
   }
 }
@@ -76,7 +77,7 @@ app-bootstrap-html-table {
 .btn.btn-ancap.show,
 .show > .btn.btn-ancap {
   color: var(--bs-ancap);
-  app-bootstrap-icon i{
+  app-bootstrap-icon i {
     color: var(--bs-ancap);
   }
 }

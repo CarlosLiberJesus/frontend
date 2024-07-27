@@ -12,7 +12,7 @@
     "lint:fix": "ng lint --fix",
     "karma": "karma start",
     "karma:watch": "karma start --auto-watch --no-single-run",
-    "prettier": "npx prettier --write $(git diff --name-only --diff-filter=dM)",
+    "prettier": "npx prettier --ignore-path .prettierignore --write $(git diff --name-only --diff-filter=dM)",
     "validate": "npm run prettier && ng lint --fix --max-warnings=0"
   },
   "private": true,

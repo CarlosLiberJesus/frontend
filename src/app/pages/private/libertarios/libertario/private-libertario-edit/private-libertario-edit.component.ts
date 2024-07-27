@@ -5,9 +5,11 @@ import {
   EventEmitter,
   Input,
   Output,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subject, catchError, EMPTY, forkJoin, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { IUser } from 'src/app/lib/interfaces/user';
 import { nifValidator } from 'src/app/lib/validators/nif-validator';
 import { ApiService } from 'src/app/services/api.service';
@@ -23,7 +25,7 @@ import { ISpinner } from 'src/modules/elements/html/spinner/spinner';
   styleUrl: './private-libertario-edit.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PrivateLibertarioEditComponent {
+export class PrivateLibertarioEditComponent implements OnInit, OnDestroy {
   @Input() user!: IUser;
   @Input() self!: boolean;
   @Output() cancel = new EventEmitter<boolean>();

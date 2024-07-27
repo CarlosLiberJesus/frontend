@@ -3,22 +3,23 @@
   (mouseleave)="hoverLeave()"
   #target
 -->
-<div [ngClass]="{'d-flex align-items-center justify-content-center position-relative': popOver}"
+<div
+  [ngClass]="{
+    'd-flex align-items-center justify-content-center position-relative':
+      popOver,
+  }"
   (click)="click()"
   (keydown)="click()"
   tabindex="1">
-  <a
-    *ngIf="button"
-    [ngClass]="getClass()"
-    #target>
+  <a *ngIf="button" [ngClass]="getClass()" #target>
     <app-bootstrap-icon
       *ngIf="button.iconFirst"
       [icon]="button.iconFirst"></app-bootstrap-icon>
     <span *ngIf="button.text">{{ button.text }}</span>
     <span *ngIf="button.color" [ngClass]="getColorClass()"></span>
-    <span *ngIf="button.badge" [ngClass]="getBadgeClass()">{{
-      button.badge.text
-    }}</span>
+    <span *ngIf="button.badge" [ngClass]="getBadgeClass()"
+      >{{ button.badge.text }}</span
+    >
     <app-bootstrap-icon
       *ngIf="button.iconLast"
       [icon]="button.iconLast"></app-bootstrap-icon>

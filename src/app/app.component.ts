@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import { routeTransition } from './lib/route-guards/route-transition';

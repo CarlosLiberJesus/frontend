@@ -1,4 +1,3 @@
-# Compiled output
 /dist
 /tmp
 /out-tsc
@@ -40,3 +39,7 @@ testem.log
 Thumbs.db
 
 */**/*.svg
+assets/json/all-portugal.json
+.husky/pre-commit
+.prettierignore
+.prettierrc

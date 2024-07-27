@@ -9,5 +9,35 @@
   "bracketSameLine": true,
   "printWidth": 80,
   "endOfLine": "auto",
-  "parser": "typescript"
+  "parser": "typescript",
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "parser": "scss"
+      }
+    },
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "parser": "json",
+        "tabWidth": 2,
+        "useTabs": false,
+        "singleQuote": true,
+        "semi": true,
+        "bracketSpacing": true,
+        "arrowParens": "avoid",
+        "trailingComma": "es5",
+        "bracketSameLine": true,
+        "printWidth": 80,
+        "endOfLine": "auto"
+      }
+    }
+  ]
 }
