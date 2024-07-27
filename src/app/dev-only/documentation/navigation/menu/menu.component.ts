@@ -83,7 +83,6 @@ export class DocumentationMenuComponent implements OnInit {
               ],
               button: {
                 css: ['p-0', 'ps-2'],
-                //TODO muito mais bonito replicar
                 iconFirst: {
                   library: 'bi',
                   value: 'bi-chevron-right',

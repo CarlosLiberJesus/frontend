@@ -1,5 +1,5 @@
 // ## scss/core/components/_animation.scss
-//TODO OVERWRITE default animation.css
+// OVERWRITE default animation.css
 @media print, (prefers-reduced-motion: reduce) {
   :root {
     --animate-duration: 1s;

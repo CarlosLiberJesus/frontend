@@ -30,14 +30,10 @@ export class PageTitleComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Todo talvez fazer animação de carregamento
     const pageTabTitle = 'Futuro Partido Libertário';
 
     this.breadcrumbsService.breadcrumb$
-      .pipe(
-        takeUntil(this.destroy$),
-        delay(500) // Delay the transition by 1 second (adjust the delay value as needed)
-      )
+      .pipe(takeUntil(this.destroy$), delay(500))
       .subscribe((breadcrumb: IAppBreadcrumb | null) => {
         this.breadcrumbs = null;
         this.pageTitle = null;

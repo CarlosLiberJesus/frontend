@@ -87,7 +87,7 @@ export class DocumentationComponent implements OnInit, OnDestroy {
 
   getSubMenuListClass(): string {
     return 'col-lg-12 col-xl-7 col-xxl-8 d-flex flex-wrap align-items-center justify-content-start elements';
-    //TODO +'elements-' + localStorage.getItem('theme') ?? 'light'
+    //@deprecated +'elements-' + localStorage.getItem('theme') ?? 'light'
   }
 
   getMainMenuList(): { slug: string; button: IButton }[] {
