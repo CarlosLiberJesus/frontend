@@ -12,7 +12,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class UserLocationService {
-  private dataUrl = 'assets/jsons/all-portugal.json';
+  private dataUrl = 'assets/json/all-portugal.json';
 
   constructor(private http: HttpClient) {}
 
@@ -22,19 +22,27 @@ export class UserLocationService {
 
   loadDistricts(): Observable<IDistritos> {
     return this.loadData().pipe(
-      map(data => ({
-        districtos: data.all.distritos.map(distrito => ({
-          uuid: distrito.uuid,
-          name: distrito.name,
-        })),
-      }))
+      map(data => {
+        console.log('loadDistricts', data);
+
+        if (data && data.all && data.all) {
+          return {
+            districtos: data.all.map(distrito => ({
+              uuid: distrito.uuid,
+              name: distrito.name,
+            })),
+          };
+        } else {
+          return { districtos: [] };
+        }
+      })
     );
   }
 
   loadConcelhos(): Observable<IConcelhos> {
     return this.loadData().pipe(
       map(data => ({
-        concelhos: data.all.distritos.flatMap(distrito =>
+        concelhos: data.all.flatMap(distrito =>
           distrito.concelhos.flatMap(concelho => ({
             uuid: concelho.uuid,
             name: concelho.name,
@@ -47,9 +55,9 @@ export class UserLocationService {
   loadFreguesias(): Observable<IFreguesias> {
     return this.loadData().pipe(
       map(data => ({
-        freguesias: data.all.distritos
+        freguesias: data.all
           .flatMap(distrito =>
-            distrito.concelhos.flatMap(concelho => concelho.freguesia)
+            distrito.concelhos.flatMap(concelho => concelho.freguesias)
           )
           .map(freguesia => ({
             uuid: freguesia.uuid,
@@ -63,10 +71,10 @@ export class UserLocationService {
     return this.loadData().pipe(
       map(data => {
         const freguesias: { uuid: string; name: string }[] = [];
-        data.all.distritos.forEach(distrito => {
+        data.all.forEach(distrito => {
           distrito.concelhos.forEach(concelho => {
-            concelho.freguesia.forEach(freguesia => {
-              const name = `${freguesia.name} - ${concelho.name} - ${distrito.name}`;
+            concelho.freguesias.forEach(freguesia => {
+              const name = `${freguesia.name} - ${concelho.name} [${distrito.name}]`;
               freguesias.push({
                 uuid: freguesia.uuid,
                 name: name,
@@ -77,5 +85,9 @@ export class UserLocationService {
         return { freguesias: freguesias };
       })
     );
+  }
+
+  teste(): void {
+    this.loadData().subscribe(console.log);
   }
 }

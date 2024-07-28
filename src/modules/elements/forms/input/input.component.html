@@ -9,9 +9,9 @@
       *ngIf="input.label.icon"
       [icon]="input.label.icon"></app-bootstrap-icon>
   </div>
-  <span *ngIf="input.label.extra" [ngClass]="getLabelExtraClass()">{{
-    input.label.extra
-  }}</span>
+  <span *ngIf="input.label.extra" [ngClass]="getLabelExtraClass()"
+    >{{ input.label.extra }}</span
+  >
 </div>
 <div [ngClass]="getInputContainerClass()" *ngIf="input">
   <label
@@ -24,9 +24,9 @@
         *ngIf="input.label.icon"
         [icon]="input.label.icon"></app-bootstrap-icon>
     </div>
-    <span *ngIf="input.label.extra" [ngClass]="getLabelExtraClass()">{{
-      input.label.extra
-    }}</span>
+    <span *ngIf="input.label.extra" [ngClass]="getLabelExtraClass()"
+      >{{ input.label.extra }}</span
+    >
   </label>
 
   <input
@@ -37,7 +37,8 @@
     [placeholder]="input.placeholder"
     id="input_{{ randomId }}"
     [attr.disabled]="isDisabled()"
-    (keyup)="onPasswordKeyup($event)" />
+    (keyup)="onPasswordKeyup($event)"
+    [autocomplete]="input.autocomplete ? input.autocomplete	 : null" />
   <div
     *ngIf="showInputIcon() && input.icon"
     (click)="togglePassword()"

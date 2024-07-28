@@ -116,6 +116,7 @@ export class DocumentationSelectComponent implements OnInit {
               library: 'bi',
               value: 'bi-search',
               css: ['fs-6', 'me-2'],
+              cssContainer: ['pb-0 mt-4'],
             },
             position: EPosition.RIGHT,
           },

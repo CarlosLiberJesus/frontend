@@ -1,1 +1,51 @@
-<p>registo works!</p>
+<div class="card card-flush">
+  <div class="card-header">
+    <h1 class="card-title">Novo Utilizador</h1>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <app-bootstrap-forms-input
+            [input]="username"
+            [control]="getControl('email')"></app-bootstrap-forms-input>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <app-bootstrap-forms-input
+            [input]="password"
+            [control]="getControl('password')"></app-bootstrap-forms-input>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <app-bootstrap-forms-input
+            [input]="passwordConfirm"
+            [control]="getControl('passwordConfirm')"></app-bootstrap-forms-input>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6 col-sm-12">
+          <app-bootstrap-forms-input
+            [input]="name"
+            [control]="getControl('name')"></app-bootstrap-forms-input>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <app-bootstrap-forms-input
+            *ngIf="!freguesias"
+            [input]="fakeFreguesia"
+            [control]="getControl('fakeFreguesia')"></app-bootstrap-forms-input>
+          <app-bootstrap-forms-select
+            *ngIf="freguesias"
+            [control]="getControl('freguesia')"
+            [select]="freguesiaSelect"></app-bootstrap-forms-select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <app-bootstrap-html-button
+            [button]="getSubmitButton()"
+            (clicked)="submit($event)"></app-bootstrap-html-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

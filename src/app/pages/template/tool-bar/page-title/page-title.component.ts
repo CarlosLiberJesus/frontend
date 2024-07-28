@@ -58,7 +58,7 @@ export class PageTitleComponent implements OnInit, OnDestroy {
                 cssLink: [
                   'text-muted',
                   item.link
-                    ? 'cursor-pointer text-hover-primary'
+                    ? 'cursor-pointer text-hover-ancap'
                     : 'cursor-default',
                 ],
               };

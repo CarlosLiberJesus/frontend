@@ -11,6 +11,7 @@ export interface ISelect {
   css?: string[];
   option: IOption[];
   cssOption?: string[];
+  cssPane?: string[];
   iconToggle?: IIcon;
   iconChecked?: IIcon;
   search?: {

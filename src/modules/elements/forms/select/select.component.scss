@@ -5,6 +5,7 @@ app-bootstrap-icon {
 }
 .select {
   position: relative;
+  cursor: pointer;
 
   .options-list {
     list-style: none;
@@ -26,12 +27,20 @@ app-bootstrap-icon {
     }
   }
 
+  .activate-scroll {
+    max-height: 250px;
+    overflow-y: auto;
+  }
+
   .floatingAction {
+    color: rgb(var(--bs-body-color-rgb));
     display: inline-block;
     animation: floatAnimationIn 0.2s ease-in-out forwards;
     position: relative;
+    left: -9px;
   }
   .reverseAnimation {
+    color: #ffffff;
     animation: floatAnimationOut 0.2s ease-in-out forwards;
     margin-top: 4px;
   }

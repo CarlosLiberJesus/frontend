@@ -59,19 +59,45 @@
     (click)="showMenu = !showMenu"></app-bootstrap-html-button>
   <div *ngIf="!user && showMenu" [ngClass]="getPanelClass()">
     <div class="card-body">
-      <h5 class="mb-7">Bem Vindo!</h5>
-      <app-bootstrap-html-separator
-        [separator]="separator"></app-bootstrap-html-separator>
-      <app-bootstrap-forms-input
-        [input]="emailInput"
-        [control]="getControl('email')"></app-bootstrap-forms-input>
-      <app-bootstrap-forms-input
-        [input]="passwordInput"
-        [control]="getControl('password')"
-        (submitForm)="submit($event)"></app-bootstrap-forms-input>
-      <app-bootstrap-html-button
-        [button]="getSubmitButton()"
-        (clicked)="submit($event)"></app-bootstrap-html-button>
+      <form [formGroup]="formGroup">
+        <h5 class="mb-7">Bem Vindo!</h5>
+        <app-bootstrap-html-separator
+          [separator]="separator"></app-bootstrap-html-separator>
+        <app-bootstrap-forms-input
+          [input]="emailInput"
+          [control]="getControl('email')"></app-bootstrap-forms-input>
+        <app-bootstrap-forms-input
+          [input]="passwordInput"
+          [control]="getControl('password')"
+          (submitForm)="submit($event)"></app-bootstrap-forms-input>
+        <app-bootstrap-html-button
+          [button]="getSubmitButton()"
+          (clicked)="submit($event)"></app-bootstrap-html-button>
+
+        <div
+          class="d-flex flex-column flex-md-row flex-center flex-md-stack pt-5">
+          <div class="">
+            <a
+              [routerLink]="'/libertario/registo'"
+              (click)="showMenu = false"
+              tabindex="3"
+              (keypress)="showMenu = false"
+              class="text-gray-900 text-hover-ancap">
+              Iniciar Futuro Libertário
+            </a>
+          </div>
+          <div class="">
+            <a
+              [routerLink]="'/libertario/recuperar'"
+              (click)="showMenu = false"
+              tabindex="3"
+              (keypress)="showMenu = false"
+              class="text-gray-900 text-hover-ancap">
+              Recuperar <i>Password</i>
+            </a>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

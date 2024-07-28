@@ -98,3 +98,6 @@
 .animation-blink {
   animation: animationBlink var(--animate-duration) steps(5, start) infinite;
 }
+app-bootstrap-icon > div.animate__no-fade {
+  opacity: 1 !important;
+}

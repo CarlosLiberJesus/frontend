@@ -13,6 +13,7 @@ export interface IInput {
   type: EInputType;
   name: string;
   autoReturn?: boolean;
+  autocomplete?: string;
   placeholder?: string;
   label?: {
     text: string;

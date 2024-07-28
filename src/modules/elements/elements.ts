@@ -24,7 +24,12 @@ export interface IErrorMessages {
     required?: string;
     minlength?: string;
     maxlength?: string;
+    uppercase?: string;
+    lowercase?: string;
+    number?: string;
+    specialCharacter?: string;
     email?: string;
+    passwordMismatch?: string;
     custom?: string;
   };
 }

@@ -42,3 +42,7 @@ export interface IUserStatus {
   name: string;
   color: string;
 }
+
+export interface IUserValid {
+  valid: boolean;
+}

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { LostPassComponent } from './lost-pass/lost-pass.component';
 import { LibertarioComponent } from './libertario/libertario.component';
 import { ElementsModule } from 'src/modules/elements/elements.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,11 @@ import { ElementsModule } from 'src/modules/elements/elements.module';
     LostPassComponent,
     LibertarioComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, ElementsModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    ElementsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AuthModule {}

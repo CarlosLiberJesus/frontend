@@ -4,7 +4,9 @@
 .form-floating > .form-select ~ label::after {
   background-color: transparent;
 }
-
+.show-password {
+  cursor: pointer;
+}
 .invalid-feedback {
   display: block;
 }
@@ -22,4 +24,10 @@ app-bootstrap-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+input[type='password'].register::-ms-reveal {
+  padding-left: 30px;
+  padding-bottom: 0px !important;
+  margin-bottom: 15px !important;
 }

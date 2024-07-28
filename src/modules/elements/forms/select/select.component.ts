@@ -33,7 +33,7 @@ export class SelectComponent {
 
   opened = false;
   randomId: string = this.trimTrailingZeros(Math.random().toString());
-
+  dropdownControl = new FormControl();
   constructor(private elementRef: ElementRef) {}
 
   @HostListener('document:click', ['$event'])
@@ -58,6 +58,18 @@ export class SelectComponent {
           },
         };
       }
+    }
+  }
+
+  /**
+   * @deprecated only half working, like only handleing letter and first character in control
+   * @param event
+   */
+  onKeyDown(event: KeyboardEvent): void {
+    const key = event.key.toLowerCase();
+    if (this.select.search?.control) {
+      this.select.search?.control.setValue(key);
+      this.onChanged();
     }
   }
 
@@ -142,7 +154,7 @@ export class SelectComponent {
    */
   setSelected(pos: number): void {
     const selectedValue = this.control.value;
-    const clickedValue = this.select.option[pos].value;
+    const clickedValue = this.getFilteredOptions()[pos].value;
 
     if (this.select?.css?.includes('unselect')) {
       this.control.setValue(
@@ -235,8 +247,9 @@ export class SelectComponent {
    */
   getFilteredOptions(): IOption[] {
     if (this.select.search?.control.value) {
+      const searchValue = this.select.search?.control.value.toLowerCase();
       return this.select.option.filter((option: IOption) =>
-        option.value.includes(this.select.search?.control.value ?? '')
+        option.text.toLowerCase().includes(searchValue)
       );
     }
     return this.select.option;
@@ -300,6 +313,14 @@ export class SelectComponent {
     ]
       .filter(Boolean)
       .join(' ');
+  }
+
+  getPaneCss(): string {
+    const css = ['options-list list-group', ...(this.select?.cssPane ?? [])];
+    if (this.opened) {
+      css.push('d-block');
+    }
+    return css.filter(Boolean).join(' ');
   }
 
   /**

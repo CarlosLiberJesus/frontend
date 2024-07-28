@@ -3,16 +3,36 @@
     <h1 class="card-title">Iniciar Sessão</h1>
   </div>
   <div class="card-body">
-    <h2 class="mb-7">Alto! Identifique-se...</h2>
-    <app-bootstrap-forms-input
-      [input]="emailInput"
-      [control]="getControl('email')"></app-bootstrap-forms-input>
-    <app-bootstrap-forms-input
-      [input]="passwordInput"
-      [control]="getControl('password')"
-      (submitForm)="submit($event)"></app-bootstrap-forms-input>
-    <app-bootstrap-html-button
-      [button]="getSubmitButton()"
-      (clicked)="submit($event)"></app-bootstrap-html-button>
+    <form [formGroup]="formGroup">
+      <h2 class="mb-7">Alto! Identifique-se...</h2>
+      <app-bootstrap-forms-input
+        [input]="emailInput"
+        [control]="getControl('email')"></app-bootstrap-forms-input>
+      <app-bootstrap-forms-input
+        [input]="passwordInput"
+        [control]="getControl('password')"
+        (submitForm)="submit($event)"></app-bootstrap-forms-input>
+      <app-bootstrap-html-button
+        [button]="getSubmitButton()"
+        (clicked)="submit($event)"></app-bootstrap-html-button>
+
+      <div
+        class="d-flex flex-column flex-md-row flex-center flex-md-stack pt-5">
+        <div class="">
+          <a
+            [routerLink]="'/libertario/registo'"
+            class="text-gray-900 text-hover-ancap"
+            >Futuro Libertário</a
+          >
+        </div>
+        <div class="">
+          <a
+            [routerLink]="'/libertario/recuperar'"
+            class="text-gray-900 text-hover-ancap"
+            >Recuperar <i>Password</i></a
+          >
+        </div>
+      </div>
+    </form>
   </div>
 </div>

@@ -36,17 +36,15 @@ export interface IDistritos {
 
 export interface IUserLocationFile {
   all: {
-    distritos: {
+    uuid: string;
+    name: string;
+    concelhos: {
       uuid: string;
       name: string;
-      concelhos: {
+      freguesias: {
         uuid: string;
         name: string;
-        freguesia: {
-          uuid: string;
-          name: string;
-        }[];
       }[];
     }[];
-  };
+  }[];
 }

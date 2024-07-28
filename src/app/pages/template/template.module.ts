@@ -13,6 +13,7 @@ import { AuthComponent } from './header/header-toolbar/auth/auth.component';
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import { AlertsComponent } from './tool-bar/alerts/alerts.component';
 import { PageTitleComponent } from './tool-bar/page-title/page-title.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,12 @@ import { PageTitleComponent } from './tool-bar/page-title/page-title.component';
     AlertsComponent,
     PageTitleComponent,
   ],
-  imports: [CommonModule, ElementsModule, RouterModule.forRoot([])],
+  imports: [
+    CommonModule,
+    ElementsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([]),
+  ],
   exports: [
     SplashScreenComponent,
     HeaderComponent,

@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   emailInput: IInput = {
     name: 'emailInput',
     type: EInputType.EMAIL,
+    autocomplete: 'username',
     placeholder: 'E-mail',
     cssInputContainer: ['position-relative', 'form-floating'],
     label: {
@@ -60,6 +61,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     name: 'passwordInput',
     type: EInputType.PASSWORD,
     placeholder: 'Palavra-Chave',
+    autocomplete: 'current-password',
     cssInputContainer: ['mt-6', 'mb-3', 'position-relative', 'show-password'],
     label: {
       text: 'Palavra-Chave',
@@ -77,7 +79,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   };
 
   submitButton!: IButton;
-
   processing = false;
 
   constructor(
@@ -107,6 +108,40 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   getControl(name: string): FormControl {
     return this.formGroup.get(name) as FormControl;
+  }
+
+  getSubmitButton(): IButton {
+    const isPristine = this.formGroup.pristine;
+    const hasNoErrors = this.formGroup.valid;
+    if (isPristine || !hasNoErrors) {
+      this.submitButton = {
+        text: 'Entrar',
+        css: [
+          'border-danger border-1 border border-dashed rounded-1',
+          'mt-5',
+          'btn-active-light-danger',
+          'w-100',
+        ],
+      };
+    } else {
+      this.submitButton = {
+        text: 'Entrar',
+        css: ['btn', 'btn-ancap', 'w-100', 'mt-5'],
+        spinner: this.processing
+          ? {
+              name: 'auth-loading',
+              cssContainer: ['fw-bolder', 'fs-2'],
+              animation: {
+                text: '...',
+                css: [
+                  'animate__animated animate__lightSpeedInLeft animate__faster animate__infinite fw-bolder',
+                ],
+              },
+            }
+          : undefined,
+      };
+    }
+    return this.submitButton;
   }
 
   submit(_event: boolean): void {
@@ -196,40 +231,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           },
         });
     }
-  }
-
-  getSubmitButton(): IButton {
-    const isPristine = this.formGroup.pristine;
-    const hasNoErrors = this.formGroup.valid;
-    if (isPristine || !hasNoErrors) {
-      this.submitButton = {
-        text: 'Entrar',
-        css: [
-          'border-danger border-1 border border-dashed rounded-1',
-          'mt-5',
-          'btn-active-light-danger',
-          'w-100',
-        ],
-      };
-    } else {
-      this.submitButton = {
-        text: 'Entrar',
-        css: ['btn', 'btn-ancap', 'w-100', 'mt-5'],
-        spinner: this.processing
-          ? {
-              name: 'auth-loading',
-              cssContainer: ['fw-bolder', 'fs-2'],
-              animation: {
-                text: '...',
-                css: [
-                  'animate__animated animate__lightSpeedInLeft animate__faster animate__infinite fw-bolder',
-                ],
-              },
-            }
-          : undefined,
-      };
-    }
-    return this.submitButton;
   }
 
   ngOnDestroy(): void {

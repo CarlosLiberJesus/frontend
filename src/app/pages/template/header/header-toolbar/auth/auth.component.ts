@@ -50,6 +50,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     name: 'emailInput',
     type: EInputType.EMAIL,
     placeholder: 'E-mail',
+    autocomplete: 'username',
     cssInputContainer: ['position-relative', 'form-floating'],
     label: {
       text: 'Utilizador',
@@ -78,6 +79,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     name: 'passwordInput',
     type: EInputType.PASSWORD,
     placeholder: 'Palavra-Chave',
+    autocomplete: 'current-password',
     cssInputContainer: ['mt-6', 'mb-3', 'position-relative', 'show-password'],
     label: {
       text: 'Palavra-Chave',

@@ -37,7 +37,7 @@ export class ApiHttpInterceptor implements HttpInterceptor {
             if (body.url !== '/api/auth/login') {
               this.userService.logOut();
             }
-            throw new Error('Unauthorized');
+            //throw new Error('Unauthorized');
           } else if (body.code === 500) {
             this.alertService.setAlert({
               code: 500,
@@ -53,7 +53,7 @@ export class ApiHttpInterceptor implements HttpInterceptor {
                 errors: body.exception?.errors,
               },
             });
-            throw new Error('Exception');
+            //throw new Error('Exception');
           }
         }
       })

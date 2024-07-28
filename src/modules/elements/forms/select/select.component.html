@@ -6,9 +6,9 @@
         *ngIf="select.label.icon"
         [icon]="select.label.icon"></app-bootstrap-icon>
     </div>
-    <span *ngIf="select.label.extra" [ngClass]="getLabelExtraClass()">{{
-      select.label.extra
-    }}</span>
+    <span *ngIf="select.label.extra" [ngClass]="getLabelExtraClass()"
+      >{{ select.label.extra }}</span
+    >
   </div>
   <div
     [ngClass]="getSelectClass()"
@@ -52,9 +52,10 @@
     </div>
   </div>
   <div
-    class="options-list list-group"
+    class=""
     *ngIf="select && select.option !== undefined"
-    [ngClass]="{ 'd-block': opened === true }">
+    [ngClass]="getPaneCss()"
+    tabindex="2">
     <a *ngIf="select.search" [ngClass]="getSearchClass()">
       <app-bootstrap-forms-input
         [input]="select.search.input"

@@ -126,7 +126,11 @@ export class InputComponent implements AfterViewInit, OnDestroy {
         (this.input.cssInputContainer?.includes('form-floating')
           ? ' pb-15'
           : ' pb-12') +
-        (this.shouldShowErrors() ? ' me-7' : '')
+        (this.shouldShowErrors() ? ' me-7' : '') +
+        (this.input.errors?.config?.showValid === true &&
+        !this.shouldShowErrors()
+          ? ' me-7'
+          : '')
       );
     } else {
       return (
@@ -205,10 +209,13 @@ export class InputComponent implements AfterViewInit, OnDestroy {
       ) {
         this.toggleShowPassword = true;
         this.input.type = EInputType.TEXT;
-        const antiValue: string = this.input.icon?.icon.antiValue ?? '';
+        const antiValue: string | undefined =
+          this.input.icon?.icon.antiValue ?? this.input.icon?.icon.value;
         if (this.input.icon) {
           this.input.icon.icon.antiValue = this.input.icon.icon.value;
-          this.input.icon.icon.value = antiValue;
+          if (antiValue) {
+            this.input.icon.icon.value = antiValue;
+          }
         }
       } else if (
         this.input?.type === EInputType.TEXT &&
