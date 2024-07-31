@@ -57,8 +57,17 @@
                     ><span class="path1"></span><span class="path2"></span
                   ></i>
                   <span class="fw-bold"
-                    >{{ libertario.profile.location.distrito.concelho.name
-                    }}</span
+                    >
+                    {{
+                      libertario.profile.location.distrito.concelho.freguesia.name
+                    }},&nbsp;
+                    {{
+                      libertario.profile.location.distrito.concelho.name
+                    }}&nbsp;
+                    [{{
+                      libertario.profile.location.distrito.name
+                    }}]
+                    </span
                   >
                 </span>
               </div>

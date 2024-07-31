@@ -7,7 +7,8 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { map, Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
+import { catchError, EMPTY, map, Subject, takeUntil } from 'rxjs';
 import { IAppBreadcrumb } from 'src/app/lib/interfaces/breadcrumbs';
 import { IUserValid } from 'src/app/lib/interfaces/user';
 import { IFreguesias } from 'src/app/lib/interfaces/user-location';
@@ -42,7 +43,10 @@ export class RegistoComponent implements OnInit, OnDestroy {
 
   formGroup: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, emailValidator()]),
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/.*\s[a-zA-Z].*/),
+    ]),
     password: new FormControl('', [Validators.required, passwordValidator()]),
     passwordConfirm: new FormControl('', [
       Validators.required,
@@ -129,9 +133,18 @@ export class RegistoComponent implements OnInit, OnDestroy {
     placeholder: 'Nome',
     cssInputContainer: ['mb-3', 'form-floating'],
     label: {
-      text: 'Nome',
+      text: 'Nome Completo',
       css: ['fs-5', 'fw-semibold'],
       cssExtra: ['fs-7', 'fw-semibold', 'text-muted'],
+    },
+    errors: {
+      config: {
+        startsInvalid: false,
+      },
+      messages: {
+        required: 'Campo obrigatório',
+        pattern: 'Indique pelo menos um nome e sobrenome',
+      },
     },
   };
 
@@ -212,7 +225,8 @@ export class RegistoComponent implements OnInit, OnDestroy {
     private pageService: PageService,
     private apiService: ApiService,
     private userLocationService: UserLocationService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -365,7 +379,6 @@ export class RegistoComponent implements OnInit, OnDestroy {
   }
 
   submit(_event: boolean): void {
-    console.log('click');
     if (this.formGroup.valid && !this.processing) {
       this.processing = true;
       this.apiService
@@ -377,13 +390,26 @@ export class RegistoComponent implements OnInit, OnDestroy {
         })
         .pipe(
           takeUntil(this.destroy$),
+          catchError(_error => {
+            this.processing = false;
+            this.submitButton = {
+              ...this.submitButton,
+              spinner: undefined,
+            };
+            this.cdr.detectChanges();
+            return EMPTY;
+          }),
           map(response => {
-            console.log(response);
             if (response.code === 200 && response.data) {
               if (response.data.valid) {
-                console.log('criou');
+                this.pageService.setAlert({
+                  code: 301,
+                  title: 'Utilizador criado com sucesso',
+                  message:
+                    'Para continuar, faca o login... Teremos de adicionar a confirmação por email',
+                });
+                this.router.navigate(['/']);
               } else {
-                console.log('error');
                 this.pageService.setAlert({
                   code: 500,
                   title: response.message ?? 'Erro de Servidor',
@@ -404,7 +430,7 @@ export class RegistoComponent implements OnInit, OnDestroy {
       name: 'email',
       type: EInputType.TEXT,
       placeholder: 'Email',
-      autocomplete: 'username',
+      autocomplete: 'new-password',
       cssInputContainer: ['mb-3', 'form-floating', 'position-relative'],
       icon: {
         icon: {

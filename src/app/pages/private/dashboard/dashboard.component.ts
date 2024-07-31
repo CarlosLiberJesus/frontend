@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { IAppBreadcrumb } from 'src/app/lib/interfaces/breadcrumbs';
+import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -7,8 +15,34 @@ import { UserService } from 'src/app/services/user.service';
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent {
-  constructor(private userService: UserService) {
-    //this.userService.logOut();
+export class DashboardComponent implements AfterViewInit, OnDestroy {
+  private destroy$: Subject<boolean> = new Subject<boolean>();
+
+  breadcrumb: IAppBreadcrumb = {
+    title: 'Ínicio',
+    items: [
+      {
+        label: 'Bem-vindo',
+      },
+    ],
+  };
+  constructor(
+    private pageService: PageService,
+    private userService: UserService
+  ) {}
+
+  ngAfterViewInit() {
+    if (this.userService.getUser()?.fullname) {
+      this.breadcrumb.items?.push({
+        label: this.userService.getUser()?.fullname ?? '',
+        link: '/libertarios/' + this.userService.getUser()?.uuid,
+      });
+    }
+    this.pageService.setBreadcrumb(this.breadcrumb);
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

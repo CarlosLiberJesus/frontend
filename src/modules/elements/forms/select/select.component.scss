@@ -33,14 +33,11 @@ app-bootstrap-icon {
   }
 
   .floatingAction {
-    color: rgb(var(--bs-body-color-rgb));
-    display: inline-block;
+    color: rgba(var(--bs-body-color-rgb), 0.65);
     animation: floatAnimationIn 0.2s ease-in-out forwards;
-    position: relative;
-    left: -9px;
   }
   .reverseAnimation {
-    color: #ffffff;
+    color: rgb(var(--bs-body-color-rgb));
     animation: floatAnimationOut 0.2s ease-in-out forwards;
     margin-top: 4px;
   }
@@ -60,17 +57,21 @@ app-bootstrap-icon {
 @keyframes floatAnimationIn {
   100% {
     opacity: 0.65;
-    transform: scale(0.85) translateY(-0.7rem) translateX(-0.4rem);
+    font-size: 0.85em;
+    transform: translateY(-0.4rem) translateX(0rem);
   }
 }
+
 @keyframes floatAnimationOut {
   0% {
     opacity: 0.65;
-    transform: scale(0.85) translateY(-0.7rem) translateX(-0.4rem);
+    font-size: 0.85em;
+    transform: translateY(-0.4rem) translateX(0rem);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0) translateX(0);
+    font-size: 1em;
+    transform: translateY(0) translateX(0);
   }
 }
 

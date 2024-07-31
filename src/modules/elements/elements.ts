@@ -30,6 +30,7 @@ export interface IErrorMessages {
     specialCharacter?: string;
     email?: string;
     passwordMismatch?: string;
+    pattern?: string;
     custom?: string;
   };
 }

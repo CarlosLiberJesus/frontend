@@ -84,7 +84,7 @@ export class DocumentationButtonComponent implements OnInit {
         if (position === 'popover') {
           button.popOver = {
             content: 'Mensagem importante que você deseja exibir',
-            event: EEvent.HOVER,
+            event: EEvent.CLICK,
             position: EPosition.TOP,
             cssContainer: ['fade show'],
           };

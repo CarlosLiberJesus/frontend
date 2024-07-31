@@ -76,25 +76,22 @@ export class AlertsComponent implements OnInit, OnDestroy {
           titleCss: [],
           icon: icon as IIcon,
         };
-        this.cdr.detectChanges();
 
-        if (incoming.autoClose !== undefined) {
-          setTimeout(() => {
-            if (this.alert) {
-              this.alert = {
-                ...this.alert,
-                css: [
-                  ...(this.alert.css ?? []),
-                  'animate__animated animate__zoomOut animate__faster',
-                ],
-              };
-            }
-            // TODO this ideia wont work, the null is required, animate leaves in the dom,
-            // does not destroy the html or d-none, opacity/position only
-            this.alert = null;
-            this.cdr.detectChanges();
-          }, incoming.autoClose);
-        }
+        setTimeout(() => {
+          if (this.alert) {
+            this.alert = {
+              ...this.alert,
+              css: [
+                ...(this.alert.css ?? []),
+                'animate__animated animate__zoomOut animate__faster',
+              ],
+            };
+          }
+          this.alert = null;
+          this.cdr.detectChanges();
+        }, incoming.autoClose ?? 4000);
+
+        this.cdr.detectChanges();
       });
   }
 

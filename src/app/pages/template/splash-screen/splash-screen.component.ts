@@ -55,7 +55,7 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                       'Erro na validação do Token:: Transição In Abortada',
                   });
                   this.fastTransition = true;
-                  this.router.navigate(['/libertario/entrar']);
+                  //this.router.navigate(['/libertario/entrar']);
                   return EMPTY;
                 })
               )
@@ -69,7 +69,7 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                       message: 'Erro na validação do Token:: ' + response,
                     });
 
-                    this.router.navigate(['/libertario/entrar']);
+                    //this.router.navigate(['/libertario/entrar']);
                   }
                   this.isAnimationComplete = false;
                   this.fastTransition = true;
@@ -81,6 +81,7 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
           const auth = JSON.parse(localStorage.getItem('auth') ?? '{}');
           if (auth.accessToken) {
             this.isAnimationComplete = false;
+
             this.userService
               .getUserByToken()
               .pipe(
@@ -93,7 +94,7 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                     message:
                       'Erro na validação do Token:: Transição Out Abortada',
                   });
-                  this.router.navigate(['/libertario/entrar']);
+                  //this.router.navigate(['/libertario/entrar']);
                   return EMPTY;
                 })
               )
@@ -106,7 +107,7 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                       title: 'Erro do Servidor',
                       message: 'Erro na validação do Token:: ' + response,
                     });
-                    this.router.navigate(['/libertario/entrar']);
+                    //this.router.navigate(['/libertario/entrar']);
                   }
                   this.isAnimationComplete = false;
                   this.hide();

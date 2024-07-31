@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoggedInGuard implements OnDestroy {
+export class LibertarioGuard implements OnDestroy {
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
@@ -17,23 +17,25 @@ export class LoggedInGuard implements OnDestroy {
   ) {}
 
   canActivate(): Promise<boolean> {
-    if (!localStorage.getItem('auth')) {
-      this.alertService.setAlert({
-        code: 500,
-        title: 'Sem permissões',
-        message: 'Terá de iniciar a sessão, caso queira prosseguir.',
-      });
-      this.router.navigate(['/']);
-      return new Promise<boolean>(resolve => resolve(false));
-    } else if (!this.userService.getUser()) {
-      //this.splashScreenService.show();
+    if (localStorage.getItem('auth')) {
       return new Promise<boolean>((resolve, _reject) => {
         this.userService
           .isLoadingSubject$()
           .pipe(takeUntil(this.destroy$))
           .subscribe((_isLoading: boolean) => {
             if (this.userService.getUser()) {
-              resolve(true);
+              if (this.userService.hasRole('NO_PL')) {
+                this.alertService.setAlert({
+                  code: 500,
+                  title: 'Sem permissões',
+                  message:
+                    'Não tem permissões para acessar esta página. Valide no seu perfil',
+                });
+                this.router.navigate(['/inicio']);
+                resolve(false);
+              } else {
+                resolve(true);
+              }
             }
           });
       })
@@ -41,14 +43,20 @@ export class LoggedInGuard implements OnDestroy {
         .catch((error: Error) => {
           this.alertService.setAlert({
             code: 500,
-            title: 'LoggedInGuard.ts error',
+            title: 'LibertarioGuard.ts error',
             message: error.message,
           });
-          this.router.navigate(['/']);
+          this.router.navigate(['/inicio']);
           return false;
         });
     } else {
-      return new Promise<boolean>(resolve => resolve(true));
+      this.alertService.setAlert({
+        code: 500,
+        title: 'Sem permissões',
+        message: 'Terá de iniciar a sessão, caso queira prosseguir.',
+      });
+      this.router.navigate(['/']);
+      return new Promise<boolean>(resolve => resolve(false));
     }
   }
 

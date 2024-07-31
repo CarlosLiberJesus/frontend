@@ -49,8 +49,8 @@ export class LibertarioComponent implements OnInit, OnDestroy {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private pageService: PageService,
-    private userService: UserService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -70,44 +70,54 @@ export class LibertarioComponent implements OnInit, OnDestroy {
     }
 
     const breadcrumb: IAppBreadcrumb = {
-      title: 'Libertários',
+      title: 'Libertário Detalhe',
       items: [
         {
           label: 'Libertários',
           link: '/libertarios',
-        },
-        {
-          label: 'Libertário',
         },
       ],
     };
 
     if (this.isSameUser) {
       breadcrumb.items?.push({
-        label: this.libertario.firstname + ' ' + this.libertario.lastname,
+        label:
+          (this.hasRole('NO-PL') ? 'Liberal' : 'Libertário') +
+          ' ' +
+          this.libertario.firstname +
+          ' ' +
+          this.libertario.lastname,
       });
     } else {
       if (this.userUuid) {
         this.loading = {
           ...this.loading,
           placeholder: {
-            text: 'Carregando Libertário ' + this.userUuid,
+            text: 'Carregando Membro ' + this.userUuid,
           },
         };
         this.apiService
-          .fetch<IUser>('/users/get')
+          .fetch<IUser>('/users/get', { uuid: this.userUuid })
           .pipe(takeUntil(this.destroy$))
           .subscribe((user: IApiResponse<IUser>) => {
             if (user.code === 200 && user.data) {
               this.libertario = user.data;
               breadcrumb.items?.push({
-                label: this.libertario.fullname,
+                label:
+                  (this.hasRole('NO-PL') ? 'Liberal' : 'Libertário') +
+                  ' ' +
+                  this.libertario.firstname +
+                  ' ' +
+                  this.libertario.lastname,
               });
+              this.pageService.setBreadcrumb(breadcrumb);
             } else {
               this.pageService.setAlert({
                 code: user.code,
                 title: 'Erro:: Acesso à Página',
-                message: user.message ?? 'Não foi encontrado nenhum Libertário',
+                message:
+                  user.exception?.message ??
+                  'Não foi encontrado nenhum Libertário',
               });
               this.router.navigate(['/inicio']);
             }

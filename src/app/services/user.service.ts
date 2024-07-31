@@ -69,7 +69,6 @@ export class UserService implements OnDestroy {
 
   getUserByToken(): Observable<string> {
     this.isLoadingSubject.next(true);
-    this.user = undefined;
     return this.apiService.fetch<AuthUser>('/auth/me').pipe(
       takeUntil(this.destroy$),
       catchError(_error => {
@@ -119,6 +118,29 @@ export class UserService implements OnDestroy {
         localStorage.removeItem('auth');
         this.isLoadingSubject.next(false);
         this.router.navigate(['/']);
+      });
+  }
+
+  forceExit(): void {
+    this.isLoadingSubject.next(true);
+    this.apiService
+      .fetch<{ message: string }>('/auth/logout')
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError(_error => {
+          this.user = undefined;
+          localStorage.removeItem('auth');
+          this.isLoadingSubject.next(false);
+          this.router.navigate(['/libertario/entrar']);
+
+          return EMPTY;
+        })
+      )
+      .subscribe(_response => {
+        this.user = undefined;
+        localStorage.removeItem('auth');
+        this.isLoadingSubject.next(false);
+        this.router.navigate(['/libertario/entrar']);
       });
   }
 

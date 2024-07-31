@@ -62,9 +62,8 @@ export class TableComponent {
     css: [
       'btn-sm',
       'btn-icon',
-      'btn-light',
       'btn-color-muted',
-      'btn-active-primary',
+      'btn-ancap',
       'me-3',
       this.table?.css?.includes('table-card') ? 'active' : '',
     ],
@@ -78,9 +77,8 @@ export class TableComponent {
     css: [
       'btn-sm',
       'btn-icon',
-      'btn-light',
       'btn-color-muted',
-      'btn-active-primary',
+      'btn-active-capan',
       'me-3',
       this.table?.css?.includes('table-row') ? 'active' : '',
     ],

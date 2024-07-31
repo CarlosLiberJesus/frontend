@@ -196,19 +196,26 @@ export class LoginComponent implements OnInit, OnDestroy {
             });
             this.processing = false;
             this.formGroup.reset();
-            this.router.navigate(['/libertario/entrar']);
             return EMPTY;
           })
         )
         .subscribe({
           next: response => {
-            this.processing = false;
-            this.formGroup.reset();
             if (response === '') {
               setTimeout(() => {
                 this.userService
                   .isLoadingSubject$()
-                  .pipe(takeUntil(this.destroy$))
+                  .pipe(
+                    takeUntil(this.destroy$),
+                    catchError(_error => {
+                      this.processing = false;
+                      this.submitButton = {
+                        ...this.submitButton,
+                        spinner: undefined,
+                      };
+                      return EMPTY;
+                    })
+                  )
                   .subscribe((_isLoading: boolean) => {
                     if (this.userService.getUser()) {
                       this.alertService.setAlert({
@@ -219,9 +226,13 @@ export class LoginComponent implements OnInit, OnDestroy {
                       this.router.navigate(['/inicio']);
                     }
                   });
+                this.formGroup.reset();
+                this.processing = false;
                 this.splashScreenService.show();
               }, 500);
             } else {
+              this.formGroup.reset();
+              this.processing = false;
               this.alertService.setAlert({
                 code: 500,
                 title: 'Erro de Servidor',

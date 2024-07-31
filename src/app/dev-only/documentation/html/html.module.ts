@@ -27,6 +27,7 @@ import { DocumentationCardComponent } from './card/card.component';
 import { CardModel } from './card/card.model';
 import { DocumentationHoverMessageComponent } from './hover-message/hover-message.component';
 import { HoverMessageModel } from './hover-message/hover-message.model';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { HoverMessageModel } from './hover-message/hover-message.model';
     HtmlModule,
     BaseModule,
     CodeHighlightModule,
+    ReactiveFormsModule,
   ],
   providers: [
     AlertsModel,

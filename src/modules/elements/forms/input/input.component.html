@@ -38,7 +38,7 @@
     id="input_{{ randomId }}"
     [attr.disabled]="isDisabled()"
     (keyup)="onPasswordKeyup($event)"
-    [autocomplete]="input.autocomplete ? input.autocomplete	 : null" />
+    [autocomplete]="input.autocomplete ? input.autocomplete	 : 'off'" />
   <div
     *ngIf="showInputIcon() && input.icon"
     (click)="togglePassword()"

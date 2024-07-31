@@ -313,7 +313,12 @@ export class AuthComponent implements OnInit, OnDestroy {
               setTimeout(() => {
                 this.userService
                   .isLoadingSubject$()
-                  .pipe(takeUntil(this.destroy$))
+                  .pipe(
+                    takeUntil(this.destroy$),
+                    catchError(_error => {
+                      return EMPTY;
+                    })
+                  )
                   .subscribe((_isLoading: boolean) => {
                     if (this.userService.getUser()) {
                       this.alertService.setAlert({

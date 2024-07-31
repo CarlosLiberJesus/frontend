@@ -50,6 +50,7 @@ export class ButtonModel {
   getBorderOptions(): ISelect {
     return {
       name: 'border-button',
+      css: ['floating'],
       cssOption: ['text-dark'],
       placeholder: 'Estilo da Margem',
       option: [

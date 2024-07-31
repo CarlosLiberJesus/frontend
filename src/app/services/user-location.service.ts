@@ -23,8 +23,6 @@ export class UserLocationService {
   loadDistricts(): Observable<IDistritos> {
     return this.loadData().pipe(
       map(data => {
-        console.log('loadDistricts', data);
-
         if (data && data.all && data.all) {
           return {
             districtos: data.all.map(distrito => ({
@@ -74,7 +72,7 @@ export class UserLocationService {
         data.all.forEach(distrito => {
           distrito.concelhos.forEach(concelho => {
             concelho.freguesias.forEach(freguesia => {
-              const name = `${freguesia.name} - ${concelho.name} [${distrito.name}]`;
+              const name = `${freguesia.name}, ${concelho.name} [${distrito.name}]`;
               freguesias.push({
                 uuid: freguesia.uuid,
                 name: name,
@@ -85,9 +83,5 @@ export class UserLocationService {
         return { freguesias: freguesias };
       })
     );
-  }
-
-  teste(): void {
-    this.loadData().subscribe(console.log);
   }
 }
