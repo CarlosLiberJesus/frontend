@@ -80,7 +80,7 @@ export class MainMenuComponent implements OnInit, OnDestroy {
       items: [
         {
           title: 'Recursos',
-          event: EEvent.CLICK,
+          event: EEvent.HOVER,
           cssMenuItemClass: ['position-relative'],
           cssSubMenuClass: [
             'menu-sub-dropdown',

@@ -85,7 +85,6 @@ export class DocumentationTabsComponent implements OnInit, AfterViewInit {
   removeContent(tabs: ITabs) {
     return {
       cssUl: tabs.cssUl?.filter(Boolean),
-      cssPane: tabs.cssPane?.filter(Boolean),
       tab: tabs.tab.map(item => {
         const { content, ...rest } = item;
         const serializedContent = this.stringifyTemplateRef(content);

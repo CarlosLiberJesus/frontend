@@ -3,11 +3,17 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import {
+  IAppSettings,
+  LicencedLibService,
+} from '@carlosliberjesus/licenced-lib';
+import { Subject, takeUntil } from 'rxjs';
 import { IAppBreadcrumb } from 'src/app/lib/interfaces/breadcrumbs';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +21,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent implements AfterViewInit, OnDestroy {
+export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
+  protected useLicenced = `${environment.useLicenced}`;
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
   breadcrumb: IAppBreadcrumb = {
@@ -26,10 +33,33 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
       },
     ],
   };
+
   constructor(
     private pageService: PageService,
-    private userService: UserService
+    private userService: UserService,
+    private licencedLibService: LicencedLibService
   ) {}
+
+  ngOnInit() {
+    if (this.useLicenced) {
+      console.log(localStorage.getItem('auth'));
+      const settings: IAppSettings = {
+        appId: `${environment.appKey}`,
+        apiServer: `${environment.apiServer}`,
+        token: localStorage.getItem('auth') ?? '',
+      };
+
+      this.licencedLibService.start(settings);
+
+      this.licencedLibService.errors$
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(error => {
+          if (error) {
+            this.pageService.setAlert(error);
+          }
+        });
+    }
+  }
 
   ngAfterViewInit() {
     if (this.userService.getUser()?.fullname) {

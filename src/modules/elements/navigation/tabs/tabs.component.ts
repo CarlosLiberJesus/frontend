@@ -77,7 +77,7 @@ export class TabsComponent {
     const flex = this.tabs?.cssUl?.findIndex(
       (cssClass: string) => cssClass === 'flex-column'
     );
-    let css: string = 'tabs_' + this.randomId;
+    let css: string = 'tabs tabs_' + this.randomId;
     css += flex !== -1 ? ' d-flex' : '';
     return css;
   }
@@ -89,7 +89,9 @@ export class TabsComponent {
    */
   getActivePaneClass(tab: number): string {
     if (this.tabs.tab[tab].cssLink?.includes('active') === true) {
-      return ['show', 'active'].filter(Boolean).join(' ');
+      return [...(this.tabs.tab[tab].cssPane ?? []), 'show', 'active']
+        .filter(Boolean)
+        .join(' ');
     }
     return '';
   }

@@ -5,7 +5,6 @@ import { ISpinner } from '../../html/spinner/spinner';
 export interface ITabs {
   tab: ITab[];
   cssUl?: string[];
-  cssPane?: string[];
 }
 
 export interface ITab {
@@ -19,4 +18,5 @@ export interface ITab {
   iconLast?: IIcon;
   bullet?: string[];
   loading?: ISpinner;
+  cssPane?: string[];
 }

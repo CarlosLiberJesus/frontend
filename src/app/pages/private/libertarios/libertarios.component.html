@@ -1,9 +1,16 @@
+<ng-template #pageTools>
+  <a
+    class="btn d-inline-flex btn-capan fw-bold"
+    [routerLink]="'/libertarios/perfis'">
+    <span>Gestão Perfis</span>
+  </a>
+</ng-template>
+
 <app-bootstrap-html-table
   [table]="table"
   (pageChanged)="onPaginationChange($event)"></app-bootstrap-html-table>
 
-<ng-template #tools>
-
+<ng-template #tableTools>
   <app-bootstrap-forms-input
     [input]="searchInput"
     [control]="search"
@@ -16,20 +23,21 @@
       <div class="me-5 position-relative">
         <div class="symbol symbol-35px symbol-circle">
           <img
-              [alt]="row.firstname + ' ' + row.lastname"
-              [title]="row.firstname + ' ' + row.lastname"
-              [src]="'data:image/png;base64,' + row.profile.avatar"
-              *ngIf="row?.profile?.avatar" />
-            <img
-              [alt]="row.firstname + ' ' + row.lastname"
-              [title]="row.firstname + ' ' + row.lastname"
-              [src]="'assets/media/avatars/blank.png'"
-              *ngIf="!row?.profile?.avatar" />
+            [alt]="row.firstname + ' ' + row.lastname"
+            [title]="row.firstname + ' ' + row.lastname"
+            [src]="'data:image/png;base64,' + row.profile.avatar"
+            *ngIf="row?.profile?.avatar" />
+          <img
+            [alt]="row.firstname + ' ' + row.lastname"
+            [title]="row.firstname + ' ' + row.lastname"
+            [src]="'assets/media/avatars/blank.png'"
+            *ngIf="!row?.profile?.avatar" />
         </div>
         <div [ngClass]="getOnline(row.lastLogin)" *ngIf="row.lastLogin"></div>
       </div>
       <div class="d-flex flex-column justify-content-center">
-        <a *ngIf="linkToDetails(row.uuid); else noEditPermission"
+        <a
+          *ngIf="linkToDetails(row.uuid); else noEditPermission"
           [routerLink]="[
             '/libertarios/',
             row.uuid
@@ -46,14 +54,26 @@
     </div>
   </td>
   <td>
-    <span *ngFor="let role of row.roles"
-      class="badge badge-light-{{ role.color }} fw-bold px-4 py-3">
-      {{ role.name }}
-    </span>
+    <ng-container *ngFor="let role of row.roles">
+      <span
+        *ngIf="role.code !== 'COMPT'"
+        class="badge badge-light-{{ role.color }} fw-bold px-4 py-3">
+        {{ role.cargo }} {{ role.name }}
+      </span>
+
+      <ng-container *ngIf="role.code === 'COMPT'">
+        <div *ngFor="let departamento of role.departments">
+          {{ getComissaoNacional(role.name, departamento) }}
+        </div>
+      </ng-container>
+    </ng-container>
   </td>
   <td>
     <ul>
-      <li>{{ row.profile.location.distrito.concelho.name }}&nbsp;[{{ row.profile.location.distrito.name }}]</li>
+      <li>
+        {{ row.profile.location.distrito.concelho.name }}&nbsp;[{{
+        row.profile.location.distrito.name }}]
+      </li>
       <li>{{ row.profile.location.distrito.concelho.freguesia.name }}</li>
     </ul>
   </td>
@@ -66,17 +86,16 @@
     </span>
   </td>
   <td>{{ row.lastLogin | date: 'MMM d, y' }}</td>
-  <td >
+  <td>
     <app-bootstrap-html-button
       *ngIf="linkToDetails(row.uuid)"
       [button]="detailsButton"
       (clicked)="onDetails(row.uuid)"
-      style="display: inline-flex;"
-      ></app-bootstrap-html-button>
-      <app-bootstrap-html-button
-        style="display: inline-flex;"
-        [button]="messageButton"
-        (clicked)="onMessage(row.uuid)"></app-bootstrap-html-button>
+      style="display: inline-flex"></app-bootstrap-html-button>
+    <app-bootstrap-html-button
+      style="display: inline-flex"
+      [button]="messageButton"
+      (clicked)="onMessage(row.uuid)"></app-bootstrap-html-button>
   </td>
 </ng-template>
 
@@ -100,14 +119,13 @@
               [ngClass]="getOnline(row.lastLogin)"
               *ngIf="row.lastLogin"></div>
           </div>
-          <a
-            href="#"
-            class="fs-4 text-gray-800 text-hover-ancap fw-bold mb-0"
+          <a href="#" class="fs-4 text-gray-800 text-hover-ancap fw-bold mb-0"
             >{{ data.firstname + ' ' + data.lastname }}</a
           >
           <div class="fw-semibold text-gray-500 mb-6">{{ data.email }}</div>
           <div class="d-flex flex-center flex-wrap gap-2">
-            <span *ngFor="let role of row.roles"
+            <span
+              *ngFor="let role of row.roles"
               class="badge badge-light-{{
                 role.color
               }} fw-bold px-4 py-3">

@@ -7,6 +7,7 @@ import { LibertarioComponent } from './libertario/libertario.component';
 import { ElementsModule } from 'src/modules/elements/elements.module';
 import { PrivateLibertarioDetalheComponent } from './libertario/private-libertario-detalhe/private-libertario-detalhe.component';
 import { PrivateLibertarioEditComponent } from './libertario/private-libertario-edit/private-libertario-edit.component';
+import { PerfisComponent } from './perfis/perfis.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PrivateLibertarioEditComponent } from './libertario/private-libertario-
     LibertarioComponent,
     PrivateLibertarioDetalheComponent,
     PrivateLibertarioEditComponent,
+    PerfisComponent,
   ],
   imports: [CommonModule, LibertariosRoutingModule, ElementsModule],
 })

@@ -11,9 +11,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/private/dashboard/dashboard.component';
 import { ApiHttpInterceptor } from './lib/route-guards/http.interceptor';
+import { LibKanbanModule } from '@carlosliberjesus/licenced-lib';
+import { CalendarComponent } from './pages/private/dashboard/calendar/calendar.component';
 
 @NgModule({
-  declarations: [AppComponent, HomepageComponent, DashboardComponent],
+  // todo... reduziz as componentes
+  declarations: [
+    AppComponent,
+    HomepageComponent,
+    DashboardComponent,
+    CalendarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +31,7 @@ import { ApiHttpInterceptor } from './lib/route-guards/http.interceptor';
     TemplateModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    LibKanbanModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },

@@ -31,6 +31,7 @@ export interface IUserProfile {
   rgbd?: boolean;
 }
 
+// TODO update itens in kanban lib
 export interface IUserDetails {
   birthday?: Date;
   nif?: number;

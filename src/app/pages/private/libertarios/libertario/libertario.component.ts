@@ -71,15 +71,20 @@ export class LibertarioComponent implements OnInit, OnDestroy {
 
     const breadcrumb: IAppBreadcrumb = {
       title: 'Libertário Detalhe',
-      items: [
-        {
-          label: 'Libertários',
-          link: '/libertarios',
-        },
-      ],
+      items: [],
     };
 
     if (this.isSameUser) {
+      if (this.hasRole('NO-PL')) {
+        breadcrumb.items?.push({
+          label: 'Libertário',
+        });
+      } else {
+        breadcrumb.items?.push({
+          label: 'Libertários',
+          link: '/libertarios',
+        });
+      }
       breadcrumb.items?.push({
         label:
           (this.hasRole('NO-PL') ? 'Liberal' : 'Libertário') +
@@ -102,6 +107,16 @@ export class LibertarioComponent implements OnInit, OnDestroy {
           .subscribe((user: IApiResponse<IUser>) => {
             if (user.code === 200 && user.data) {
               this.libertario = user.data;
+              if (this.userService.hasRole('NO-PL')) {
+                breadcrumb.items?.push({
+                  label: 'Libertário',
+                });
+              } else {
+                breadcrumb.items?.push({
+                  label: 'Libertários',
+                  link: '/libertarios',
+                });
+              }
               breadcrumb.items?.push({
                 label:
                   (this.hasRole('NO-PL') ? 'Liberal' : 'Libertário') +

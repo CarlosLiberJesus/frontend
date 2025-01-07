@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -27,10 +26,7 @@ export class DocumentationHoverMessageComponent implements OnInit {
 
   @ViewChild('target', { static: false }) targetElement!: ElementRef;
 
-  constructor(
-    public hoverMessageModel: HoverMessageModel,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(public hoverMessageModel: HoverMessageModel) {
     this.hoverMessageModel.startForms();
   }
 

@@ -1,8 +1,27 @@
-<div class="row">
-  <div class="col-md-6">
-    seria o kanban
+<div class="row gx-5 gx-xl-12 mb-xl-10">
+  <div class="col-md-12 col-lg-12 col-xl-7 mb-10">
+    <div class="card card-flush">
+      <div class="card-body px-0 pt-5">
+        <app-lib-user-panel></app-lib-user-panel>
+      </div>
+      <div class="card-footer p-0" style="background-color: transparent">
+        <div class="d-flex justify-content-between ps-3 pb-1">
+          <div>
+            Powered by
+            <a href="https://ej2.syncfusion.com/" target="_blank">Syncfusion</a>
+          </div>
+          <div class="d-flex align-items-end pe-3 pb-1">
+            <a
+              [routerLink]="['/tarefas']"
+              class="fw-bolder text-capan text-hover-ancap"
+              >Gerir Tarefas</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-6">
-    Seria o calendario
+  <div class="col-md-12 col-lg-12 col-xl-5 mb-10">
+    <app-calendar-short></app-calendar-short>
   </div>
 </div>

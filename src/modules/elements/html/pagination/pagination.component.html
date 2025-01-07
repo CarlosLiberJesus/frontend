@@ -1,4 +1,4 @@
-<ul [ngClass]="getPaginationClass()" *ngIf="pagination">
+<ul [ngClass]="getPaginationClass()" *ngIf="showPagination() && pagination">
   <li
     *ngIf="pagination.css?.includes('extremes')"
     [ngClass]="getPageItemClass(0, 'first')">
@@ -6,7 +6,7 @@
       tabindex="2"
       (click)="changePage($event, 0, 'first')"
       (keydown)="changePage($event, 0, 'first')"
-      [ngClass]="getPageLinkClass('first')">
+      [ngClass]="getPageLinkClass(0, 'first')">
       <app-bootstrap-icon
         *ngIf="!validateIfText('first')"
         [icon]="getIcons('first')"></app-bootstrap-icon>
@@ -20,7 +20,7 @@
       tabindex="2"
       (click)="changePage($event, 0, 'previous')"
       (keydown)="changePage($event, 0, 'previous')"
-      [ngClass]="getPageLinkClass('previous')">
+      [ngClass]="getPageLinkClass(0, 'previous')">
       <app-bootstrap-icon
         *ngIf="!validateIfText('previous')"
         [icon]="getIcons('previous')"></app-bootstrap-icon>
@@ -34,7 +34,7 @@
       tabindex="2"
       (click)="changePage($event, page)"
       (keydown)="changePage($event, page)"
-      [ngClass]="getPageLinkClass()">
+      [ngClass]="getPageLinkClass(page)">
       {{ page }}</a
     >
   </li>
@@ -45,7 +45,7 @@
       tabindex="2"
       (click)="changePage($event, 0, 'next')"
       (keydown)="changePage($event, 0, 'next')"
-      [ngClass]="getPageLinkClass('next')">
+      [ngClass]="getPageLinkClass(getNumberOfPages() + 1, 'next')">
       <app-bootstrap-icon
         *ngIf="!validateIfText('next')"
         [icon]="getIcons('next')"></app-bootstrap-icon>
@@ -59,7 +59,7 @@
       tabindex="2"
       (click)="changePage($event, 0, 'last')"
       (keydown)="changePage($event, 0, 'last')"
-      [ngClass]="getPageLinkClass('last')">
+      [ngClass]="getPageLinkClass(getNumberOfPages() + 1, 'last')">
       <app-bootstrap-icon
         *ngIf="!validateIfText('last')"
         [icon]="getIcons('last')"></app-bootstrap-icon>

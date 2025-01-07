@@ -12,9 +12,13 @@ import { Router } from '@angular/router';
 import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
 import { IPagination } from 'src/app/lib/interfaces/api-response';
 import { IAppBreadcrumb } from 'src/app/lib/interfaces/breadcrumbs';
+import {
+  IUserDepartment,
+} from 'src/app/lib/interfaces/roles-permissions';
 import { IUsers } from 'src/app/lib/interfaces/user';
 import { ApiService } from 'src/app/services/api.service';
 import { PageService } from 'src/app/services/page.service';
+import { ToolsService } from 'src/app/services/tools.service';
 import { UserService } from 'src/app/services/user.service';
 import { EPosition } from 'src/modules/elements/elements';
 import { IInput, EInputType } from 'src/modules/elements/forms/input/input';
@@ -28,8 +32,10 @@ import { ITable } from 'src/modules/elements/html/table/table';
   styleUrl: './libertarios.component.scss',
 })
 export class LibertariosComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('tools', { read: TemplateRef })
-  tools!: TemplateRef<HTMLElement>;
+  @ViewChild('pageTools', { read: TemplateRef })
+  pageTools!: TemplateRef<HTMLElement>;
+  @ViewChild('tableTools', { read: TemplateRef })
+  tableTools!: TemplateRef<HTMLElement>;
   @ViewChild('rowTemplate', { read: TemplateRef })
   rowTemplate!: TemplateRef<HTMLElement>;
   @ViewChild('cardTemplate', { read: TemplateRef })
@@ -105,6 +111,7 @@ export class LibertariosComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private apiService: ApiService,
     private userService: UserService,
+    private toolbarService: ToolsService,
     private router: Router
   ) {}
 
@@ -126,7 +133,7 @@ export class LibertariosComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'Libertários',
       loading: this.loading,
       notFound: 'Não foram encontrados dados',
-      toolbar: this.tools,
+      toolbar: this.tableTools,
       css: [
         'table',
         'table-switch',
@@ -146,6 +153,9 @@ export class LibertariosComponent implements OnInit, AfterViewInit, OnDestroy {
       rowTemplate: null,
       cardTemplate: null,
     };
+    if (this.userService.hasRole('COMEL')) {
+      this.toolbarService.setTools(this.pageTools);
+    }
     this.cdr.detectChanges();
     this.getUserList();
   }
@@ -155,17 +165,26 @@ export class LibertariosComponent implements OnInit, AfterViewInit, OnDestroy {
       .fetch<IUsers>('/users/get-all', data)
       .pipe(
         takeUntil(this.destroy$),
-        catchError(error => {
-          this.pageService.setAlert({
+        catchError(_error => {
+          /*this.pageService.setAlert({
             code: 500,
             title: 'Erro ao buscar dados',
             message: error.message,
-          });
+          });*/
+          this.table = {
+            ...this.table,
+            tableData: [],
+            pagination: undefined,
+            rowTemplate: null,
+            cardTemplate: null,
+          };
+          this.cdr.detectChanges();
           return EMPTY;
         })
       )
       .subscribe(response => {
         if (response.code === 200 && response.data) {
+          console.log(response.data);
           // Handle successful response
           this.table = {
             ...this.table,
@@ -234,7 +253,12 @@ export class LibertariosComponent implements OnInit, AfterViewInit, OnDestroy {
     return false;
   }
 
+  getComissaoNacional(role: string, department: IUserDepartment): string {
+    return department.cargo + ' ' + department.name + ' - ' + role;
+  }
+
   ngOnDestroy() {
+    this.toolbarService.setTools(null);
     this.destroy$.next(true);
     this.destroy$.complete();
   }

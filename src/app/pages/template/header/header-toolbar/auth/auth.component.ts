@@ -205,6 +205,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       'card',
       'card-dashed',
       'cursor-default',
+      'animate__animated  animate__backInDown     animate__faster', // animate__rotateInUpRight animate__flipInY animate__jackInTheBox animate__backInDown
       'z-index-3',
       this.userService.getUser() ? '' : 'w-350px',
     ]
@@ -295,9 +296,7 @@ export class AuthComponent implements OnInit, OnDestroy {
               title: 'Erro de Servidor',
               message: 'Confirme se tem acesso ao servidor',
             });
-            this.processing = false;
             this.showMenu = false;
-            this.formGroup.reset();
             this.cdr.detectChanges();
             this.router.navigate(['/libertario/entrar']);
             return EMPTY;
@@ -305,9 +304,6 @@ export class AuthComponent implements OnInit, OnDestroy {
         )
         .subscribe({
           next: response => {
-            this.showMenu = false;
-            this.processing = false;
-            this.formGroup.reset();
             this.cdr.detectChanges();
             if (response === '') {
               setTimeout(() => {
@@ -328,18 +324,22 @@ export class AuthComponent implements OnInit, OnDestroy {
                       });
                       //TODO ver a route onde estou, o forcing para o inicio apenas na home ;)
                       this.router.navigate(['/inicio']);
+                      this.processing = false;
+                      this.formGroup.reset();
+                      this.showMenu = false;
+                      this.cdr.detectChanges();
                     }
                   });
                 this.splashScreenService.show();
               }, 500);
-            } else {
+            } /*else {
               this.alertService.setAlert({
                 code: 500,
                 title: 'Erro de Servidor',
                 message: response,
               });
               this.router.navigate(['/libertario/entrar']);
-            }
+            } */
           },
         });
     }

@@ -74,6 +74,7 @@ export class UserService implements OnDestroy {
       catchError(_error => {
         localStorage.removeItem('auth');
         this.isLoadingSubject.next(false);
+        this.forceExit();
         return EMPTY;
       }),
       map(response => {

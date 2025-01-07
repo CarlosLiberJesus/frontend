@@ -10,9 +10,7 @@
         <div class="nav-icon mb-3" *ngIf="tab.iconFirst">
           <app-bootstrap-icon [icon]="tab.iconFirst"></app-bootstrap-icon>
         </div>
-        <span [ngClass]="getTabItemTitleClass(i)">
-          {{ tab.title }}
-        </span>
+        <span [ngClass]="getTabItemTitleClass(i)"> {{ tab.title }} </span>
         <div class="nav-icon mb-3" *ngIf="tab.iconLast">
           <app-bootstrap-icon [icon]="tab.iconLast"></app-bootstrap-icon>
         </div>
@@ -20,7 +18,7 @@
       </a>
     </li>
   </ul>
-  <div class="tab-content">
+  <div class="tab-content w-100">
     <div
       class="tab-pane fade"
       role="tabpanel"

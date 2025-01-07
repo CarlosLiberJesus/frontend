@@ -78,7 +78,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
         };
 
         setTimeout(() => {
-          if (this.alert) {
+          if (this.alert && incoming.code === 200) {
             this.alert = {
               ...this.alert,
               css: [
@@ -86,9 +86,9 @@ export class AlertsComponent implements OnInit, OnDestroy {
                 'animate__animated animate__zoomOut animate__faster',
               ],
             };
+            this.alert = null;
+            this.cdr.detectChanges();
           }
-          this.alert = null;
-          this.cdr.detectChanges();
         }, incoming.autoClose ?? 4000);
 
         this.cdr.detectChanges();

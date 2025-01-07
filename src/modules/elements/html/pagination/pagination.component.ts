@@ -26,25 +26,28 @@ export class PaginationComponent {
   defaultFirstIcon: IIcon = {
     library: 'bi',
     value: 'bi-chevron-double-left',
-    css: ['fs-2', 'p-0'],
+    css: ['fs-4', 'p-0'],
   };
   defaultPrevIcon: IIcon = {
     library: 'bi',
     value: 'bi-chevron-left',
-    css: ['fs-2', 'p-0'],
+    css: ['fs-4', 'p-0'],
   };
   defaultNextIcon: IIcon = {
     library: 'bi',
     value: 'bi-chevron-right',
-    css: ['fs-2', 'p-0'],
+    css: ['fs-4', 'p-0'],
   };
   defaultLasttIcon: IIcon = {
     library: 'bi',
     value: 'bi-chevron-double-right',
-    css: ['fs-2', 'p-0'],
+    css: ['fs-4', 'p-0'],
   };
 
-  //range = (start: number, end: number) => Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  showPagination(): boolean {
+    return !!this.pagination && this.getNumberOfPages() > 1;
+  }
+
   range = (start: number, end: number) => {
     const maxPages = this.pagination?.maxPages;
     if (!maxPages) {
@@ -53,7 +56,7 @@ export class PaginationComponent {
       if (end - start <= maxPages) {
         return Array.from({ length: end - start + 1 }, (_, i) => start + i);
       } else {
-        const currentPage = this.pagination?.page ?? 1; // You'll need to implement this function
+        const currentPage = this.pagination?.page ?? 1;
         const halfMaxPages = Math.floor(maxPages / 2);
         if (currentPage <= halfMaxPages) {
           return Array.from({ length: maxPages }, (_, i) => start + i);
@@ -106,10 +109,11 @@ export class PaginationComponent {
    * Returns the css classes for the page link
    * @returns {string}
    */
-  getPageLinkClass(pos?: string): string {
+  getPageLinkClass(page: number, pos?: string): string {
     return [
       ...(this.pagination?.cssLink ?? []),
       'page-link',
+      this.isDisabled(page) ? 'd-none' : '',
       this.validateIfText(pos) ? 'page-text' : '',
     ]
       .filter(Boolean)

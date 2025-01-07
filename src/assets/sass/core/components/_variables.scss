@@ -129,6 +129,9 @@ $theme-colors: (
   'dark': $dark,
   'ancap': $ancap,
   'capan': $capan,
+  'gray-700': $gray-700,
+  'gray-500': $gray-500,
+  'gray-300': $gray-300,
 ) !default;
 
 // Contextual active state colors
@@ -143,6 +146,9 @@ $theme-active-colors: (
   'dark': $dark-active,
   'ancap': $ancap-active,
   'capan': $capan-active,
+  'gray-700': $gray-700,
+  'gray-500': $gray-500,
+  'gray-300': $gray-300,
 ) !default;
 
 // Contextual inverse state colors
@@ -157,6 +163,9 @@ $theme-inverse-colors: (
   'dark': $dark-inverse,
   'ancap': $ancap-inverse,
   'capan': $capan-inverse,
+  'gray-700': $gray-700,
+  'gray-500': $gray-500,
+  'gray-300': $gray-300,
 ) !default;
 
 // Contextual light state colors
@@ -171,6 +180,9 @@ $theme-light-colors: (
   'light': $light-light,
   'ancap': $ancap-light,
   'capan': $capan-light,
+  'gray-700': $gray-700,
+  'gray-500': $gray-500,
+  'gray-300': $gray-300,
 ) !default;
 
 // Contextual light state colors
@@ -185,6 +197,9 @@ $theme-clarity-colors: (
   'light': $light-clarity,
   'ancap': $ancap-clarity,
   'capan': $capan-clarity,
+  'gray-700': $gray-700,
+  'gray-500': $gray-500,
+  'gray-300': $gray-300,
 ) !default;
 
 // Text colors

@@ -132,7 +132,8 @@
 
   &.active {
     .page-link {
-      color: var(--#{$prefix}pagination-active-color);
+      color: var(--#{$prefix}capan);
+      background-color: var(--#{$prefix}ancap);
 
       &.page-text {
         background-color: transparent;

@@ -1,3 +1,11 @@
 .nav-item > a:not(.disabled):not(.active) {
   cursor: pointer;
 }
+.tabs > ul.flex-column {
+  flex: 0.25;
+  flex-basis: 0;
+  & + div.tab-content {
+    flex: 1;
+    min-height: 0;
+  }
+}

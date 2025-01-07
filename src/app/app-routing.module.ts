@@ -45,16 +45,23 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'libertario', // PARA páginas publicas, o homepage/blog da pessoa
-    // perfil está na privadas, modulo libertarios
+    path: 'libertario', // PARA páginas publicas blog da pessoa
     loadChildren: () =>
       import('./pages/public/auth/auth.module').then(m => m.AuthModule),
   },
   {
-    path: 'libertarios', // Privadas, modulo libertario
+    path: 'libertarios', // Privadas, modulo libertarios
     loadChildren: () =>
       import('./pages/private/libertarios/libertarios.module').then(
         m => m.LibertariosModule
+      ),
+    canActivate: [LoggedInGuard],
+  },
+  {
+    path: 'tarefas', // Privadas, modulo libertarios
+    loadChildren: () =>
+      import('./pages/private/tarefas/tarefas.module').then(
+        m => m.TarefasModule
       ),
     canActivate: [LoggedInGuard],
   },

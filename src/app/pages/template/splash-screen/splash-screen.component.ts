@@ -48,13 +48,16 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                 takeUntil(this.destroy$),
                 catchError(() => {
                   localStorage.removeItem('auth');
+                  /*
                   this.alertService.setAlert({
                     code: 500,
                     title: 'Erro do Servidor',
                     message:
                       'Erro na validação do Token:: Transição In Abortada',
                   });
+                  */
                   this.fastTransition = true;
+                  this.userService.forceExit();
                   //this.router.navigate(['/libertario/entrar']);
                   return EMPTY;
                 })
@@ -62,12 +65,13 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
               .subscribe({
                 next: response => {
                   if (response) {
+                    console.log('PERDI-ME ', response);
                     localStorage.removeItem('auth');
-                    this.alertService.setAlert({
+                    /*this.alertService.setAlert({
                       code: 500,
                       title: 'Erro do Servidor',
                       message: 'Erro na validação do Token:: ' + response,
-                    });
+                    }); */
 
                     //this.router.navigate(['/libertario/entrar']);
                   }
@@ -88,13 +92,15 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                 takeUntil(this.destroy$),
                 catchError(() => {
                   localStorage.removeItem('auth');
+                  /*
                   this.alertService.setAlert({
                     code: 500,
                     title: 'Erro do Servidor',
                     message:
                       'Erro na validação do Token:: Transição Out Abortada',
                   });
-                  //this.router.navigate(['/libertario/entrar']);
+                  //this.router.navigate(['/libertario/entrar']); */
+                  this.userService.forceExit();
                   return EMPTY;
                 })
               )
@@ -102,11 +108,12 @@ export class SplashScreenComponent implements AfterViewInit, OnDestroy {
                 next: response => {
                   if (response) {
                     localStorage.removeItem('auth');
-                    this.alertService.setAlert({
+                    console.log('PERDI-ME2 ', response);
+                    /*this.alertService.setAlert({
                       code: 500,
                       title: 'Erro do Servidor',
                       message: 'Erro na validação do Token:: ' + response,
-                    });
+                    });*/
                     //this.router.navigate(['/libertario/entrar']);
                   }
                   this.isAnimationComplete = false;

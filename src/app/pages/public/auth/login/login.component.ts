@@ -226,18 +226,15 @@ export class LoginComponent implements OnInit, OnDestroy {
                       this.router.navigate(['/inicio']);
                     }
                   });
-                this.formGroup.reset();
-                this.processing = false;
                 this.splashScreenService.show();
               }, 500);
             } else {
-              this.formGroup.reset();
               this.processing = false;
-              this.alertService.setAlert({
+              /*this.alertService.setAlert({
                 code: 500,
                 title: 'Erro de Servidor',
                 message: response,
-              });
+              });*/
             }
           },
         });

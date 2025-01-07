@@ -42,9 +42,7 @@
             <th
               *ngFor="let column of table.tableHeaders?.columns; let i = index"
               [ngClass]="getHearderColumnClass(i)">
-              <div style="display: inline-block">
-                {{ column.name }}
-              </div>
+              <div style="display: inline-block">{{ column.name }}</div>
               <app-bootstrap-html-button
                 *ngIf="column.sort"
                 [button]="getSortButton(i)"
@@ -54,9 +52,7 @@
         </thead>
         <tbody [ngClass]="getTbodyClass()">
           <tr *ngIf="table?.tableData?.length === 0">
-            <td
-              [attr.colspan]="table.tableHeaders.columns.length"
-              class="d-flex align-items-center justify-content-center">
+            <td [attr.colspan]="table.tableHeaders.columns.length">
               <span
                 class="d-flex align-items-center justify-content-center my-5 fs-4">
                 {{ table.notFound }}

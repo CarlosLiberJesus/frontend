@@ -330,7 +330,7 @@ export class RegistoComponent implements OnInit, OnDestroy {
               };
               this.cdr.detectChanges();
             }
-          } else {
+          } /* else {
             this.pageService.setAlert({
               code: 500,
               title: response.message ?? 'Erro de Servidor',
@@ -338,7 +338,7 @@ export class RegistoComponent implements OnInit, OnDestroy {
                 response.message ?? 'Validar de onde vem mensagem de erro',
               exception: response.exception,
             });
-          }
+          } */
         })
       )
       .subscribe();

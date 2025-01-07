@@ -447,32 +447,43 @@ export class MenuComponent implements OnChanges {
     if (this.getOpenMethod(pos, subMenu) === EEvent.HOVER) {
       if (subMenu !== undefined) {
         this.menu.items[pos].items![subMenu].opened = true;
-        if (this.menu.items[pos].items?.[subMenu].button) {
-          this.menu.items[pos].items![subMenu].button = {
-            ...this.menu.items[pos].items![subMenu].button,
-            iconFirst: {
-              ...this.menu.items[pos].items![subMenu].button!.iconFirst,
-              cssContainer: [
-                ...this.menu.items[pos].items![subMenu].button!.iconFirst!
-                  .cssContainer!,
-                'active',
-              ],
-            } as IIcon,
-          };
+        if (this.menu.items[pos].items![subMenu].button) {
+          const button = this.menu.items[pos].items![subMenu].button;
+          const iconFirst = button?.iconFirst;
+          if (iconFirst) {
+            const cssContainer = iconFirst.cssContainer;
+            const cssArray = Array.isArray(cssContainer)
+              ? cssContainer
+              : [cssContainer];
+
+            this.menu.items[pos].items![subMenu].button = {
+              ...this.menu.items[pos].items![subMenu].button,
+              iconFirst: {
+                ...iconFirst,
+                cssContainer: [...cssArray, 'active'],
+              } as IIcon,
+            };
+          }
         }
       } else {
         this.menu.items[pos].opened = true;
         if (this.menu.items[pos].button) {
-          this.menu.items[pos].button = {
-            ...this.menu.items[pos].button,
-            iconFirst: {
-              ...(this.menu.items[pos].button?.iconFirst || {}),
-              cssContainer: [
-                ...(this.menu.items[pos].button?.iconFirst?.cssContainer ?? []),
-                'active',
-              ],
-            } as IIcon,
-          };
+          const button = this.menu.items[pos].button;
+          const iconFirst = button?.iconFirst;
+          if (iconFirst) {
+            const cssContainer = iconFirst.cssContainer;
+            const cssArray = Array.isArray(cssContainer)
+              ? cssContainer
+              : [cssContainer];
+
+            this.menu.items[pos].button = {
+              ...this.menu.items[pos].button,
+              iconFirst: {
+                ...iconFirst,
+                cssContainer: [...cssArray, 'active'],
+              } as IIcon,
+            };
+          }
         }
       }
     }
@@ -487,17 +498,20 @@ export class MenuComponent implements OnChanges {
       if (subMenu !== undefined) {
         this.menu.items[pos].items![subMenu].opened = false;
         if (this.menu.items[pos].items![subMenu].button) {
-          this.menu.items[pos].items![subMenu].button = {
-            ...this.menu.items[pos].items![subMenu].button!,
-            iconFirst: {
-              ...this.menu.items[pos].items![subMenu].button!.iconFirst!,
-              cssContainer: this.menu.items[pos].items![
-                subMenu
-              ].button!.iconFirst!.cssContainer!.filter(
-                cssClass => cssClass !== 'active'
-              ),
-            },
-          };
+          const iconFirst =
+            this.menu.items[pos].items![subMenu].button!.iconFirst;
+          const cssContainer = iconFirst?.cssContainer;
+          if (cssContainer) {
+            this.menu.items[pos].items![subMenu].button = {
+              ...this.menu.items[pos].items![subMenu].button!,
+              iconFirst: {
+                ...iconFirst,
+                cssContainer: cssContainer.filter(
+                  cssClass => cssClass !== 'active'
+                ),
+              },
+            };
+          }
         }
       } else {
         this.menu.items[pos].opened = false;
